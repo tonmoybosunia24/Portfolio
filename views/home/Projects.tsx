@@ -102,7 +102,12 @@ export default function Projects() {
   return (
     <section id="projects" aria-labelledby="projects-title" className="pb-15 md:pb-20 lg:pb-30">
       <div className="section">
-        <SectionHeading id="projects-title" label={PROJECTS.label} title={PROJECTS.title} />
+        <SectionHeading
+          id="projects-title"
+          label={PROJECTS.label}
+          title={PROJECTS.title}
+          description={PROJECTS.description}
+        />
 
         <ul className="mt-8 grid gap-10 md:mt-12 md:grid-cols-2 md:gap-x-6 md:gap-y-12 lg:gap-x-7.5">
           {PROJECTS.items.map((project: Project) => (

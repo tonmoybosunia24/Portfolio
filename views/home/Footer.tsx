@@ -16,7 +16,7 @@ export default function Footer() {
 
   return (
     <footer className="bg-black-soft">
-      <div className="section grid gap-10 py-15 md:grid-cols-2 md:gap-x-8 md:py-20 lg:grid-cols-[minmax(0,6fr)_minmax(0,3fr)_minmax(0,3fr)] lg:gap-x-7.5 lg:py-25">
+      <div className="section grid gap-10 py-15 md:grid-cols-2 md:gap-x-8 md:py-20 lg:grid-cols-[minmax(0,5.5fr)_minmax(0,2.5fr)_minmax(0,4fr)] lg:gap-x-7.5 lg:py-25 xl:grid-cols-[minmax(0,6fr)_minmax(0,2.5fr)_minmax(0,3.5fr)]">
         <div className="md:col-span-2 lg:col-span-1">
           <Logo />
           <p className="mt-6 max-w-105 text-4xl leading-[1.2] md:text-[44px] lg:text-[50px]">
@@ -51,10 +51,10 @@ export default function Footer() {
               const Icon = DETAIL_ICONS[icon];
               const content = (
                 <>
-                  <span className="flex size-10 shrink-0 items-center justify-center rounded-full border border-white/8 bg-background/40">
-                    <Icon className="size-4" />
+                  <span className="flex size-10 shrink-0 items-center justify-center rounded-full border-2 border-white/8 bg-white/2 text-white">
+                    <Icon className="size-4.5" />
                   </span>
-                  <span className="min-w-0 wrap-break-word">{value}</span>
+                  <span className="min-w-0 break-all sm:break-normal sm:whitespace-nowrap">{value}</span>
                 </>
               );
 

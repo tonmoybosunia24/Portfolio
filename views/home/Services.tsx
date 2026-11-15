@@ -16,9 +16,9 @@ export default function Services() {
       <div className="section">
         <SectionHeading
           id="services-title"
-
           label={SERVICES.label}
           title={SERVICES.title}
+          description={SERVICES.description}
         />
 
         <ul className="mt-8 grid gap-4 md:mt-12 md:grid-cols-2 md:gap-5 lg:grid-cols-3 lg:gap-6">

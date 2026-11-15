@@ -18,9 +18,9 @@ export default function Achievements() {
       <div className="section">
         <SectionHeading
           id="achievements-title"
-
           label={ACHIEVEMENTS.label}
           title={ACHIEVEMENTS.title}
+          description={ACHIEVEMENTS.description}
         />
 
         <div className="mt-8 grid gap-4 md:mt-12 md:gap-6 lg:grid-cols-2 lg:gap-7.5">

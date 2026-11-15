@@ -30,8 +30,8 @@ export default function Contact() {
 
                 return (
                   <li key={icon} className="flex items-center gap-3">
-                    <span className="flex size-10 shrink-0 items-center justify-center rounded-full border border-white/8 bg-background text-white">
-                      <Icon className="size-4" />
+                    <span className="flex size-11 shrink-0 items-center justify-center rounded-full border-2 border-white/8 bg-white/2 text-white">
+                      <Icon className="size-4.5" />
                     </span>
                     <span className="min-w-0">
                       <span className="block text-xs leading-4 font-semibold tracking-[0.5px] text-gray-light uppercase">

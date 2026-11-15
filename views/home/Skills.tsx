@@ -25,12 +25,7 @@ export default function Skills() {
   return (
     <section id="skills" aria-labelledby="skills-title" className="pb-15 md:pb-20 lg:pb-30">
       <div className="section">
-        <SectionHeading
-          id="skills-title"
-
-          label={SKILLS.label}
-          title={SKILLS.title}
-        />
+        <SectionHeading id="skills-title" label={SKILLS.label} title={SKILLS.title} description={SKILLS.description} />
 
         <ul className="sr-only">
           {SKILLS.rows.flat().map(({ name }) => (

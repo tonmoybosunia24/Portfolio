@@ -61,6 +61,8 @@ export type ServiceIcon = 'phone' | 'layers' | 'network' | 'flame' | 'gauge' | '
 export const SERVICES = {
   label: 'What I Do',
   title: 'My Services',
+  description:
+    'From the first sketch to the store release, I build fast, reliable mobile apps tailored to your users and business goals.',
   items: [
     {
       title: 'Cross-Platform Apps',
@@ -99,6 +101,8 @@ export const SERVICES = {
 export const ACHIEVEMENTS = {
   label: 'Achievements',
   title: 'My Journey In Numbers',
+  description:
+    'A quick look at the apps shipped, projects completed and clients helped along my journey as a mobile app developer.',
   experience: {
     years: 2,
     text: 'Two years of building cross-platform apps with Flutter, working with clients from the first idea to the store release.',
@@ -142,6 +146,8 @@ export type SkillIconName =
 export const SKILLS = {
   label: 'Tech Stack',
   title: 'Tools I Work With',
+  description:
+    'The frameworks, state management libraries, backend services and developer tools I use every day to craft modern mobile apps.',
   rows: [
     [
       { name: 'Flutter', icon: 'flutter' },
@@ -182,6 +188,8 @@ export const SKILLS = {
 export const EXPERTISE = {
   label: 'Code Expertise',
   title: 'My Skill Levels',
+  description:
+    'A breakdown of my core technical strengths across cross-platform app development, backend integration and store publishing.',
   groups: [
     {
       title: 'App Development',
@@ -200,6 +208,41 @@ export const EXPERTISE = {
         { name: 'Git & GitHub', level: 80 },
         { name: 'Play Store & App Store', level: 75 },
       ],
+    },
+  ],
+} as const;
+
+/** The "Education" section below Core Expertise: four academic milestone cards in a two-column grid. */
+export const EDUCATION = {
+  label: 'Education & Experience',
+  title: 'Empowering Creativity Through',
+  description:
+    'A brief overview of my academic background and professional journey, highlighting the key milestones that have shaped my skills and expertise.',
+  groupTitle: 'Education',
+  items: [
+    {
+      degree: "Bachelor's Degree (ENGLISH)",
+      period: '2021 - Present',
+      institution: 'Kader Boksha Memorial College, Dinajpur',
+      text: "Pursuing a Bachelor's in English while learning web development and building projects.",
+    },
+    {
+      degree: 'Higher Secondary Certificate (HSC)',
+      period: '2018-2020',
+      institution: 'Holy Land College, Dinajpur',
+      text: 'Completed HSC in Science, developing strong analytical and problem-solving skills.',
+    },
+    {
+      degree: 'Secondary School Certificate (SSC)',
+      period: '2017-2018',
+      institution: 'Tepriganj Adarsha B.L High Scrool, Panchagarh',
+      text: 'Achieved SSC in Science, building a solid foundation in core subjects and discipline.',
+    },
+    {
+      degree: 'Junior School Certificate (JSC)',
+      period: '2014-2015',
+      institution: 'Tepriganj Adarsha B.L High Scrool, Panchagarh',
+      text: 'Completed JSC, developing strong basic academic skills and a passion for learning.',
     },
   ],
 } as const;
@@ -232,6 +275,8 @@ export interface Project {
 export const PROJECTS = {
   label: 'Latest Projects',
   title: 'Apps I Have Built',
+  description:
+    'A selection of mobile applications I have designed and built for Android and iOS, focused on clean UI and smooth performance.',
   items: [
     {
       title: 'Habit Tracker App',
@@ -275,6 +320,8 @@ export const PROJECTS = {
 export const TESTIMONIALS = {
   label: 'Testimonials',
   title: 'What Clients Say',
+  description:
+    'Honest feedback from founders, product managers and teams I have collaborated with to bring their mobile app ideas to life.',
   items: [
     {
       quote:

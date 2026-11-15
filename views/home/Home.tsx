@@ -1,5 +1,6 @@
 import Achievements from './Achievements';
 import Contact from './Contact';
+import Education from './Education';
 import Expertise from './Expertise';
 import Footer from './Footer';
 import Header from './Header';
@@ -20,6 +21,7 @@ export default function Home() {
         <Achievements />
         <Skills />
         <Expertise />
+        <Education />
         <Projects />
         <Testimonials />
         <Contact />

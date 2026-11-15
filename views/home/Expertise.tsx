@@ -14,9 +14,9 @@ export default function Expertise() {
       <div className="section">
         <SectionHeading
           id="expertise-title"
-
           label={EXPERTISE.label}
           title={EXPERTISE.title}
+          description={EXPERTISE.description}
         />
 
         <div className="mt-8 grid gap-10 md:mt-12 lg:grid-cols-2 lg:gap-7.5">
