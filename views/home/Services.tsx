@@ -25,15 +25,15 @@ export default function Services() {
           {SERVICES.items.map(({ title, text, icon }, index) => (
             <li
               key={title}
-              className="group relative rounded-lg border border-white/6 bg-dark p-6 transition duration-300 hover:-translate-y-1 hover:border-pink-primary/40 md:p-7"
+              className="group relative rounded-lg border border-foreground/6 bg-dark p-6 transition duration-300 hover:-translate-y-1 hover:border-pink-primary/40 md:p-7"
             >
               <span
                 aria-hidden="true"
-                className="absolute top-4 right-5 text-[44px] leading-none font-bold text-transparent transition-colors duration-300 [-webkit-text-stroke:1px_rgb(255_255_255/0.1)] group-hover:[-webkit-text-stroke-color:rgb(255_1_79/0.5)] md:top-5 md:right-6 md:text-5xl"
+                className="absolute top-4 right-5 text-[44px] leading-none font-bold text-transparent transition-colors duration-300 [-webkit-text-stroke:1px_color-mix(in_srgb,var(--foreground)_12%,transparent)] group-hover:[-webkit-text-stroke-color:rgb(255_1_79/0.5)] md:top-5 md:right-6 md:text-5xl"
               >
                 {twoDigits(index + 1)}
               </span>
-              <span className="flex size-12 items-center justify-center rounded-full bg-white/8 text-pink-primary transition-colors duration-300 group-hover:bg-pink-primary group-hover:text-white">
+              <span className="flex size-12 items-center justify-center rounded-full bg-foreground/8 text-pink-primary transition-colors duration-300 group-hover:bg-pink-primary group-hover:text-white">
                 <ServiceIconSvg name={icon} className="size-5.5" />
               </span>
               <h3 className="mt-5 text-[22px] leading-7 font-bold lg:text-xl xl:text-[22px]">{title}</h3>

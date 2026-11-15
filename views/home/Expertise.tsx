@@ -27,7 +27,7 @@ export default function Expertise() {
                 {/* A short line with a dot at each end, as on the previous site. */}
                 <span
                   aria-hidden="true"
-                  className="relative h-px w-20 bg-white/70 before:absolute before:-top-0.75 before:-left-0.5 before:size-1.75 before:rounded-full before:bg-white after:absolute after:-top-0.75 after:-right-0.5 after:size-1.75 after:rounded-full after:bg-white"
+                  className="relative h-px w-20 bg-foreground/70 before:absolute before:-top-0.75 before:-left-0.5 before:size-1.75 before:rounded-full before:bg-foreground after:absolute after:-top-0.75 after:-right-0.5 after:size-1.75 after:rounded-full after:bg-foreground"
                 />
               </h3>
 

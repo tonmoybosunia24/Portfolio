@@ -6,9 +6,9 @@ import { PROFILE, SOCIALS } from '@/constants/profile';
 
 import { SOCIAL_ICONS } from './icons';
 
-/** A round icon button: faint white, pink on hover. */
+/** A round icon button: faint overlay, pink on hover. */
 export const roundIcon =
-  'flex size-10 items-center justify-center rounded-full bg-white-overlay transition-colors duration-300 hover:bg-pink-primary';
+  'flex size-10 items-center justify-center rounded-full bg-white-overlay transition-colors duration-300 hover:bg-pink-primary hover:text-white';
 
 /** The logo mark and name, linking to the top of the page. Used in the header, the side panel and the footer. */
 export function Logo({ onClick }: { onClick?: () => void }) {

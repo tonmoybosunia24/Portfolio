@@ -21,7 +21,7 @@ export default function Footer() {
           <Logo />
           <p className="mt-6 max-w-105 text-4xl leading-[1.2] md:text-[44px] lg:text-[50px]">
             <span className="font-bold">{FOOTER.headline[0]}</span>{' '}
-            <span className="font-light text-white">{FOOTER.headline[1]}</span>
+            <span className="font-light text-foreground">{FOOTER.headline[1]}</span>
           </p>
           <FooterEmailForm />
         </div>
@@ -35,7 +35,7 @@ export default function Footer() {
               <li key={link.href}>
                 <a
                   href={link.href}
-                  className="font-rubik text-[15px] leading-6 font-medium text-white transition-colors hover:text-pink-primary"
+                  className="font-rubik text-[15px] leading-6 font-medium text-foreground transition-colors hover:text-pink-primary"
                 >
                   {link.label}
                 </a>
@@ -51,7 +51,7 @@ export default function Footer() {
               const Icon = DETAIL_ICONS[icon];
               const content = (
                 <>
-                  <span className="flex size-10 shrink-0 items-center justify-center rounded-full border-2 border-white/8 bg-white/2 text-white">
+                  <span className="flex size-10 shrink-0 items-center justify-center rounded-full border-2 border-foreground/8 bg-foreground/2 text-foreground">
                     <Icon className="size-4.5" />
                   </span>
                   <span className="min-w-0 break-all sm:break-normal sm:whitespace-nowrap">{value}</span>
@@ -64,12 +64,12 @@ export default function Footer() {
                     <a
                       href={href}
                       aria-label={`${label}: ${value}`}
-                      className="flex items-center gap-3 font-rubik text-sm text-white transition-colors hover:text-pink-primary"
+                      className="flex items-center gap-3 font-rubik text-sm text-foreground transition-colors hover:text-pink-primary"
                     >
                       {content}
                     </a>
                   ) : (
-                    <span className="flex items-center gap-3 font-rubik text-sm text-white">{content}</span>
+                    <span className="flex items-center gap-3 font-rubik text-sm text-foreground">{content}</span>
                   )}
                 </li>
               );
@@ -79,15 +79,15 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="border-t border-white/6">
+      <div className="border-t border-foreground/8">
         <div className="section flex flex-col items-center justify-between gap-3 py-5 font-rubik text-sm text-gray-light sm:flex-row">
           <p>
-            <span className="font-medium text-white">©{PROFILE.name}</span> {year} | {FOOTER.rights}
+            <span className="font-medium text-foreground">©{PROFILE.name}</span> {year} | {FOOTER.rights}
           </p>
           <ul className="flex flex-wrap items-center justify-center gap-6 md:gap-7.5">
             {FOOTER.bottomLinks.map(link => (
               <li key={link.label}>
-                <a href={link.href} className="text-white transition-colors hover:text-pink-primary">
+                <a href={link.href} className="text-foreground transition-colors hover:text-pink-primary">
                   {link.label}
                 </a>
               </li>

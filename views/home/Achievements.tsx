@@ -24,7 +24,7 @@ export default function Achievements() {
         />
 
         <div className="mt-8 grid gap-4 md:mt-12 md:gap-6 lg:grid-cols-2 lg:gap-7.5">
-          <div className="flex flex-col justify-center rounded-[20px] bg-linear-to-br from-[#211a1d] to-[#6d0e2c] px-5 py-7.5 md:px-13 md:py-11">
+          <div className="flex flex-col justify-center rounded-[20px] bg-linear-to-br from-[#211a1d] to-[#6d0e2c] px-5 py-7.5 text-white md:px-13 md:py-11">
             <h3 className="flex items-center gap-5 font-bold md:gap-11">
               <span className="text-[80px] leading-none text-pink-primary md:text-[100px] xl:text-[140px] 2xl:text-[167px]">
                 {twoDigits(experience.years)}

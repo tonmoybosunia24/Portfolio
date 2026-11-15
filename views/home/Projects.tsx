@@ -71,7 +71,7 @@ function Preview({ project }: { project: Project }) {
   const [first, second] = project.screens;
 
   return (
-    <div className="@container relative aspect-4/3 overflow-hidden rounded-lg bg-dark bg-[radial-gradient(ellipse_70%_45%_at_60%_100%,rgb(255_1_79/0.14),transparent)]">
+    <div className="@container relative aspect-4/3 overflow-hidden rounded-lg bg-[#141414] bg-[radial-gradient(ellipse_70%_45%_at_60%_100%,rgb(255_1_79/0.14),transparent)] text-white">
       {/* The hero's hexagon lines, faint, fading out from the top-left. */}
       <HexPattern
         scale={0.9}
@@ -112,7 +112,7 @@ export default function Projects() {
         <ul className="mt-8 grid gap-10 md:mt-12 md:grid-cols-2 md:gap-x-6 md:gap-y-12 lg:gap-x-7.5">
           {PROJECTS.items.map((project: Project) => (
             <li key={project.title} className="group relative">
-              <div className="rounded-xl border border-white/10 bg-[#0b0b0d] p-3 transition-colors duration-300 group-hover:border-pink-primary/40 md:p-4 xl:p-5">
+              <div className="rounded-xl border border-foreground/10 bg-black-soft p-3 transition-colors duration-300 group-hover:border-pink-primary/40 md:p-4 xl:p-5">
                 <Preview project={project} />
               </div>
 
@@ -140,7 +140,7 @@ export default function Projects() {
                 </div>
                 <span
                   aria-hidden="true"
-                  className="flex size-11 shrink-0 items-center justify-center rounded-md border border-white/15 bg-background transition-colors duration-300 group-hover:border-pink-primary group-hover:bg-pink-primary md:size-12"
+                  className="flex size-11 shrink-0 items-center justify-center rounded-md border border-foreground/15 bg-background transition-colors duration-300 group-hover:border-pink-primary group-hover:bg-pink-primary group-hover:text-white md:size-12"
                 >
                   <ArrowUpRightIcon className="size-4.5" />
                 </span>

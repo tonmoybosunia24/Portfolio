@@ -31,7 +31,7 @@ function LightBeams() {
 /** Greeting with a typewriter role on the left, the portrait under two light beams on the right. */
 export default function Hero() {
   return (
-    <section id="home" aria-labelledby="hero-title" className="relative isolate overflow-hidden bg-[#0e0e10]">
+    <section id="home" aria-labelledby="hero-title" className="relative isolate overflow-hidden bg-(--hero-bg)">
       {/* Hexagon lines: around the top on phones, on the left from laptops, fading out at the edges. */}
       <HexPattern className="absolute inset-y-0 left-0 -z-10 h-full w-full text-pink-primary opacity-[0.22] mask-[radial-gradient(ellipse_100%_70%_at_50%_30%,black,transparent)] lg:w-3/4 lg:opacity-[0.14] lg:mask-[radial-gradient(ellipse_70%_60%_at_15%_45%,black,transparent)]" />
       {/* The whole bottom (background and photo) fades into the page below. The text column sits above it. */}
@@ -94,7 +94,7 @@ export default function Hero() {
             {/* A large faint word behind the photo: decoration, so it may disappear behind the head. */}
             <p
               aria-hidden="true"
-              className="animate-float pointer-events-none absolute top-1/4 left-1/2 -z-10 -translate-x-1/2 text-[46px] leading-[1.2] font-bold whitespace-nowrap text-transparent [-webkit-text-stroke:1px_rgb(255_255_255/0.14)] sm:text-[75px] md:text-[70px] lg:text-[64px] xl:text-[70px] 3xl:text-[90px] compact:text-[56px]"
+              className="animate-float pointer-events-none absolute top-1/4 left-1/2 -z-10 -translate-x-1/2 text-[46px] leading-[1.2] font-bold whitespace-nowrap text-transparent [-webkit-text-stroke:1px_color-mix(in_srgb,var(--foreground)_14%,transparent)] sm:text-[75px] md:text-[70px] lg:text-[64px] xl:text-[70px] 3xl:text-[90px] compact:text-[56px]"
             >
               {backTitle}
             </p>

@@ -155,13 +155,13 @@ export default function TestimonialSlider({ items }: { items: readonly Testimoni
               aria-current={isActive ? 'true' : undefined}
               className={`w-[88cqw] shrink-0 snap-center pt-8 transition-opacity duration-500 md:w-[75cqw] lg:w-[52cqw] ${isActive ? 'opacity-100' : 'opacity-50'}`}
             >
-              <figure className="relative flex h-full flex-col rounded-xl border border-white/12 px-5 pt-11 pb-7 md:px-10 md:pt-14 md:pb-11">
+              <figure className="relative flex h-full flex-col rounded-xl border border-foreground/12 px-5 pt-11 pb-7 md:px-10 md:pt-14 md:pb-11">
                 {/* The quote badge sits on the top border. */}
                 <span
                   aria-hidden="true"
-                  className="absolute top-0 left-5 flex size-14 -translate-y-1/2 items-center justify-center rounded-full border border-white/12 bg-background md:left-10 md:size-16"
+                  className="absolute top-0 left-5 flex size-14 -translate-y-1/2 items-center justify-center rounded-full border border-foreground/12 bg-background md:left-10 md:size-16"
                 >
-                  <QuoteIcon className="size-6 text-white/30 md:size-7" />
+                  <QuoteIcon className="size-6 text-foreground/30 md:size-7" />
                 </span>
 
                 {/* Stars below the name on phones, at the top right from tablets. */}
@@ -173,7 +173,7 @@ export default function TestimonialSlider({ items }: { items: readonly Testimoni
                       alt=""
                       width={48}
                       height={48}
-                      className="size-12 shrink-0 rounded-full ring-2 ring-white/10"
+                      className="size-12 shrink-0 rounded-full ring-2 ring-foreground/10"
                     />
                     <span>
                       <span className="block text-xl leading-6 font-bold md:text-[22px] md:leading-7">{name}</span>
@@ -210,7 +210,7 @@ export default function TestimonialSlider({ items }: { items: readonly Testimoni
             aria-label={`Show review ${index + 1} of ${count}`}
             aria-current={index === current ? 'true' : undefined}
             onClick={() => goTo(active + shortestStep(current, index, count))}
-            className={`h-2 rounded-full transition-all duration-300 ${index === current ? 'w-7 bg-pink-primary' : 'w-2 bg-white/25 hover:bg-white/50'}`}
+            className={`h-2 rounded-full transition-all duration-300 ${index === current ? 'w-7 bg-pink-primary' : 'w-2 bg-foreground/25 hover:bg-foreground/50'}`}
           />
         ))}
       </div>

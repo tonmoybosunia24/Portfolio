@@ -22,7 +22,7 @@ export default function Education() {
             {EDUCATION.groupTitle}
             <span
               aria-hidden="true"
-              className="relative h-px w-20 bg-white/70 before:absolute before:-top-0.75 before:-left-0.5 before:size-1.75 before:rounded-full before:bg-white after:absolute after:-top-0.75 after:-right-0.5 after:size-1.75 after:rounded-full after:bg-white"
+              className="relative h-px w-20 bg-foreground/70 before:absolute before:-top-0.75 before:-left-0.5 before:size-1.75 before:rounded-full before:bg-foreground after:absolute after:-top-0.75 after:-right-0.5 after:size-1.75 after:rounded-full after:bg-foreground"
             />
           </h3>
 
@@ -30,13 +30,13 @@ export default function Education() {
             {EDUCATION.items.map(({ degree, period, institution, text }) => (
               <li
                 key={degree}
-                className="flex flex-col justify-center rounded-2xl border border-white/6 bg-dark px-6 py-8 transition duration-300 hover:-translate-y-1 hover:border-pink-primary/40 md:px-9 md:py-10"
+                className="flex flex-col justify-center rounded-2xl border border-foreground/6 bg-dark px-6 py-8 transition duration-300 hover:-translate-y-1 hover:border-pink-primary/40 md:px-9 md:py-10"
               >
                 <div className="flex flex-wrap items-baseline justify-between gap-2">
-                  <h4 className="text-lg leading-6.5 font-semibold text-white md:text-xl">{degree}</h4>
-                  <span className="text-base font-bold text-white md:text-lg">{period}</span>
+                  <h4 className="text-lg leading-6.5 font-semibold text-foreground md:text-xl">{degree}</h4>
+                  <span className="text-base font-bold text-foreground md:text-lg">{period}</span>
                 </div>
-                <p className="mt-2.5 text-lg leading-6.5 font-bold text-white md:text-[21px]">{institution}</p>
+                <p className="mt-2.5 text-lg leading-6.5 font-bold text-foreground md:text-[21px]">{institution}</p>
                 <p className="mt-3.5 font-rubik text-[15px] leading-6.5 text-gray-light">{text}</p>
               </li>
             ))}

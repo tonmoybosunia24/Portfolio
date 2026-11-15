@@ -30,7 +30,7 @@ export default function Contact() {
 
                 return (
                   <li key={icon} className="flex items-center gap-3">
-                    <span className="flex size-11 shrink-0 items-center justify-center rounded-full border-2 border-white/8 bg-white/2 text-white">
+                    <span className="flex size-11 shrink-0 items-center justify-center rounded-full border-2 border-foreground/8 bg-foreground/2 text-foreground">
                       <Icon className="size-4.5" />
                     </span>
                     <span className="min-w-0">
@@ -40,12 +40,12 @@ export default function Contact() {
                       {href ? (
                         <a
                           href={href}
-                          className="mt-0.5 block font-rubik text-[15px] leading-6 wrap-break-word text-white transition-colors hover:text-pink-primary"
+                          className="mt-0.5 block font-rubik text-[15px] leading-6 wrap-break-word text-foreground transition-colors hover:text-pink-primary"
                         >
                           {value}
                         </a>
                       ) : (
-                        <span className="mt-0.5 block font-rubik text-[15px] leading-6 text-white">{value}</span>
+                        <span className="mt-0.5 block font-rubik text-[15px] leading-6 text-foreground">{value}</span>
                       )}
                     </span>
                   </li>

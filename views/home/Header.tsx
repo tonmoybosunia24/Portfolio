@@ -9,6 +9,7 @@ import { NAV_LINKS, SIDEBAR } from '@/constants/profile';
 
 import { Logo, roundIcon, SocialLinks } from './Brand';
 import { CloseIcon, LocationIcon, MailIcon, MenuIcon, PhoneIcon } from './icons';
+import ThemeToggle from './ThemeToggle';
 
 const CONTACT_ICONS = { phone: PhoneIcon, mail: MailIcon, location: LocationIcon };
 
@@ -92,8 +93,8 @@ export default function Header() {
             </ul>
           </nav>
 
-          <div className="flex items-center gap-6">
-            <SocialLinks className="hidden md:flex" />
+          <div className="flex items-center gap-3">
+            <ThemeToggle />
             <button
               ref={menuButton}
               type="button"
@@ -101,7 +102,7 @@ export default function Header() {
               aria-expanded={open}
               aria-controls="side-panel"
               onClick={() => setOpen(true)}
-              className="flex size-10 items-center justify-center rounded-full border-2 border-pink-primary bg-pink-primary transition-colors duration-300 hover:bg-transparent hover:text-pink-primary"
+              className="flex size-11.25 items-center justify-center rounded-full border-2 border-pink-primary bg-pink-primary text-white transition-colors duration-300 hover:bg-transparent hover:text-pink-primary"
             >
               <MenuIcon className="size-5.25" />
             </button>

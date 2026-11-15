@@ -5,6 +5,25 @@
 
   --background: #060606;
   --foreground: #fff;
+  --hero-bg: #0e0e10;
+  --dark: #141414;
+  --black-soft: #151515;
+  --gray-light: #c2c2c2;
+  --white-overlay: rgb(255 255 255 / 8%);
+  --line: rgb(255 255 253 / 6%);
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
+
+  --background: #f8f9fa;
+  --foreground: #141414;
+  --hero-bg: #eef0f4;
+  --dark: #fff;
+  --black-soft: #f1f3f6;
+  --gray-light: #52525b;
+  --white-overlay: rgb(20 20 20 / 8%);
+  --line: rgb(20 20 20 / 8%);
 }
 
 /* Colors and fonts of the portfolio, usable as Tailwind classes (`text-pink-primary`, `font-rubik`). */
@@ -13,11 +32,11 @@
   --color-foreground: var(--foreground);
   --color-pink-primary: #ff014f;
   --color-red-primary: #ff0003;
-  --color-gray-light: #c2c2c2;
-  --color-black-soft: #151515;
-  --color-dark: #141414;
-  --color-white-overlay: rgb(255 255 255 / 8%);
-  --color-line: rgb(255 255 253 / 6%);
+  --color-gray-light: var(--gray-light);
+  --color-black-soft: var(--black-soft);
+  --color-dark: var(--dark);
+  --color-white-overlay: var(--white-overlay);
+  --color-line: var(--line);
   --font-sans: var(--font-rajdhani);
   --font-rubik: var(--font-rubik);
 }

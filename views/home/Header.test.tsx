@@ -17,16 +17,36 @@ describe('Header', () => {
     }
   });
 
-  it('opens the social profiles in a new tab', () => {
+  it('opens the social profiles in the side panel in a new tab', () => {
     render(<Header />);
 
     for (const social of SOCIALS) {
-      const [link] = screen.getAllByRole('link', { name: social.label });
+      const link = screen.getByRole('link', { name: social.label, hidden: true });
 
       expect(link).toHaveAttribute('href', social.href);
       expect(link).toHaveAttribute('target', '_blank');
       expect(link).toHaveAttribute('rel', 'noopener noreferrer');
     }
+  });
+
+  it('toggles between dark and light mode', async () => {
+    const user = userEvent.setup();
+
+    window.localStorage.removeItem('theme');
+    render(<Header />);
+
+    const toggle = screen.getByRole('button', { name: 'Switch to light mode' });
+
+    await user.click(toggle);
+
+    expect(document.documentElement.dataset.theme).toBe('light');
+    expect(window.localStorage.getItem('theme')).toBe('light');
+    expect(screen.getByRole('button', { name: 'Switch to dark mode' })).toBeInTheDocument();
+
+    await user.click(screen.getByRole('button', { name: 'Switch to dark mode' }));
+
+    expect(document.documentElement.dataset.theme).toBe('dark');
+    expect(window.localStorage.getItem('theme')).toBe('dark');
   });
 
   it('opens the menu panel and closes it with Escape, returning focus to the button', async () => {
