@@ -19,6 +19,10 @@ const nextConfig: NextConfig = {
   // Don't advertise the framework in an `X-Powered-By` header.
   poweredByHeader: false,
 
+  // Lets a phone on the same home Wi-Fi open the dev server (http://192.168.x.x:3000) with working
+  // scripts. Only affects `next dev`.
+  allowedDevOrigins: ['192.168.*.*'],
+
   async headers() {
     return [{ source: '/:path*', headers: securityHeaders }];
   },

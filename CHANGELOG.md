@@ -6,6 +6,8 @@ Notable changes to the starter kit. The format follows [Keep a Changelog](https:
 
 ### Added
 
+- Portfolio home page: header with side panel and hero (typewriter roles, portrait, background drawn in code). Content lives in `constants/profile.ts`; see `docs/portfolio.md`.
+- `allowedDevOrigins` for `192.168.*.*`, so the dev server can be opened from a phone on the same Wi-Fi.
 - Example CRUD module at `/projects` (list with pagination, create and edit forms with zod and API validation errors, delete, 404), with unit and e2e tests and mock API endpoints. See `docs/example-module.md`.
 - `parsePage` (`services/api/pagination.ts`): reads paginated lists from Laravel, Django REST Framework and other common shapes into one `Page<T>`. `components/Pagination.tsx` renders previous / next links.
 - `responseType: 'text' | 'blob'` on `handleRequest` for text and file downloads. A caller's `Accept` header is no longer overwritten.

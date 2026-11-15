@@ -1,4 +1,4 @@
-import { Geist, Geist_Mono } from 'next/font/google';
+import { Rajdhani, Rubik } from 'next/font/google';
 
 import type { Metadata } from 'next';
 
@@ -6,13 +6,16 @@ import StoreProvider from '@/lib/StoreProvider';
 
 import './globals.css';
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
+// Headings and UI text.
+const rajdhani = Rajdhani({
+  variable: '--font-rajdhani',
   subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
 });
 
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
+// Body copy (`font-rubik`).
+const rubik = Rubik({
+  variable: '--font-rubik',
   subsets: ['latin'],
 });
 
@@ -33,7 +36,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body className={`${rajdhani.variable} ${rubik.variable} antialiased`}>
         <StoreProvider>{children}</StoreProvider>
       </body>
     </html>
