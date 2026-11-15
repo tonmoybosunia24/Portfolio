@@ -20,7 +20,7 @@ describe('Achievements', () => {
 
     expect(items).toHaveLength(ACHIEVEMENTS.stats.length);
     ACHIEVEMENTS.stats.forEach(({ count, label }, index) => {
-      expect(items[index]).toHaveTextContent(`${String(count).padStart(2, '0')} +${label}`);
+      expect(items[index]).toHaveTextContent(`${String(count).padStart(2, '0')}+${label}`);
     });
   });
 });

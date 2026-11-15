@@ -141,8 +141,8 @@ export default function TestimonialSlider({ items }: { items: readonly Testimoni
         // Focusable so keyboard users can scroll the row with the arrow keys.
         tabIndex={0}
         aria-label="Client reviews"
-        // The row fades out at both sides, so the neighbouring reviews don't end in a hard cut.
-        className="relative flex snap-x snap-mandatory gap-4 overflow-x-auto scrollbar-none mask-[linear-gradient(to_right,transparent,black_6%,black_94%,transparent)] md:gap-5 lg:mask-[linear-gradient(to_right,transparent,black_14%,black_86%,transparent)]"
+        // From 768px the row fades out at both sides, so the neighbouring reviews don't end in a hard cut.
+        className="relative flex snap-x snap-mandatory gap-4 overflow-x-auto scrollbar-none md:gap-5 md:mask-[linear-gradient(to_right,transparent,black_6%,black_94%,transparent)] lg:mask-[linear-gradient(to_right,transparent,black_14%,black_86%,transparent)]"
       >
         {cards.flat().map(({ quote, name, role, image, rating, copy, index }) => {
           const position = copy * count + index;
@@ -153,7 +153,7 @@ export default function TestimonialSlider({ items }: { items: readonly Testimoni
               key={`${copy}-${name}`}
               aria-hidden={copy === 1 ? undefined : true}
               aria-current={isActive ? 'true' : undefined}
-              className={`w-[88cqw] shrink-0 snap-center pt-8 transition-opacity duration-500 md:w-[75cqw] lg:w-[52cqw] ${isActive ? 'opacity-100' : 'opacity-50'}`}
+              className={`w-[100cqw] shrink-0 snap-center pt-8 transition-opacity duration-500 md:w-[75cqw] lg:w-[52cqw] ${isActive ? 'opacity-100' : 'opacity-50'}`}
             >
               <figure className="relative flex h-full flex-col rounded-xl border border-foreground/12 px-5 pt-11 pb-7 md:px-10 md:pt-14 md:pb-11">
                 {/* The quote badge sits on the top border. */}

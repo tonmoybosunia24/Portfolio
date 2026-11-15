@@ -135,7 +135,7 @@ export function ArrowRightIcon({ className }: IconProps) {
   );
 }
 
-/** Line icons for the service cards (in the style of Lucide), drawn with the text color. */
+/** Line icons for the service and achievement cards (in the style of Lucide), drawn with the text color. */
 const SERVICE_ICON_PATHS: Record<ServiceIcon, string[]> = {
   phone: ['M7 2h10a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2Z', 'M12 18h.01'],
   layers: ['m12 2 9 5-9 5-9-5 9-5Z', 'm3 12 9 5 9-5', 'm3 17 9 5 9-5'],
@@ -149,6 +149,14 @@ const SERVICE_ICON_PATHS: Record<ServiceIcon, string[]> = {
     'M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.07-2.14-.22-4.05 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.15.43-2.29 1-3a2.5 2.5 0 0 0 2.5 2.5Z',
   ],
   gauge: ['m12 14 4-4', 'M3.34 19a10 10 0 1 1 17.32 0'],
+  check: ['M21.8 10A10 10 0 1 1 17 3.34', 'm9 11 3 3L22 4'],
+  star: ['m12 2.5 2.94 5.96 6.56.95-4.75 4.63 1.12 6.54L12 17.5l-5.87 3.08 1.12-6.54L2.5 9.41l6.56-.95L12 2.5Z'],
+  users: [
+    'M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2',
+    'M9 3a4 4 0 1 1 0 8 4 4 0 0 1 0-8Z',
+    'M22 21v-2a4 4 0 0 0-3-3.87',
+    'M16 3.13a4 4 0 0 1 0 7.75',
+  ],
   rocket: [
     'M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09Z',
     'm12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2Z',

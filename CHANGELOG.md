@@ -14,6 +14,7 @@ Notable changes to the starter kit. The format follows [Keep a Changelog](https:
 - Portfolio projects section: project cards with phone previews, screenshots optional.
 - Portfolio testimonials section: an endless, auto-playing review slider with dots.
 - Portfolio contact section: contact details and a form that opens the visitor's email app.
+- `glow-card` utility: a pink border glow on hover that follows the pointer, on the service, achievement and education cards.
 - `allowedDevOrigins` for `192.168.*.*`, so the dev server can be opened from a phone on the same Wi-Fi.
 - Example CRUD module at `/projects` (list with pagination, create and edit forms with zod and API validation errors, delete, 404), with unit and e2e tests and mock API endpoints. See `docs/example-module.md`.
 - `parsePage` (`services/api/pagination.ts`): reads paginated lists from Laravel, Django REST Framework and other common shapes into one `Page<T>`. `components/Pagination.tsx` renders previous / next links.

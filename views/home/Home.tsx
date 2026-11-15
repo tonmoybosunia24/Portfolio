@@ -3,6 +3,7 @@ import Contact from './Contact';
 import Education from './Education';
 import Expertise from './Expertise';
 import Footer from './Footer';
+import GlowTracker from './GlowTracker';
 import Header from './Header';
 import Hero from './Hero';
 import Projects from './Projects';
@@ -27,6 +28,7 @@ export default function Home() {
         <Contact />
       </main>
       <Footer />
+      <GlowTracker />
     </div>
   );
 }

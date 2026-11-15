@@ -82,7 +82,7 @@ export default function Header() {
                   <a
                     href={link.href}
                     className={cn(
-                      'block px-3 py-1 text-base font-bold transition-colors hover:text-red-primary',
+                      'block px-3 py-1 text-lg font-bold transition-colors hover:text-red-primary',
                       index === 0 && 'text-pink-primary',
                     )}
                   >

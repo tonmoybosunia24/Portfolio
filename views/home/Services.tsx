@@ -25,7 +25,7 @@ export default function Services() {
           {SERVICES.items.map(({ title, text, icon }, index) => (
             <li
               key={title}
-              className="group relative rounded-lg border border-foreground/6 bg-dark p-6 transition duration-300 hover:-translate-y-1 hover:border-pink-primary/40 md:p-7"
+              className="group glow-card rounded-[20px] border border-foreground/6 bg-dark p-6 transition duration-300 hover:-translate-y-1 md:p-7"
             >
               <span
                 aria-hidden="true"

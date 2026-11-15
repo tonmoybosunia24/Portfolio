@@ -98,6 +98,61 @@ body {
   -webkit-text-stroke: 1px var(--foreground);
 }
 
+/*
+ * A pink glow on the card's border at the corner nearest the pointer: solid at that corner, then fading
+ * along its two edges all the way to the next corners, where it ends, so only one corner lights up.
+ * `GlowTracker` sets --glow-x and --glow-y to that corner (0% or 100%), and the glow slides when the
+ * pointer moves to another corner. The ring is drawn over the card's own
+ * 1px border, so give cards a border (transparent is fine).
+ */
+@property --glow-cx {
+  syntax: '<percentage>';
+  inherits: false;
+  initial-value: 0%;
+}
+
+@property --glow-cy {
+  syntax: '<percentage>';
+  inherits: false;
+  initial-value: 0%;
+}
+
+@utility glow-card {
+  position: relative;
+
+  &::after {
+    --glow-cx: var(--glow-x, 0%);
+    --glow-cy: var(--glow-y, 0%);
+
+    position: absolute;
+    inset: -1px;
+    padding: 2px;
+    border-radius: inherit;
+    background: radial-gradient(
+      ellipse 100% 100% at var(--glow-cx) var(--glow-cy),
+      var(--color-pink-primary) 0%,
+      var(--color-pink-primary) 20%,
+      rgb(255 1 79 / 0.35) 65%,
+      transparent 100%
+    );
+    content: '';
+    mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    mask-composite: exclude;
+    opacity: 0;
+    pointer-events: none;
+    transition:
+      opacity 0.3s,
+      --glow-cx 0.4s ease,
+      --glow-cy 0.4s ease;
+  }
+
+  &:hover::after {
+    opacity: 1;
+  }
+}
+
 @keyframes float {
   0%,
   100% {

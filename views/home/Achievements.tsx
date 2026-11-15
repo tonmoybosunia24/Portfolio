@@ -1,5 +1,6 @@
 import { ACHIEVEMENTS } from '@/constants/profile';
 
+import { ServiceIconSvg } from './icons';
 import SectionHeading from './SectionHeading';
 
 /** 2 → "02", like the previous site. */
@@ -23,7 +24,7 @@ export default function Achievements() {
           description={ACHIEVEMENTS.description}
         />
 
-        <div className="mt-8 grid gap-4 md:mt-12 md:gap-6 lg:grid-cols-2 lg:gap-7.5">
+        <div className="mt-8 grid gap-4.5 md:mt-12 md:gap-6 lg:grid-cols-2 lg:gap-5">
           <div className="flex flex-col justify-center rounded-[20px] bg-linear-to-br from-[#211a1d] to-[#6d0e2c] px-5 py-7.5 text-white md:px-13 md:py-11">
             <h3 className="flex items-center gap-5 font-bold md:gap-11">
               <span className="text-[80px] leading-none text-pink-primary md:text-[100px] xl:text-[140px] 2xl:text-[167px]">
@@ -37,19 +38,30 @@ export default function Achievements() {
             <p className="mt-3 font-rubik text-base leading-6.5 text-white/90 md:mt-6">{experience.text}</p>
           </div>
 
-          <ul className="grid grid-cols-2 gap-4 md:gap-6 lg:gap-7.5 2xl:gap-5">
-            {stats.map(({ count, label }) => (
+          <ul className="grid grid-cols-2 gap-4.5 md:gap-6 lg:gap-5">
+            {/*
+              Styled like the service cards: a round icon, then the number and its label, left-aligned, with a
+              large faint card number in the corner.
+            */}
+            {stats.map(({ count, label, icon }, index) => (
               <li
                 key={label}
-                className="flex flex-col items-center justify-center rounded-[20px] border border-transparent bg-dark px-1.75 py-6 text-center transition-colors duration-300 hover:border-pink-primary/30 md:py-8.5 2xl:py-12"
+                className="group glow-card flex flex-col justify-center rounded-[20px] border border-foreground/6 bg-dark p-4.5 transition duration-300 hover:-translate-y-1 md:p-7"
               >
-                <p className="text-4xl leading-[1.25] font-bold md:text-5xl md:leading-15 lg:text-[40px] 2xl:text-[56px] 2xl:leading-17.5">
+                <span
+                  aria-hidden="true"
+                  className="absolute top-3.5 right-4 text-[34px] leading-none font-bold text-transparent transition-colors duration-300 [-webkit-text-stroke:1px_color-mix(in_srgb,var(--foreground)_12%,transparent)] group-hover:[-webkit-text-stroke-color:rgb(255_1_79/0.5)] md:top-5 md:right-6 md:text-5xl"
+                >
+                  {twoDigits(index + 1)}
+                </span>
+                <span className="flex size-10 items-center justify-center rounded-full bg-foreground/8 text-pink-primary transition-colors duration-300 group-hover:bg-pink-primary group-hover:text-white md:size-12">
+                  <ServiceIconSvg name={icon} className="size-5 md:size-5.5" />
+                </span>
+                <p className="mt-4 text-[34px] leading-none font-bold md:mt-5 md:text-[44px] lg:text-[40px] 2xl:text-5xl">
                   {twoDigits(count)}
-                  <span className="text-pink-primary"> +</span>
+                  <span className="text-pink-primary">+</span>
                 </p>
-                <p className="mt-1 font-rubik text-sm leading-5 text-gray-light md:text-base md:leading-7.5 2xl:text-lg">
-                  {label}
-                </p>
+                <p className="mt-2 font-rubik text-sm leading-5 text-gray-light md:text-[15px] md:leading-6">{label}</p>
               </li>
             ))}
           </ul>

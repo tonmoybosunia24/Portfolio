@@ -3,7 +3,7 @@ import { EDUCATION } from '@/constants/profile';
 import SectionHeading from './SectionHeading';
 
 /**
- * Academic milestones in a two-column grid below Core Expertise. Each card shows the degree and years on
+ * Academic milestones below Core Expertise: one card per row up to 992px, then two columns. Each card shows the degree and years on
  * the top row, the institution name below it and a short summary.
  */
 export default function Education() {
@@ -26,18 +26,24 @@ export default function Education() {
             />
           </h3>
 
-          <ul className="grid gap-5 md:grid-cols-2 lg:gap-7.5">
+          <ul className="grid gap-4 md:gap-5 lg:grid-cols-2 lg:gap-7.5">
             {EDUCATION.items.map(({ degree, period, institution, text }) => (
               <li
                 key={degree}
-                className="flex flex-col justify-center rounded-2xl border border-foreground/6 bg-dark px-6 py-8 transition duration-300 hover:-translate-y-1 hover:border-pink-primary/40 md:px-9 md:py-10"
+                className="glow-card flex flex-col justify-center rounded-2xl border border-foreground/6 bg-dark p-5 transition duration-300 hover:-translate-y-1 md:p-7 lg:px-9 lg:py-10"
               >
-                <div className="flex flex-wrap items-baseline justify-between gap-2">
-                  <h4 className="text-lg leading-6.5 font-semibold text-foreground md:text-xl">{degree}</h4>
-                  <span className="text-base font-bold text-foreground md:text-lg">{period}</span>
+                <div className="flex flex-wrap items-baseline justify-between gap-x-2 gap-y-0.5">
+                  <h4 className="text-base leading-6 font-semibold text-foreground md:text-xl md:leading-6.5">
+                    {degree}
+                  </h4>
+                  <span className="text-sm font-bold text-pink-primary md:text-lg md:text-foreground">{period}</span>
                 </div>
-                <p className="mt-2.5 text-lg leading-6.5 font-bold text-foreground md:text-[21px]">{institution}</p>
-                <p className="mt-3.5 font-rubik text-[15px] leading-6.5 text-gray-light">{text}</p>
+                <p className="mt-1.5 text-[17px] leading-6 font-bold text-foreground md:mt-2.5 md:text-[21px] md:leading-6.5">
+                  {institution}
+                </p>
+                <p className="mt-2 font-rubik text-sm leading-5.5 text-gray-light md:mt-3.5 md:text-[15px] md:leading-6.5">
+                  {text}
+                </p>
               </li>
             ))}
           </ul>

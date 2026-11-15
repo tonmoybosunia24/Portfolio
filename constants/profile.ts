@@ -55,7 +55,8 @@ export const NAV_LINKS = [
   { label: 'Contact', href: '#contact' },
 ] as const;
 
-export type ServiceIcon = 'phone' | 'layers' | 'network' | 'flame' | 'gauge' | 'rocket';
+/** Line icons in `views/home/icons.tsx`, used by the service and achievement cards. */
+export type ServiceIcon = 'phone' | 'layers' | 'network' | 'flame' | 'gauge' | 'rocket' | 'check' | 'star' | 'users';
 
 /** The "Services" section: a heading and six numbered cards. */
 export const SERVICES = {
@@ -108,11 +109,11 @@ export const ACHIEVEMENTS = {
     text: 'Two years of building cross-platform apps with Flutter, working with clients from the first idea to the store release.',
   },
   stats: [
-    { count: 10, label: 'Projects Completed' },
-    { count: 5, label: 'Apps Published' },
-    { count: 7, label: 'Client Reviews' },
-    { count: 8, label: 'Happy Clients' },
-  ],
+    { count: 10, label: 'Projects Done', icon: 'check' },
+    { count: 5, label: 'Apps Published', icon: 'rocket' },
+    { count: 7, label: 'Client Reviews', icon: 'star' },
+    { count: 8, label: 'Happy Clients', icon: 'users' },
+  ] satisfies { count: number; label: string; icon: ServiceIcon }[],
 } as const;
 
 /** Icons in `views/home/SkillIcon.tsx`: brand logos, then line icons for skills without one. */
