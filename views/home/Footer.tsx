@@ -16,26 +16,26 @@ export default function Footer() {
 
   return (
     <footer className="bg-black-soft">
-      <div className="section grid gap-10 pt-15 pb-12 md:grid-cols-2 md:gap-x-8 md:pt-20 md:pb-16 lg:grid-cols-[minmax(0,5fr)_minmax(0,3fr)_minmax(0,4fr)] lg:gap-x-10">
+      <div className="section grid gap-10 py-15 md:grid-cols-2 md:gap-x-8 md:py-20 lg:grid-cols-[minmax(0,6fr)_minmax(0,3fr)_minmax(0,3fr)] lg:gap-x-7.5 lg:py-25">
         <div className="md:col-span-2 lg:col-span-1">
           <Logo />
-          <p className="mt-5 text-4xl leading-[1.15] md:text-[44px]">
+          <p className="mt-6 max-w-105 text-4xl leading-[1.2] md:text-[44px] lg:text-[50px]">
             <span className="font-bold">{FOOTER.headline[0]}</span>{' '}
-            <span className="font-normal text-white/90">{FOOTER.headline[1]}</span>
+            <span className="font-light text-white">{FOOTER.headline[1]}</span>
           </p>
           <FooterEmailForm />
         </div>
 
         <nav aria-labelledby="footer-links-title">
-          <h2 id="footer-links-title" className="text-[28px] leading-9 font-bold md:text-[30px]">
+          <h2 id="footer-links-title" className="text-2xl leading-7.5 font-bold">
             {FOOTER.linksTitle}
           </h2>
-          <ul className="mt-5 flex flex-col gap-3">
+          <ul className="mt-6 flex flex-col gap-3.5">
             {FOOTER.links.map(link => (
               <li key={link.href}>
                 <a
                   href={link.href}
-                  className="font-rubik text-base text-white transition-colors hover:text-pink-primary"
+                  className="font-rubik text-[15px] leading-6 font-medium text-white transition-colors hover:text-pink-primary"
                 >
                   {link.label}
                 </a>
@@ -45,13 +45,13 @@ export default function Footer() {
         </nav>
 
         <div>
-          <h2 className="text-[28px] leading-9 font-bold md:text-[30px]">{FOOTER.contactTitle}</h2>
-          <ul className="mt-5 flex flex-col gap-3">
+          <h2 className="text-2xl leading-7.5 font-bold">{FOOTER.contactTitle}</h2>
+          <ul className="mt-6 flex flex-col gap-4">
             {SIDEBAR.contacts.map(({ icon, label, value, href }) => {
               const Icon = DETAIL_ICONS[icon];
               const content = (
                 <>
-                  <span className="flex size-10 shrink-0 items-center justify-center rounded-full border border-white/8 bg-background">
+                  <span className="flex size-10 shrink-0 items-center justify-center rounded-full border border-white/8 bg-background/40">
                     <Icon className="size-4" />
                   </span>
                   <span className="min-w-0 wrap-break-word">{value}</span>
@@ -64,12 +64,12 @@ export default function Footer() {
                     <a
                       href={href}
                       aria-label={`${label}: ${value}`}
-                      className="flex items-center gap-3 font-rubik text-[15px] text-white transition-colors hover:text-pink-primary"
+                      className="flex items-center gap-3 font-rubik text-sm text-white transition-colors hover:text-pink-primary"
                     >
                       {content}
                     </a>
                   ) : (
-                    <span className="flex items-center gap-3 font-rubik text-[15px] text-white">{content}</span>
+                    <span className="flex items-center gap-3 font-rubik text-sm text-white">{content}</span>
                   )}
                 </li>
               );
@@ -80,13 +80,19 @@ export default function Footer() {
       </div>
 
       <div className="border-t border-white/6">
-        <div className="section flex flex-col items-center justify-between gap-3 py-6 font-rubik text-sm text-gray-light sm:flex-row">
+        <div className="section flex flex-col items-center justify-between gap-3 py-5 font-rubik text-sm text-gray-light sm:flex-row">
           <p>
-            © <span className="text-white">{PROFILE.name}</span> {year} | {FOOTER.rights}
+            <span className="font-medium text-white">©{PROFILE.name}</span> {year} | {FOOTER.rights}
           </p>
-          <a href="#home" className="text-white transition-colors hover:text-pink-primary">
-            Back to top ↑
-          </a>
+          <ul className="flex flex-wrap items-center justify-center gap-6 md:gap-7.5">
+            {FOOTER.bottomLinks.map(link => (
+              <li key={link.label}>
+                <a href={link.href} className="text-white transition-colors hover:text-pink-primary">
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </footer>

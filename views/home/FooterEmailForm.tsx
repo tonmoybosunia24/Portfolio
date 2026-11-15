@@ -33,7 +33,7 @@ export default function FooterEmailForm() {
   };
 
   return (
-    <form noValidate onSubmit={onSubmit} className="mt-6 max-w-104">
+    <form noValidate onSubmit={onSubmit} className="mt-7.5 max-w-95">
       <div className="flex items-center border-b border-white/15 transition-colors focus-within:border-pink-primary">
         <label htmlFor="footer-email" className="sr-only">
           {FOOTER.emailPlaceholder}
@@ -46,14 +46,14 @@ export default function FooterEmailForm() {
           placeholder={FOOTER.emailPlaceholder}
           aria-invalid={error ? true : undefined}
           aria-describedby={error ? 'footer-email-error' : undefined}
-          className="h-12 min-w-0 flex-1 bg-transparent font-rubik text-base text-white outline-none placeholder:text-gray-light/70"
+          className="h-11 min-w-0 flex-1 bg-transparent font-rubik text-sm text-white outline-none placeholder:text-gray-light/70"
         />
         <button
           type="submit"
           aria-label="Send"
           className="flex size-10 shrink-0 items-center justify-center text-white transition-colors hover:text-pink-primary"
         >
-          <MailIcon className="size-5" />
+          <MailIcon className="size-4" />
         </button>
       </div>
       {error && (

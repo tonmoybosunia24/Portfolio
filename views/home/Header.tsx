@@ -14,11 +14,29 @@ const CONTACT_ICONS = { phone: PhoneIcon, mail: MailIcon, location: LocationIcon
 
 export default function Header() {
   const [open, setOpen] = useState(false);
+  const [sticky, setSticky] = useState(false);
   const menuButton = useRef<HTMLButtonElement>(null);
   const closeButton = useRef<HTMLButtonElement>(null);
   const wasOpen = useRef(false);
 
   const close = () => setOpen(false);
+
+  useEffect(() => {
+    const updateSticky = () => {
+      const hero = document.getElementById('home');
+
+      setSticky(Boolean(hero && window.scrollY > 0 && hero.getBoundingClientRect().bottom <= 0));
+    };
+
+    updateSticky();
+    window.addEventListener('scroll', updateSticky, { passive: true });
+    window.addEventListener('resize', updateSticky);
+
+    return () => {
+      window.removeEventListener('scroll', updateSticky);
+      window.removeEventListener('resize', updateSticky);
+    };
+  }, []);
 
   useEffect(() => {
     if (!open) {
@@ -46,41 +64,48 @@ export default function Header() {
   }, [open]);
 
   return (
-    <header className="absolute inset-x-0 top-0 z-40">
-      <div className="section flex h-17.75 items-center justify-between xl:h-19.5">
-        <Logo />
+    <header className={cn('inset-x-0 top-0 z-40', sticky ? 'fixed' : 'absolute')}>
+      <div
+        className={cn(
+          'border-b transition-colors duration-300',
+          sticky ? 'border-white-overlay bg-background/60 backdrop-blur-md' : 'border-transparent bg-transparent',
+        )}
+      >
+        <div className="section flex h-17.75 items-center justify-between xl:h-19.5">
+          <Logo />
 
-        <nav aria-label="Main" className="hidden xl:block">
-          <ul className="flex items-center">
-            {NAV_LINKS.map((link, index) => (
-              <li key={link.href}>
-                <a
-                  href={link.href}
-                  className={cn(
-                    'block px-3 py-1 text-base font-bold transition-colors hover:text-red-primary',
-                    index === 0 && 'text-pink-primary',
-                  )}
-                >
-                  {link.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </nav>
+          <nav aria-label="Main" className="hidden xl:block">
+            <ul className="flex items-center">
+              {NAV_LINKS.map((link, index) => (
+                <li key={link.href}>
+                  <a
+                    href={link.href}
+                    className={cn(
+                      'block px-3 py-1 text-base font-bold transition-colors hover:text-red-primary',
+                      index === 0 && 'text-pink-primary',
+                    )}
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
 
-        <div className="flex items-center gap-6">
-          <SocialLinks className="hidden md:flex" />
-          <button
-            ref={menuButton}
-            type="button"
-            aria-label="Open menu"
-            aria-expanded={open}
-            aria-controls="side-panel"
-            onClick={() => setOpen(true)}
-            className="flex size-10 items-center justify-center rounded-full border-2 border-pink-primary bg-pink-primary transition-colors duration-300 hover:bg-transparent hover:text-pink-primary"
-          >
-            <MenuIcon className="size-5.25" />
-          </button>
+          <div className="flex items-center gap-6">
+            <SocialLinks className="hidden md:flex" />
+            <button
+              ref={menuButton}
+              type="button"
+              aria-label="Open menu"
+              aria-expanded={open}
+              aria-controls="side-panel"
+              onClick={() => setOpen(true)}
+              className="flex size-10 items-center justify-center rounded-full border-2 border-pink-primary bg-pink-primary transition-colors duration-300 hover:bg-transparent hover:text-pink-primary"
+            >
+              <MenuIcon className="size-5.25" />
+            </button>
+          </div>
         </div>
       </div>
 

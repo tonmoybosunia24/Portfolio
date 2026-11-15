@@ -17,13 +17,16 @@ describe('Footer', () => {
     SOCIALS.forEach(social => {
       expect(screen.getByRole('link', { name: social.label })).toHaveAttribute('href', social.href);
     });
+    FOOTER.bottomLinks.forEach(link => {
+      expect(screen.getByRole('link', { name: link.label })).toHaveAttribute('href', link.href);
+    });
   });
 
   it('asks for a valid email before opening the email app', () => {
     const location = { href: '' };
 
-    vi.stubGlobal('location', location);
     render(<Footer />);
+    vi.stubGlobal('location', location);
 
     const field = screen.getByLabelText(FOOTER.emailPlaceholder);
 

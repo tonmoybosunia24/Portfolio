@@ -1,6 +1,6 @@
-import { render, screen, within } from '@testing-library/react';
+import { fireEvent, render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 
 import { NAV_LINKS, SIDEBAR, SOCIALS } from '@/constants/profile';
 
@@ -75,5 +75,38 @@ describe('Header', () => {
       'href',
       'mailto:mdtonmoybosunia24@gmail.com',
     );
+  });
+
+  it('sticks to the top with a glass effect only after scrolling past the hero section', () => {
+    let heroBottom = 500;
+
+    render(
+      <>
+        <Header />
+        <section id="home" />
+      </>,
+    );
+
+    const hero = document.getElementById('home')!;
+
+    vi.spyOn(hero, 'getBoundingClientRect').mockImplementation(() => ({ bottom: heroBottom }) as DOMRect);
+
+    const header = screen.getByRole('banner');
+
+    expect(header).toHaveClass('absolute');
+    expect(header).not.toHaveClass('fixed');
+
+    vi.spyOn(window, 'scrollY', 'get').mockReturnValue(600);
+    heroBottom = 0;
+    fireEvent.scroll(window);
+
+    expect(header).toHaveClass('fixed');
+    expect(header).not.toHaveClass('absolute');
+
+    heroBottom = 200;
+    fireEvent.scroll(window);
+
+    expect(header).toHaveClass('absolute');
+    expect(header).not.toHaveClass('fixed');
   });
 });

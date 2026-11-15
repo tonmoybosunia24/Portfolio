@@ -350,4 +350,9 @@ export const FOOTER = {
   ],
   contactTitle: 'Contact',
   rights: 'All Rights Reserved',
+  bottomLinks: [
+    { label: 'Terms & Condition', href: '#' },
+    { label: 'Privacy Policy', href: '#' },
+    { label: 'Contact Us', href: '#contact' },
+  ],
 } as const;
