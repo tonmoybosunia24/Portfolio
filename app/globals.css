@@ -96,6 +96,20 @@ body {
   }
 }
 
+/* Moves a row that holds its content twice by one copy, so it loops without a jump. */
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Skill level bars fill from the left as they scroll into view, in browsers that support it. */
+@keyframes grow {
+  from {
+    transform: scaleX(0);
+  }
+}
+
 @media (prefers-reduced-motion: no-preference) {
   html {
     scroll-behavior: smooth;
@@ -107,5 +121,27 @@ body {
 
   .animate-blink {
     animation: blink 1s step-end infinite;
+  }
+
+  /* Rows move right to left; the reverse ones left to right. Hovering a row stops it. */
+  .animate-marquee {
+    animation: marquee 60s linear infinite;
+  }
+
+  .animate-marquee-reverse {
+    animation: marquee 60s linear infinite reverse;
+  }
+
+  .animate-marquee:hover,
+  .animate-marquee-reverse:hover {
+    animation-play-state: paused;
+  }
+
+  @supports (animation-timeline: view()) {
+    .animate-grow-in-view {
+      animation: grow linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 35%;
+    }
   }
 }

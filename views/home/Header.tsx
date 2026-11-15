@@ -5,52 +5,13 @@ import Image from 'next/image';
 
 import { cn } from '@/lib/utils';
 
-import { NAV_LINKS, PROFILE, SIDEBAR, SOCIALS } from '@/constants/profile';
+import { NAV_LINKS, SIDEBAR } from '@/constants/profile';
 
-import { CloseIcon, LocationIcon, MailIcon, MenuIcon, PhoneIcon, SOCIAL_ICONS } from './icons';
+import { Logo, roundIcon, SocialLinks } from './Brand';
+import { CloseIcon, LocationIcon, MailIcon, MenuIcon, PhoneIcon } from './icons';
 
 const CONTACT_ICONS = { phone: PhoneIcon, mail: MailIcon, location: LocationIcon };
 
-const roundIcon =
-  'flex size-10 items-center justify-center rounded-full bg-white-overlay transition-colors duration-300 hover:bg-pink-primary';
-
-function Logo({ onClick }: { onClick?: () => void }) {
-  return (
-    <a href="#home" className="flex h-10.25 items-center gap-1" onClick={onClick}>
-      <Image src="/images/logo.png" alt="" width={41} height={41} className="size-9" />
-      <span className="text-3xl font-bold">{PROFILE.name}</span>
-    </a>
-  );
-}
-
-function SocialLinks({ className }: { className?: string }) {
-  return (
-    <ul className={cn('flex gap-2', className)}>
-      {SOCIALS.map(social => {
-        const Icon = SOCIAL_ICONS[social.name];
-
-        return (
-          <li key={social.name}>
-            <a
-              href={social.href}
-              aria-label={social.label}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={roundIcon}
-            >
-              <Icon className="size-4.5" />
-            </a>
-          </li>
-        );
-      })}
-    </ul>
-  );
-}
-
-/**
- * Logo, links and social icons over the hero. The menu button opens a side panel: on phones and tablets
- * it holds the links (from the left), on desktops a short intro and contact details (from the right).
- */
 export default function Header() {
   const [open, setOpen] = useState(false);
   const menuButton = useRef<HTMLButtonElement>(null);
@@ -127,7 +88,7 @@ export default function Header() {
         aria-hidden="true"
         onClick={close}
         className={cn(
-          'fixed inset-0 z-40 bg-black/60 transition-opacity duration-300',
+          'fixed inset-0 z-40 bg-black/80 transition-opacity duration-300',
           open ? 'opacity-100' : 'pointer-events-none opacity-0',
         )}
       />
@@ -138,7 +99,7 @@ export default function Header() {
         aria-label="Menu"
         inert={!open}
         className={cn(
-          'fixed top-0 left-0 z-50 flex h-dvh w-72 flex-col gap-6 overflow-y-auto bg-black-soft p-5 shadow-lg transition-transform duration-300 ease-in-out md:w-80 xl:right-0 xl:left-auto',
+          'fixed top-0 left-0 z-50 flex h-dvh w-77.5 flex-col gap-6 overflow-y-auto bg-dark p-2.5 shadow-lg transition-transform duration-300 ease-in-out md:w-80 md:px-5 md:py-3.75 xl:right-0 xl:left-auto xl:w-100 xl:p-7.5',
           open ? 'translate-x-0' : '-translate-x-full xl:translate-x-full',
         )}
       >
@@ -174,11 +135,11 @@ export default function Header() {
             alt=""
             width={340}
             height={196}
-            sizes="280px"
+            sizes="340px"
             className="h-auto w-full rounded-lg"
           />
-          <p className="text-xl leading-snug font-bold">{SIDEBAR.headline}</p>
-          <p className="font-rubik text-sm text-gray-light">{SIDEBAR.text}</p>
+          <p className="text-xl leading-7 font-bold">{SIDEBAR.headline}</p>
+          <p className="font-rubik text-base leading-[1.6] text-gray-light">{SIDEBAR.text}</p>
           <ul className="flex flex-col gap-3">
             {SIDEBAR.contacts.map(contact => {
               const Icon = CONTACT_ICONS[contact.icon];

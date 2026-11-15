@@ -54,3 +54,300 @@ export const NAV_LINKS = [
   { label: 'Projects', href: '#projects' },
   { label: 'Contact', href: '#contact' },
 ] as const;
+
+export type ServiceIcon = 'phone' | 'layers' | 'network' | 'flame' | 'gauge' | 'rocket';
+
+/** The "Services" section: a heading and six numbered cards. */
+export const SERVICES = {
+  label: 'What I Do',
+  title: 'My Services',
+  items: [
+    {
+      title: 'Cross-Platform Apps',
+      text: 'Flutter and Dart apps for Android and iOS from one codebase, with clean state management in Provider or GetX.',
+      icon: 'phone',
+    },
+    {
+      title: 'Native Android',
+      text: 'Kotlin and Jetpack Compose apps with Room and Android SDK libraries, plus migrating legacy XML layouts to Compose.',
+      icon: 'layers',
+    },
+    {
+      title: 'API & Real-Time Integration',
+      text: 'RESTful APIs, WebSockets and native plugins that connect apps to backend services, including Node.js.',
+      icon: 'network',
+    },
+    {
+      title: 'Firebase Backends',
+      text: 'Firebase Auth, Firestore and Realtime Database for sign-in, sync and live data.',
+      icon: 'flame',
+    },
+    {
+      title: 'Performance Optimization',
+      text: 'Finding bottlenecks, cutting memory use and load times, and fixing device-specific issues on iOS and Android.',
+      icon: 'gauge',
+    },
+    {
+      title: 'Store Publishing',
+      text: 'The full release lifecycle, from testing and builds to publishing on Google Play and the App Store.',
+      icon: 'rocket',
+    },
+  ] satisfies { title: string; text: string; icon: ServiceIcon }[],
+} as const;
+
+/** The "Achievements" section: years of experience and four numbers. TODO: check the numbers. */
+export const ACHIEVEMENTS = {
+  label: 'Achievements',
+  title: 'My Journey In Numbers',
+  experience: {
+    years: 2,
+    text: 'Two years of building cross-platform apps with Flutter, working with clients from the first idea to the store release.',
+  },
+  stats: [
+    { count: 10, label: 'Projects Completed' },
+    { count: 5, label: 'Apps Published' },
+    { count: 7, label: 'Client Reviews' },
+    { count: 8, label: 'Happy Clients' },
+  ],
+} as const;
+
+/** Icons in `views/home/SkillIcon.tsx`: brand logos, then line icons for skills without one. */
+export type SkillIconName =
+  | 'flutter'
+  | 'dart'
+  | 'android'
+  | 'apple'
+  | 'materialdesign'
+  | 'firebase'
+  | 'sqlite'
+  | 'googlemaps'
+  | 'json'
+  | 'getx'
+  | 'git'
+  | 'github'
+  | 'postman'
+  | 'androidstudio'
+  | 'xcode'
+  | 'figma'
+  | 'googleplay'
+  | 'appstore'
+  | 'devices'
+  | 'motion'
+  | 'layers'
+  | 'state'
+  | 'api'
+  | 'code';
+
+/** The "Skills" section: three rows that scroll sideways, the middle one the other way. */
+export const SKILLS = {
+  label: 'Tech Stack',
+  title: 'Tools I Work With',
+  rows: [
+    [
+      { name: 'Flutter', icon: 'flutter' },
+      { name: 'Dart', icon: 'dart' },
+      { name: 'Android', icon: 'android' },
+      { name: 'iOS', icon: 'apple' },
+      { name: 'Material Design', icon: 'materialdesign' },
+      { name: 'Responsive UI', icon: 'devices' },
+      { name: 'Animations', icon: 'motion' },
+      { name: 'Clean Architecture', icon: 'layers' },
+    ],
+    [
+      { name: 'Bloc', icon: 'state' },
+      { name: 'Riverpod', icon: 'state' },
+      { name: 'Provider', icon: 'state' },
+      { name: 'GetX', icon: 'getx' },
+      { name: 'REST API', icon: 'api' },
+      { name: 'JSON', icon: 'json' },
+      { name: 'Firebase', icon: 'firebase' },
+      { name: 'SQLite', icon: 'sqlite' },
+      { name: 'Google Maps', icon: 'googlemaps' },
+    ],
+    [
+      { name: 'Git', icon: 'git' },
+      { name: 'GitHub', icon: 'github' },
+      { name: 'Postman', icon: 'postman' },
+      { name: 'Android Studio', icon: 'androidstudio' },
+      { name: 'VS Code', icon: 'code' },
+      { name: 'Xcode', icon: 'xcode' },
+      { name: 'Figma', icon: 'figma' },
+      { name: 'Google Play', icon: 'googleplay' },
+      { name: 'App Store', icon: 'appstore' },
+    ],
+  ] satisfies { name: string; icon: SkillIconName }[][],
+} as const;
+
+/** The "Expertise" section: two groups of skills with a level bar each. TODO: check the percentages. */
+export const EXPERTISE = {
+  label: 'Code Expertise',
+  title: 'My Skill Levels',
+  groups: [
+    {
+      title: 'App Development',
+      skills: [
+        { name: 'Flutter', level: 90 },
+        { name: 'Dart', level: 90 },
+        { name: 'State Management (Bloc, Riverpod)', level: 80 },
+        { name: 'UI & Animations', level: 85 },
+      ],
+    },
+    {
+      title: 'Backend & Tools',
+      skills: [
+        { name: 'Firebase', level: 85 },
+        { name: 'REST API', level: 85 },
+        { name: 'Git & GitHub', level: 80 },
+        { name: 'Play Store & App Store', level: 75 },
+      ],
+    },
+  ],
+} as const;
+
+export interface ProjectScreen {
+  /** A file in `public/images/projects/`. */
+  src: string;
+  /**
+   * The screenshot's edge color. Screenshots taller than a phone (390×844) are shrunk to fit and this
+   * color fills the thin strips beside them, so they blend in.
+   */
+  background?: string;
+}
+
+export interface Project {
+  title: string;
+  category: string;
+  /** The big text on the preview: a plain line, then a pink line. */
+  tagline: readonly [string, string];
+  /** Up to two app screenshots, main screen first. Without them the phones show a sketched screen. */
+  screens: readonly ProjectScreen[];
+  /** Store page, repository or demo. Without it the card has no link. */
+  href: string | null;
+}
+
+/**
+ * The "Projects" section. TODO: your real projects and links. The shop, fitness and chat screens are
+ * sample designs made for this page; replace them with screenshots of your own apps.
+ */
+export const PROJECTS = {
+  label: 'Latest Projects',
+  title: 'Apps I Have Built',
+  items: [
+    {
+      title: 'Habit Tracker App',
+      category: 'Flutter · Android & iOS',
+      tagline: ['App For', 'Daily Habits'],
+      screens: [
+        { src: '/images/projects/habit-home.webp', background: '#f8f4f0' },
+        { src: '/images/projects/habit-calendar.webp', background: '#f8f4f0' },
+      ],
+      href: null,
+    },
+    {
+      title: 'E-Commerce App',
+      category: 'Flutter · Firebase',
+      tagline: ['App For', 'Online Shopping'],
+      screens: [{ src: '/images/projects/shop-home.webp' }, { src: '/images/projects/shop-product.webp' }],
+      href: null,
+    },
+    {
+      title: 'Fitness Tracker',
+      category: 'Kotlin · Jetpack Compose',
+      tagline: ['App For', 'Daily Workouts'],
+      screens: [{ src: '/images/projects/fit-home.webp' }, { src: '/images/projects/fit-stats.webp' }],
+      href: null,
+    },
+    {
+      title: 'Real-Time Chat App',
+      category: 'Flutter · WebSockets',
+      tagline: ['App For', 'Live Messaging'],
+      screens: [{ src: '/images/projects/chat-list.webp' }, { src: '/images/projects/chat-thread.webp' }],
+      href: null,
+    },
+  ] satisfies Project[],
+} as const;
+
+/**
+ * The "Testimonials" section. TODO: these are sample reviews to show the layout. Replace them with real
+ * feedback from your clients (with their permission) before the site goes live. The pictures are
+ * illustrated avatars (Notionists by Zoish via DiceBear, CC0) in `public/images/testimonials/`.
+ */
+export const TESTIMONIALS = {
+  label: 'Testimonials',
+  title: 'What Clients Say',
+  items: [
+    {
+      quote:
+        'Tonmoy turned our idea into a polished Flutter app for both Android and iOS. He kept us updated every step of the way and delivered ahead of schedule.',
+      name: 'Sarah Mitchell',
+      image: '/images/testimonials/sarah.webp',
+      role: 'Founder, FitNest',
+      rating: 5,
+    },
+    {
+      quote:
+        'Our old app was slow and crashed on many devices. After his performance work it loads twice as fast, and our store rating went up within a month.',
+      name: 'Rahim Uddin',
+      image: '/images/testimonials/rahim.webp',
+      role: 'Product Manager, ShopKart',
+      rating: 5,
+    },
+    {
+      quote:
+        'Clean code, clear communication and a smooth release on Google Play and the App Store. We will definitely work with him again on our next app.',
+      name: 'Daniel Brooks',
+      image: '/images/testimonials/daniel.webp',
+      role: 'CTO, ChatWave',
+      rating: 5,
+    },
+    {
+      quote:
+        'He rebuilt our Android app in Jetpack Compose and moved the old XML screens over without breaking anything. The new UI feels modern and fast.',
+      name: 'Nadia Rahman',
+      image: '/images/testimonials/nadia.webp',
+      role: 'Co-founder, MediTrack',
+      rating: 5,
+    },
+    {
+      quote:
+        'Real-time chat with WebSockets and Firebase sync worked perfectly from day one. Great problem solver and always quick to reply.',
+      name: 'Kevin Tran',
+      image: '/images/testimonials/kevin.webp',
+      role: 'Lead Developer, TeamDesk',
+      rating: 5,
+    },
+  ],
+} as const;
+
+/**
+ * The "Contact" section. The details reuse `SIDEBAR.contacts`. The form has no server yet: sending it
+ * opens the visitor's email app with a message to `email`, already filled in.
+ */
+export const CONTACT = {
+  label: 'Contact',
+  title: 'Get Ready To Create Great',
+  formTitle: 'Get In Touch',
+  email: 'mdtonmoybosunia24@gmail.com',
+  /** Labels shown above each detail, by its icon. */
+  detailLabels: { mail: 'E-mail', location: 'Location', phone: 'Contact' },
+  /** The order the details are listed in. */
+  detailOrder: ['mail', 'location', 'phone'],
+  submit: 'Send Message',
+} as const;
+
+/** The footer. Its contact details reuse `SIDEBAR.contacts` and its links point at the home page sections. */
+export const FOOTER = {
+  /** The headline: a bold part, then a light part. */
+  headline: ['Let’s Build', 'Your Next App'],
+  emailPlaceholder: 'Your email address',
+  linksTitle: 'Quick Links',
+  links: [
+    { label: 'Services', href: '#services' },
+    { label: 'Skills', href: '#skills' },
+    { label: 'Projects', href: '#projects' },
+    { label: 'Testimonials', href: '#testimonials' },
+    { label: 'Contact', href: '#contact' },
+  ],
+  contactTitle: 'Contact',
+  rights: 'All Rights Reserved',
+} as const;

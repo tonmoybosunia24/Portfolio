@@ -7,6 +7,13 @@ Notable changes to the starter kit. The format follows [Keep a Changelog](https:
 ### Added
 
 - Portfolio home page: header with side panel and hero (typewriter roles, portrait, background drawn in code). Content lives in `constants/profile.ts`; see `docs/portfolio.md`.
+- Portfolio services section: six numbered cards under a shared `SectionHeading`, which the next sections reuse.
+- Portfolio achievements section: years of experience and four numbers.
+- Portfolio skills section: three sliding rows of skill chips with logos.
+- Portfolio expertise section: two groups of skills with level bars.
+- Portfolio projects section: project cards with phone previews, screenshots optional.
+- Portfolio testimonials section: an endless, auto-playing review slider with dots.
+- Portfolio contact section: contact details and a form that opens the visitor's email app.
 - `allowedDevOrigins` for `192.168.*.*`, so the dev server can be opened from a phone on the same Wi-Fi.
 - Example CRUD module at `/projects` (list with pagination, create and edit forms with zod and API validation errors, delete, 404), with unit and e2e tests and mock API endpoints. See `docs/example-module.md`.
 - `parsePage` (`services/api/pagination.ts`): reads paginated lists from Laravel, Django REST Framework and other common shapes into one `Page<T>`. `components/Pagination.tsx` renders previous / next links.

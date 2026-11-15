@@ -1,4 +1,6 @@
-import type { SocialName } from '@/constants/profile';
+import type { JSX } from 'react';
+
+import type { ServiceIcon, SocialName } from '@/constants/profile';
 
 interface IconProps {
   className?: string;
@@ -50,7 +52,7 @@ export function FacebookIcon({ className }: IconProps) {
   );
 }
 
-export const SOCIAL_ICONS: Record<SocialName, (props: IconProps) => React.JSX.Element> = {
+export const SOCIAL_ICONS: Record<SocialName, (props: IconProps) => JSX.Element> = {
   instagram: InstagramIcon,
   linkedin: LinkedinIcon,
   twitter: TwitterIcon,
@@ -129,6 +131,81 @@ export function ArrowRightIcon({ className }: IconProps) {
         clipRule="evenodd"
         d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
       />
+    </svg>
+  );
+}
+
+/** Line icons for the service cards (in the style of Lucide), drawn with the text color. */
+const SERVICE_ICON_PATHS: Record<ServiceIcon, string[]> = {
+  phone: ['M7 2h10a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2Z', 'M12 18h.01'],
+  layers: ['m12 2 9 5-9 5-9-5 9-5Z', 'm3 12 9 5 9-5', 'm3 17 9 5 9-5'],
+  network: [
+    'M12 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Z',
+    'M5.5 15.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Z',
+    'M18.5 15.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Z',
+    'm10.8 8.2-4 7.4M13.2 8.2l4 7.4M8 18h8',
+  ],
+  flame: [
+    'M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.07-2.14-.22-4.05 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.15.43-2.29 1-3a2.5 2.5 0 0 0 2.5 2.5Z',
+  ],
+  gauge: ['m12 14 4-4', 'M3.34 19a10 10 0 1 1 17.32 0'],
+  rocket: [
+    'M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09Z',
+    'm12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2Z',
+    'M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0',
+    'M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5',
+  ],
+};
+
+export function ServiceIconSvg({ name, className }: IconProps & { name: ServiceIcon }) {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+    >
+      {SERVICE_ICON_PATHS[name].map(d => (
+        <path key={d} d={d} />
+      ))}
+    </svg>
+  );
+}
+
+export function ArrowUpRightIcon({ className }: IconProps) {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+    >
+      <path d="M7 17 17 7M8 7h9v9" />
+    </svg>
+  );
+}
+
+export function StarIcon({ className }: IconProps) {
+  return (
+    <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor" className={className}>
+      <path d="m12 2.5 2.94 5.96 6.56.95-4.75 4.63 1.12 6.54L12 17.5l-5.87 3.08 1.12-6.54L2.5 9.41l6.56-.95L12 2.5Z" />
+    </svg>
+  );
+}
+
+/** A large closing quote mark, drawn faintly behind each testimonial. */
+export function QuoteIcon({ className }: IconProps) {
+  return (
+    <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor" className={className}>
+      <path d="M10 11H6.2c.2-2.4 1.6-3.9 4-4.4V4C5.8 4.5 3 7.6 3 12.3V20h7v-9Zm11 0h-3.8c.2-2.4 1.6-3.9 4-4.4V4c-4.4.5-7.2 3.6-7.2 8.3V20h7v-9Z" />
     </svg>
   );
 }
