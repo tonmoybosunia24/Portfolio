@@ -24,6 +24,7 @@ export default function Contact() {
             >
               {CONTACT.title}
             </h2>
+            <p className="mt-4 font-rubik text-base leading-6.5 text-gray-light">{CONTACT.text}</p>
 
             <ul className="mt-6 flex flex-col gap-4">
               {details.map(({ icon, value, href }) => {

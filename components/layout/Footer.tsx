@@ -1,6 +1,6 @@
-import { LocationIcon, MailIcon, PhoneIcon } from '@/components/ui/icons';
+import { LocationIcon, MailIcon, PhoneIcon, SOCIAL_ICONS } from '@/components/ui/icons';
 
-import { FOOTER, PROFILE, SIDEBAR } from '@/constants/profile';
+import { FOOTER, PROFILE, SIDEBAR, SOCIALS } from '@/constants/profile';
 
 import { Logo, SocialLinks } from './Brand';
 import FooterEmailForm from './FooterEmailForm';
@@ -83,16 +83,26 @@ export default function Footer() {
       <div className="border-t border-foreground/8">
         <div className="section flex flex-col items-center justify-between gap-3 py-5 font-rubik text-sm text-gray-light sm:flex-row">
           <p>
-            <span className="font-medium text-foreground">©{PROFILE.name}</span> {year} | {FOOTER.rights}
+            <span className="font-medium text-foreground">©{PROFILE.fullName}</span> {year} | {FOOTER.rights}
           </p>
           <ul className="flex flex-wrap items-center justify-center gap-6 md:gap-7.5">
-            {FOOTER.bottomLinks.map(link => (
-              <li key={link.label}>
-                <a href={link.href} className="text-foreground transition-colors hover:text-pink-primary">
-                  {link.label}
-                </a>
-              </li>
-            ))}
+            {SOCIALS.filter(social => FOOTER.bottomSocials.includes(social.name)).map(({ name, label, href }) => {
+              const Icon = SOCIAL_ICONS[name];
+
+              return (
+                <li key={name}>
+                  <a
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-foreground transition-colors hover:text-pink-primary"
+                  >
+                    <Icon className="size-4" />
+                    {label}
+                  </a>
+                </li>
+              );
+            })}
           </ul>
         </div>
       </div>

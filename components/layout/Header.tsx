@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 import { cn } from '@/lib/utils';
 
@@ -11,6 +12,7 @@ import { NAV_LINKS, SIDEBAR } from '@/constants/profile';
 
 import { Logo, roundIcon, SocialLinks } from './Brand';
 import ThemeToggle from './ThemeToggle';
+import { useActiveNav } from './use-active-nav';
 
 const CONTACT_ICONS = { phone: PhoneIcon, mail: MailIcon, location: LocationIcon };
 
@@ -20,6 +22,11 @@ export default function Header() {
   const menuButton = useRef<HTMLButtonElement>(null);
   const closeButton = useRef<HTMLButtonElement>(null);
   const wasOpen = useRef(false);
+
+  const active = useActiveNav();
+
+  // A page link marks the page it is on (`page`); on the home page the link marks the section in view (`location`).
+  const currentFor = (href: string) => (active?.href === href ? active.current : undefined);
 
   const close = () => setOpen(false);
 
@@ -79,17 +86,18 @@ export default function Header() {
 
           <nav aria-label="Main" className="hidden xl:block">
             <ul className="flex items-center">
-              {NAV_LINKS.map((link, index) => (
+              {NAV_LINKS.map(link => (
                 <li key={link.href}>
-                  <a
+                  <Link
                     href={link.href}
+                    aria-current={currentFor(link.href)}
                     className={cn(
                       'block px-3 py-1 text-lg font-bold transition-colors hover:text-pink-primary',
-                      index === 0 && 'text-pink-primary',
+                      active?.href === link.href && 'text-pink-primary',
                     )}
                   >
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -145,18 +153,19 @@ export default function Header() {
 
         <nav aria-label="Menu links" className="xl:hidden">
           <ul className="flex flex-col uppercase">
-            {NAV_LINKS.map((link, index) => (
+            {NAV_LINKS.map(link => (
               <li key={link.href} className="border-b border-line py-2 text-lg first:border-t">
-                <a
+                <Link
                   href={link.href}
                   onClick={close}
+                  aria-current={currentFor(link.href)}
                   className={cn(
                     'block font-semibold text-gray-light transition-colors hover:text-pink-primary',
-                    index === 0 && 'font-bold text-pink-primary',
+                    active?.href === link.href && 'font-bold text-pink-primary',
                   )}
                 >
                   {link.label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>

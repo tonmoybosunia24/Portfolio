@@ -7,7 +7,7 @@ import type { Project } from '@/constants/projects';
 
 const TRAIL = [
   { label: 'Home', href: '/' },
-  { label: 'Projects', href: '/#projects' },
+  { label: 'Projects', href: '/work' },
 ];
 
 const BANNER_SIZES = '(min-width: 1400px) 620px, (min-width: 992px) 46vw, (min-width: 576px) 540px, 100vw';

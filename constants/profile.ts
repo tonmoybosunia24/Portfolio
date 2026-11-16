@@ -1,119 +1,132 @@
 /**
  * Content of the portfolio's header and hero. Edit the text here; the layout in `views/home/` picks it up.
- * Values marked TODO are placeholders to replace with your own.
+ * Everything here is real content; the sections that are still samples say so where they are defined.
  */
 
-export type SocialName = 'instagram' | 'linkedin' | 'twitter' | 'facebook';
+export type SocialName = 'github' | 'instagram' | 'linkedin' | 'twitter' | 'facebook';
 
 export const PROFILE = {
   name: 'Tonmoy',
-  fullName: 'Tonmoy Bosunia',
-  role: 'Mobile App Developer',
+  fullName: 'Md Tonmoy Bosunia',
+  role: 'Mobile & Frontend Developer',
   greeting: 'Hello',
   /**
    * Cycled by the typewriter under the name. The first one is what screen readers and no-motion visitors
    * get. Keep each at most 20 characters so it fits on one line.
    */
-  roles: ['Mobile App Developer', 'Flutter Developer', 'Android & iOS Expert'],
+  roles: ['Flutter Developer', 'Mobile App Developer', 'Frontend Developer'],
   intro:
-    'I’m a passionate Mobile App Developer who builds fast, beautiful, cross-platform apps with Flutter for Android and iOS. I love turning ideas into apps people enjoy using every day.',
+    'I’m a frontend developer focused on mobile apps. At BlackDevs I build Flutter apps for Android and iOS, and I also create fast, responsive web interfaces with React and Next.js.',
   /** The two words floating over the photo: a large faint one behind, an outlined one in front. */
   titles: ['FLUTTER', 'APP DEVELOPER'],
 } as const;
 
 /** Shown in the side panel the menu button opens. */
 export const SIDEBAR = {
-  headline: 'Mobile App Developer building fast, polished apps with Flutter.',
-  text: 'I am a mobile developer skilled in Flutter, Dart, REST APIs and clean architecture. I build smooth, reliable apps for Android and iOS, from the first screen to the store release.',
+  headline: 'Mobile developer at BlackDevs, building polished Flutter apps.',
+  text: 'I build Android and iOS apps with Flutter, using GetX, BLoC and Provider, REST APIs, Firebase and Supabase. On the web I work with React, Next.js and Tailwind CSS, and I design in Figma before I code.',
   contacts: [
-    { label: 'Call Now', value: '0178025-9656', href: 'tel:+8801780259656', icon: 'phone' },
+    { label: 'Call Now', value: '+880 1780-259656', href: 'tel:+8801780259656', icon: 'phone' },
     {
       label: 'Mail Us',
       value: 'mdtonmoybosunia24@gmail.com',
       href: 'mailto:mdtonmoybosunia24@gmail.com',
       icon: 'mail',
     },
-    { label: 'My Address', value: 'Bangladesh', href: null, icon: 'location' }, // TODO: your address
+    { label: 'My Address', value: 'Rangpur, Bangladesh', href: null, icon: 'location' },
   ],
 } as const;
 
-// TODO: your profile URLs.
+/**
+ * Profile links, shown as round icons in the side panel and the footer. GitHub and LinkedIn first, for
+ * recruiters and clients.
+ */
 export const SOCIALS: { name: SocialName; label: string; href: string }[] = [
-  { name: 'instagram', label: 'Instagram', href: 'https://www.instagram.com/' },
-  { name: 'linkedin', label: 'LinkedIn', href: 'https://www.linkedin.com/' },
-  { name: 'twitter', label: 'X (Twitter)', href: 'https://x.com/' },
-  { name: 'facebook', label: 'Facebook', href: 'https://www.facebook.com/' },
+  { name: 'github', label: 'GitHub', href: 'https://github.com/tonmoybosunia24' },
+  { name: 'linkedin', label: 'LinkedIn', href: 'https://www.linkedin.com/in/md-tonmoy-bosunia/' },
+  { name: 'facebook', label: 'Facebook', href: 'https://www.facebook.com/mdtonmoy.bosunia.3' },
+  { name: 'instagram', label: 'Instagram', href: 'https://www.instagram.com/mdtonmoybosunia24/' },
+  { name: 'twitter', label: 'X (Twitter)', href: 'https://x.com/TonmoyBosunia10' },
 ];
 
-/** Header links. They point at the home page sections, added one by one. */
+/**
+ * Header links, in the order of the home page. Most jump to a home page section; Projects and Blog open
+ * their own pages. `section` is the home page section that marks the link as current while it is on
+ * screen; on other pages a link without `#` is current when the address starts with its `href`.
+ */
 export const NAV_LINKS = [
-  { label: 'Home', href: '/#home' },
-  { label: 'About', href: '/#about' },
-  { label: 'Services', href: '/#services' },
-  { label: 'Blogs', href: '/#blogs' },
-  { label: 'Projects', href: '/#projects' },
-  { label: 'Contact', href: '/#contact' },
+  { label: 'Home', href: '/#home', section: 'home' },
+  { label: 'Services', href: '/#services', section: 'services' },
+  { label: 'Experience', href: '/#education', section: 'education' },
+  { label: 'Projects', href: '/work', section: 'projects' },
+  { label: 'Blog', href: '/blog', section: 'blogs' },
+  { label: 'Contact', href: '/#contact', section: 'contact' },
 ] as const;
 
 /** Line icons in `views/home/icons.tsx`, used by the service and achievement cards. */
-export type ServiceIcon = 'phone' | 'layers' | 'network' | 'flame' | 'gauge' | 'rocket' | 'check' | 'star' | 'users';
+export type ServiceIcon =
+  'phone' | 'layers' | 'monitor' | 'pen' | 'network' | 'flame' | 'gauge' | 'rocket' | 'check' | 'star' | 'users';
 
 /** The "Services" section: a heading and six numbered cards. */
 export const SERVICES = {
   label: 'What I Do',
   title: 'My Services',
   description:
-    'From the first sketch to the store release, I build fast, reliable mobile apps tailored to your users and business goals.',
+    'From the first design to the store release, I build mobile apps and web interfaces that are fast, clean and easy to use.',
   items: [
     {
-      title: 'Cross-Platform Apps',
-      text: 'Flutter and Dart apps for Android and iOS from one codebase, with clean state management in Provider or GetX.',
+      title: 'Mobile App Development',
+      text: 'Android and iOS apps from one codebase with Flutter, my main stack, or React Native, using GetX, BLoC or Provider.',
       icon: 'phone',
     },
     {
-      title: 'Native Android',
-      text: 'Kotlin and Jetpack Compose apps with Room and Android SDK libraries, plus migrating legacy XML layouts to Compose.',
-      icon: 'layers',
+      title: 'Web Frontend Development',
+      text: 'Fast, responsive websites and web apps with React, Next.js and Tailwind CSS that look sharp on every screen.',
+      icon: 'monitor',
     },
     {
-      title: 'API & Real-Time Integration',
-      text: 'RESTful APIs, WebSockets and native plugins that connect apps to backend services, including Node.js.',
-      icon: 'network',
-    },
-    {
-      title: 'Firebase Backends',
-      text: 'Firebase Auth, Firestore and Realtime Database for sign-in, sync and live data.',
+      title: 'Firebase & Supabase Backends',
+      text: 'Sign-in, databases, file storage and push notifications, so your app can launch without a custom server.',
       icon: 'flame',
     },
     {
-      title: 'Performance Optimization',
-      text: 'Finding bottlenecks, cutting memory use and load times, and fixing device-specific issues on iOS and Android.',
-      icon: 'gauge',
+      title: 'API & Maps Integration',
+      text: 'Connecting apps to REST APIs with clear loading, error and offline states, and adding Google Maps features.',
+      icon: 'network',
+    },
+    {
+      title: 'UI Design in Figma',
+      text: 'Screens and clickable prototypes designed in Figma before any code, so you can see and approve your app early.',
+      icon: 'pen',
     },
     {
       title: 'Store Publishing',
-      text: 'The full release lifecycle, from testing and builds to publishing on Google Play and the App Store.',
+      text: 'Release builds, store listings and screenshots, and publishing your app on Google Play and the App Store.',
       icon: 'rocket',
     },
   ] satisfies { title: string; text: string; icon: ServiceIcon }[],
 } as const;
 
-/** The "Achievements" section: years of experience and four numbers. TODO: check the numbers. */
+/**
+ * The "Achievements" section: years of experience and four numbers. `plus` adds a faint "+" after a number
+ * that is a lower bound ("10+ projects"); leave it off for exact counts.
+ */
 export const ACHIEVEMENTS = {
   label: 'Achievements',
   title: 'My Journey In Numbers',
   description:
-    'A quick look at the apps shipped, projects completed and clients helped along my journey as a mobile app developer.',
+    'A quick look at the projects and apps I have worked on since joining BlackDevs as a mobile and frontend developer.',
   experience: {
-    years: 2,
-    text: 'Two years of building cross-platform apps with Flutter, working with clients from the first idea to the store release.',
+    /** Since joining BlackDevs on 1 November 2025. */
+    years: 1,
+    text: 'A year at BlackDevs in Rangpur: six months as an intern on the web and mobile teams, and now a mobile developer building Flutter apps for real clients.',
   },
   stats: [
-    { count: 10, label: 'Projects Done', icon: 'check' },
-    { count: 5, label: 'Apps Published', icon: 'rocket' },
-    { count: 7, label: 'Client Reviews', icon: 'star' },
-    { count: 8, label: 'Happy Clients', icon: 'users' },
-  ] satisfies { count: number; label: string; icon: ServiceIcon }[],
+    { count: 10, plus: true, label: 'Projects Done', icon: 'check' },
+    { count: 6, plus: false, label: 'Apps Published', icon: 'rocket' },
+    { count: 3, plus: false, label: 'Platforms: Android, iOS, Web', icon: 'monitor' },
+    { count: 4, plus: false, label: 'Frameworks I Build With', icon: 'layers' },
+  ] satisfies { count: number; plus: boolean; label: string; icon: ServiceIcon }[],
 } as const;
 
 /** Icons in `views/home/SkillIcon.tsx`: brand logos, then line icons for skills without one. */
@@ -126,7 +139,15 @@ export type SkillIconName =
   | 'firebase'
   | 'sqlite'
   | 'googlemaps'
-  | 'json'
+  | 'react'
+  | 'nextdotjs'
+  | 'javascript'
+  | 'html5'
+  | 'css3'
+  | 'tailwindcss'
+  | 'express'
+  | 'supabase'
+  | 'blender'
   | 'getx'
   | 'git'
   | 'github'
@@ -152,30 +173,41 @@ export const SKILLS = {
   label: 'Tech Stack',
   title: 'Tools I Work With',
   description:
-    'The frameworks, state management libraries, backend services and developer tools I use every day to craft modern mobile apps.',
+    'The frameworks, libraries, backend services and tools I use to build mobile apps and web interfaces, from the first Figma frame to the store release.',
   rows: [
+    // Mobile: frameworks, platforms and state management.
     [
       { name: 'Flutter', icon: 'flutter', color: '#47c5fb' },
       { name: 'Dart', icon: 'dart', color: '#29b6f6' },
+      { name: 'React Native', icon: 'react', color: '#61dafb' },
       { name: 'Android', icon: 'android', color: '#3ddc84' },
       { name: 'iOS', icon: 'apple', color: 'var(--foreground)' },
+      { name: 'GetX', icon: 'getx', color: '#a855f7' },
+      { name: 'Bloc', icon: 'state', color: '#2dd4bf' },
+      { name: 'Provider', icon: 'state', color: '#fb923c' },
+      { name: 'Riverpod', icon: 'state', color: '#38bdf8' },
       { name: 'Material Design', icon: 'materialdesign', color: '#b0bec5' },
-      { name: 'Responsive UI', icon: 'devices', color: '#22d3ee' },
       { name: 'Animations', icon: 'motion', color: '#f472b6' },
       { name: 'Clean Architecture', icon: 'layers', color: '#a78bfa' },
     ],
+    // Web and backend.
     [
-      { name: 'Bloc', icon: 'state', color: '#2dd4bf' },
-      { name: 'Riverpod', icon: 'state', color: '#38bdf8' },
-      { name: 'Provider', icon: 'state', color: '#fb923c' },
-      { name: 'GetX', icon: 'getx', color: '#a855f7' },
-      { name: 'REST API', icon: 'api', color: '#34d399' },
-      { name: 'JSON', icon: 'json', color: '#f5de19' },
+      { name: 'React', icon: 'react', color: '#61dafb' },
+      { name: 'Next.js', icon: 'nextdotjs', color: 'var(--foreground)' },
+      { name: 'JavaScript', icon: 'javascript', color: '#f7df1e' },
+      { name: 'HTML', icon: 'html5', color: '#f06529' },
+      { name: 'CSS', icon: 'css3', color: '#42a5f5' },
+      { name: 'Tailwind CSS', icon: 'tailwindcss', color: '#38bdf8' },
+      { name: 'Express', icon: 'express', color: 'var(--foreground)' },
       { name: 'Firebase', icon: 'firebase', color: '#ffca28' },
+      { name: 'Supabase', icon: 'supabase', color: '#3ecf8e' },
       { name: 'SQLite', icon: 'sqlite', color: '#44a3d6' },
+      { name: 'REST API', icon: 'api', color: '#34d399' },
       { name: 'Google Maps', icon: 'googlemaps', color: '#ea4335' },
     ],
+    // Tools, design and publishing.
     [
+      { name: 'Responsive UI', icon: 'devices', color: '#22d3ee' },
       { name: 'Git', icon: 'git', color: '#f05032' },
       { name: 'GitHub', icon: 'github', color: 'var(--foreground)' },
       { name: 'Postman', icon: 'postman', color: '#ff6c37' },
@@ -183,81 +215,101 @@ export const SKILLS = {
       { name: 'VS Code', icon: 'code', color: '#3b9fe8' },
       { name: 'Xcode', icon: 'xcode', color: '#1f8cff' },
       { name: 'Figma', icon: 'figma', color: '#f24e1e' },
+      { name: 'Blender', icon: 'blender', color: '#f5792a' },
       { name: 'Google Play', icon: 'googleplay', color: '#34a853' },
       { name: 'App Store', icon: 'appstore', color: '#0d96f6' },
     ],
   ] satisfies { name: string; icon: SkillIconName; color: string }[][],
 } as const;
 
-/** The "Expertise" section: two groups of skills with a level bar each. TODO: check the percentages. */
+/**
+ * The "Expertise" section: two groups of skills with a level bar each. Levels are an honest self-rating
+ * for about a year of professional work: highest for Flutter, the daily tool, lower for what is used less.
+ */
 export const EXPERTISE = {
   label: 'Code Expertise',
   title: 'My Skill Levels',
   description:
-    'A breakdown of my core technical strengths across cross-platform app development, backend integration and store publishing.',
+    'How I rate myself across mobile development, where I work every day, and the web and design skills I bring alongside it.',
   groups: [
     {
-      title: 'App Development',
+      title: 'Mobile Development',
       skills: [
-        { name: 'Flutter', level: 90 },
-        { name: 'Dart', level: 90 },
-        { name: 'State Management (Bloc, Riverpod)', level: 80 },
-        { name: 'UI & Animations', level: 85 },
+        { name: 'Flutter & Dart', level: 85 },
+        { name: 'State Management (GetX, BLoC, Provider)', level: 80 },
+        { name: 'REST API & Google Maps', level: 80 },
+        { name: 'Firebase & Supabase', level: 75 },
+        { name: 'React Native', level: 65 },
       ],
     },
     {
-      title: 'Backend & Tools',
+      title: 'Web & Design',
       skills: [
-        { name: 'Firebase', level: 85 },
-        { name: 'REST API', level: 85 },
-        { name: 'Git & GitHub', level: 80 },
-        { name: 'Play Store & App Store', level: 75 },
+        { name: 'HTML, CSS & Tailwind CSS', level: 85 },
+        { name: 'JavaScript & React', level: 80 },
+        { name: 'Next.js', level: 70 },
+        { name: 'Figma', level: 75 },
+        { name: 'Blender (3D)', level: 50 },
       ],
-    },
-  ],
-} as const;
-
-/** The "Education" section below Core Expertise: four academic milestone cards in a two-column grid. */
-export const EDUCATION = {
-  label: 'Education & Experience',
-  title: 'Empowering Creativity Through',
-  description:
-    'A brief overview of my academic background and professional journey, highlighting the key milestones that have shaped my skills and expertise.',
-  groupTitle: 'Education',
-  items: [
-    {
-      degree: "Bachelor's Degree (ENGLISH)",
-      period: '2021 - Present',
-      institution: 'Kader Boksha Memorial College, Dinajpur',
-      text: "Pursuing a Bachelor's in English while learning web development and building projects.",
-    },
-    {
-      degree: 'Higher Secondary Certificate (HSC)',
-      period: '2018-2020',
-      institution: 'Holy Land College, Dinajpur',
-      text: 'Completed HSC in Science, developing strong analytical and problem-solving skills.',
-    },
-    {
-      degree: 'Secondary School Certificate (SSC)',
-      period: '2017-2018',
-      institution: 'Tepriganj Adarsha B.L High Scrool, Panchagarh',
-      text: 'Achieved SSC in Science, building a solid foundation in core subjects and discipline.',
-    },
-    {
-      degree: 'Junior School Certificate (JSC)',
-      period: '2014-2015',
-      institution: 'Tepriganj Adarsha B.L High Scrool, Panchagarh',
-      text: 'Completed JSC, developing strong basic academic skills and a passion for learning.',
     },
   ],
 } as const;
 
 /**
- * The "Testimonials" section. TODO: these are sample reviews to show the layout. Replace them with real
- * feedback from your clients (with their permission) before the site goes live. The pictures are
- * illustrated avatars (Notionists by Zoish via DiceBear, CC0) in `public/images/testimonials/`.
+ * The "Experience & Education" section below the skill levels: work first, as it matters most for the
+ * jobs and freelance work the site is for, then studies. Each group is a heading and its cards.
+ */
+export const EDUCATION = {
+  label: 'Experience & Education',
+  title: 'My Journey So Far',
+  description:
+    'From an internship to a full-time mobile developer role at BlackDevs, alongside my studies, the steps that shaped how I build apps today.',
+  groups: [
+    {
+      title: 'Experience',
+      items: [
+        {
+          title: 'Mobile App Developer',
+          period: 'May 2026 - Present',
+          place: 'BlackDevs, Rangpur',
+          text: 'Building Flutter apps for Android and iOS for real clients, with GetX, BLoC and Provider, REST APIs, Google Maps, Firebase and Supabase, through to the store release.',
+        },
+        {
+          title: 'Web & Mobile Developer Intern',
+          period: 'Nov 2025 - Apr 2026',
+          place: 'BlackDevs, Rangpur',
+          text: 'Spent the first months on the web team building interfaces with React, Next.js and Tailwind CSS, then moved to the mobile team to work on Flutter apps.',
+        },
+      ],
+    },
+    {
+      title: 'Education',
+      items: [
+        {
+          title: "Bachelor's Degree (English)",
+          period: '2021 - 2026',
+          place: 'Kader Boksha Memorial College, Dinajpur',
+          text: "A bachelor's in English, studied alongside my work as a developer and my own projects.",
+        },
+        {
+          title: 'Higher Secondary Certificate (HSC)',
+          period: '2018 - 2020',
+          place: 'Holy Land College, Dinajpur',
+          text: 'Completed HSC in Science, developing strong analytical and problem-solving skills.',
+        },
+      ],
+    },
+  ],
+} as const;
+
+/**
+ * The "Testimonials" section. Hidden for now (`visible: false`): the reviews below are samples that show
+ * the layout. Replace them with real feedback from clients (with their permission), then set `visible`
+ * to true. The pictures are illustrated avatars (Notionists by Zoish via DiceBear, CC0) in
+ * `public/images/testimonials/`.
  */
 export const TESTIMONIALS = {
+  visible: false,
   label: 'Testimonials',
   title: 'What Clients Say',
   description:
@@ -312,7 +364,8 @@ export const TESTIMONIALS = {
  */
 export const CONTACT = {
   label: 'Contact',
-  title: 'Get Ready To Create Great',
+  title: 'Have a Project in Mind?',
+  text: 'I am open to full-time roles and freelance projects. Tell me about your app or website, and I will get back to you soon.',
   formTitle: 'Get In Touch',
   email: 'mdtonmoybosunia24@gmail.com',
   /** Labels shown above each detail, by its icon. */
@@ -329,17 +382,19 @@ export const FOOTER = {
   emailPlaceholder: 'Your email address',
   linksTitle: 'Quick Links',
   links: [
+    // In the order the sections appear on the home page, plus the blog.
     { label: 'Services', href: '/#services' },
     { label: 'Skills', href: '/#skills' },
+    { label: 'Experience', href: '/#education' },
     { label: 'Projects', href: '/#projects' },
-    { label: 'Testimonials', href: '/#testimonials' },
+    { label: 'Blog', href: '/blog' },
     { label: 'Contact', href: '/#contact' },
   ],
   contactTitle: 'Contact',
   rights: 'All Rights Reserved',
-  bottomLinks: [
-    { label: 'Terms & Condition', href: '#' },
-    { label: 'Privacy Policy', href: '#' },
-    { label: 'Contact Us', href: '/#contact' },
-  ],
+  /**
+   * Profiles beside the copyright, each with its icon, taken from `SOCIALS`. Terms and privacy pages are
+   * left out: a portfolio without accounts needs neither.
+   */
+  bottomSocials: ['github', 'linkedin'] as readonly SocialName[],
 } as const;

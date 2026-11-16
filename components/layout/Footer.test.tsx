@@ -14,11 +14,12 @@ describe('Footer', () => {
     const links = within(screen.getByRole('navigation', { name: FOOTER.linksTitle })).getAllByRole('link');
 
     expect(links.map(link => link.getAttribute('href'))).toEqual(FOOTER.links.map(link => link.href));
+    // GitHub and LinkedIn appear twice: with the round icons and again beside the copyright.
     SOCIALS.forEach(social => {
-      expect(screen.getByRole('link', { name: social.label })).toHaveAttribute('href', social.href);
-    });
-    FOOTER.bottomLinks.forEach(link => {
-      expect(screen.getByRole('link', { name: link.label })).toHaveAttribute('href', link.href);
+      const matches = screen.getAllByRole('link', { name: social.label });
+
+      expect(matches).toHaveLength(FOOTER.bottomSocials.includes(social.name) ? 2 : 1);
+      matches.forEach(link => expect(link).toHaveAttribute('href', social.href));
     });
   });
 

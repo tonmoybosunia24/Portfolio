@@ -1,5 +1,7 @@
 import SiteShell from '@/components/layout/SiteShell';
 
+import { TESTIMONIALS } from '@/constants/profile';
+
 import Achievements from './Achievements';
 import Blogs from './Blogs';
 import Contact from './Contact';
@@ -22,7 +24,8 @@ export default function Home() {
       <Expertise />
       <Education />
       <Projects />
-      <Testimonials />
+      {/* Hidden until there are real client reviews. */}
+      {TESTIMONIALS.visible && <Testimonials />}
       <Blogs />
       <Contact />
     </SiteShell>

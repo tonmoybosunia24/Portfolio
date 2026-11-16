@@ -31,7 +31,7 @@ export default function Achievements() {
                 {twoDigits(experience.years)}
               </span>
               <span className="text-[26px] leading-[1.3] md:text-[37px] xl:text-[42px] 2xl:text-5xl">
-                Years Of <br />
+                {experience.years === 1 ? 'Year' : 'Years'} Of <br />
                 Experience
               </span>
             </h3>
@@ -43,7 +43,7 @@ export default function Achievements() {
               Styled like the service cards: a round icon, then the number and its label, left-aligned, with a
               large faint card number in the corner.
             */}
-            {stats.map(({ count, label, icon }, index) => (
+            {stats.map(({ count, plus, label, icon }, index) => (
               <li
                 key={label}
                 className="group glow-card flex flex-col justify-center rounded-[20px] border border-foreground/6 bg-dark p-4.5 transition duration-300 hover:-translate-y-1 md:p-7"
@@ -59,7 +59,7 @@ export default function Achievements() {
                 </span>
                 <p className="mt-4 text-[34px] leading-none font-bold md:mt-5 md:text-[44px] lg:text-[40px] 2xl:text-5xl">
                   {twoDigits(count)}
-                  <span className="text-foreground/50">+</span>
+                  {plus && <span className="text-foreground/50">+</span>}
                 </p>
                 <p className="mt-2 font-rubik text-sm leading-5 text-gray-light md:text-[15px] md:leading-6">{label}</p>
               </li>

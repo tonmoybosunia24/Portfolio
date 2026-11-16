@@ -5,7 +5,7 @@ import Home from '@/views/home/Home';
 
 export const metadata: Metadata = {
   title: { absolute: `${PROFILE.fullName} - ${PROFILE.role}` },
-  description: `Portfolio of ${PROFILE.fullName} - Mobile app developer building Android and iOS apps with Flutter`,
+  description: `Portfolio of ${PROFILE.fullName}, a frontend developer building Flutter apps for Android and iOS and web interfaces with React and Next.js.`,
 };
 
 export default function HomePage() {

@@ -6,22 +6,28 @@ import { EDUCATION } from '@/constants/profile';
 import Education from './Education';
 
 describe('Education', () => {
-  it('lists every education milestone with its degree, period and institution', () => {
+  it('lists every experience and education card with its title, period and place', () => {
     render(<Education />);
 
     expect(screen.getByRole('region', { name: EDUCATION.title })).toBeInTheDocument();
-    expect(screen.getByRole('heading', { level: 3, name: EDUCATION.groupTitle })).toBeInTheDocument();
 
     const items = screen.getAllByRole('listitem');
+    const cards = EDUCATION.groups.flatMap<{ title: string; period: string; place: string; text: string }>(group => [
+      ...group.items,
+    ]);
 
-    expect(items).toHaveLength(EDUCATION.items.length);
+    expect(items).toHaveLength(cards.length);
 
-    EDUCATION.items.forEach(({ degree, period, institution, text }, index) => {
+    EDUCATION.groups.forEach(group => {
+      expect(screen.getByRole('heading', { level: 3, name: group.title })).toBeInTheDocument();
+    });
+
+    cards.forEach(({ title, period, place, text }, index) => {
       const card = items[index]!;
 
-      expect(within(card).getByRole('heading', { level: 4, name: degree })).toBeInTheDocument();
+      expect(within(card).getByRole('heading', { level: 4, name: title })).toBeInTheDocument();
       expect(within(card).getByText(period)).toBeInTheDocument();
-      expect(within(card).getByText(institution)).toBeInTheDocument();
+      expect(within(card).getByText(place)).toBeInTheDocument();
       expect(within(card).getByText(text)).toBeInTheDocument();
     });
   });

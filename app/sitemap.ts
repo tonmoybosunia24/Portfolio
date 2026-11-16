@@ -13,6 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     { url: new URL('/', appUrl).href, changeFrequency: 'weekly', priority: 1 },
     { url: new URL('/blog', appUrl).href, changeFrequency: 'weekly' as const, priority: 0.8 },
+    { url: new URL('/work', appUrl).href, changeFrequency: 'monthly' as const, priority: 0.8 },
     ...BLOG.posts.map(({ slug, date }) => ({
       url: new URL(`/blog/${slug}`, appUrl).href,
       lastModified: date,

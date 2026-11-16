@@ -5,26 +5,29 @@ import { PROJECTS } from '@/constants/projects';
 
 import Projects from './Projects';
 
+const FEATURED = PROJECTS.items.filter(project => project.featured);
+
 describe('Projects', () => {
-  it('shows every project with its title and tech', () => {
+  it('shows every featured project with its title and category', () => {
     render(<Projects />);
 
     expect(screen.getByRole('region', { name: PROJECTS.title })).toHaveAttribute('id', 'projects');
 
     const items = within(screen.getByRole('list')).getAllByRole('listitem');
 
-    expect(items).toHaveLength(PROJECTS.items.length);
-    PROJECTS.items.forEach((project, index) => {
+    expect(items).toHaveLength(FEATURED.length);
+    FEATURED.forEach((project, index) => {
       expect(within(items[index]!).getByRole('heading', { level: 3, name: project.title })).toBeInTheDocument();
       expect(items[index]).toHaveTextContent(project.category);
     });
   });
 
-  it('links every project to its own page', () => {
+  it('links every featured project to its own page and all projects to /work', () => {
     render(<Projects />);
 
-    PROJECTS.items.forEach(project => {
+    FEATURED.forEach(project => {
       expect(screen.getByRole('link', { name: project.title })).toHaveAttribute('href', `/work/${project.slug}`);
     });
+    expect(screen.getByRole('link', { name: /View All Projects/ })).toHaveAttribute('href', '/work');
   });
 });

@@ -27,14 +27,14 @@ export interface BlogPost {
 const SCREENS = '/images/blog/flutter-architecture-template';
 
 /**
- * The "Latest Blogs" section and the blog pages. TODO: these are sample posts to show the layout; replace
- * them with your own articles.
+ * The "Latest Blogs" section and the blog pages: the Flutter template post and two posts written from
+ * the client apps (publishing on Google Play, Flutter performance with GetX).
  */
 export const BLOG = {
   label: 'Latest Blogs',
   title: 'Notes From My Work',
   description:
-    'Practical articles about Flutter, Android and building mobile apps, written from real projects and lessons learned along the way.',
+    'Practical articles about Flutter and building mobile apps, written from real client projects and lessons learned along the way.',
   posts: [
     {
       slug: 'flutter-architecture-template',
@@ -160,42 +160,99 @@ export const BLOG = {
       ],
     },
     {
+      slug: 'publish-your-first-app',
+      title: 'From Code to Store: What I Learned Publishing Six Apps',
+      excerpt:
+        'The checklist I follow before every release on Google Play, from app ids and permissions to testers, the data safety form and the first weeks after launch.',
+      date: '2026-10-08',
+      category: 'Publishing',
+      image: {
+        src: '/images/blog/publishing-six-apps-cover.webp',
+        alt: 'Banner: From Code to Store, What I Learned Publishing Six Apps, with a release checklist and a phone showing a published app',
+      },
+      content: [
+        { type: 'heading', text: 'Why a Checklist' },
+        {
+          type: 'paragraph',
+          text: 'In my first year at BlackDevs I have taken six Flutter apps from code to Google Play, including Crave, Precise Clock and Amar Seba. The code is rarely what delays a release. It is the small things around it: a missing permission note, a rejected screenshot, a signing key nobody can find. This is the checklist I now follow for every app.',
+        },
+        { type: 'heading', text: 'Before You Build' },
+        {
+          type: 'list',
+          items: [
+            'Choose the final app id (package name) early. It cannot be changed after the first release.',
+            'Prepare the icon, a short and a full description, screenshots and a privacy policy page.',
+            'Set the version and build number in pubspec.yaml, and raise the build number for every upload.',
+            'Point the app at the production API and Firebase project, not the staging ones.',
+          ],
+        },
+        { type: 'heading', text: 'Permissions Need a Reason' },
+        {
+          type: 'paragraph',
+          text: 'The apps I build use Google Maps, push notifications and local notifications, and each of those needs a permission the store will ask about. Location access has to be explained in the listing, notifications must be requested at runtime on Android 13 and newer, and exact alarms for scheduled reminders need their own declaration. Ask for each permission at the moment the user needs it, with one sentence that says why, and remove every permission the app does not use.',
+        },
+        { type: 'heading', text: 'Google Play' },
+        {
+          type: 'paragraph',
+          text: 'Create an upload key, keep it somewhere safe that the whole team can reach, and build an app bundle with flutter build appbundle. Fill in the data safety form honestly: it has to match what the app and its SDKs, such as Firebase, really collect. New personal developer accounts also have to run a closed test with real testers for two weeks before production, so plan that time into the schedule.',
+        },
+        { type: 'heading', text: 'The App Store' },
+        {
+          type: 'paragraph',
+          text: 'For iOS you need an Apple developer account, a Mac with Xcode and the app registered in App Store Connect. Push notifications need an APNs key added to Firebase, or they silently never arrive. Build with flutter build ipa, upload it and test it with TestFlight before submitting it for review.',
+        },
+        {
+          type: 'quote',
+          text: 'Release early to a small group of testers. Every surprise you find there is one your users never see.',
+        },
+        { type: 'heading', text: 'Store Listing' },
+        {
+          type: 'paragraph',
+          text: 'Screenshots sell the app more than the description does. Show the most useful screen first, add a short caption to each and keep the first line of the description clear and specific. For a Bangla app like Amar Seba, write the listing in the language its users read.',
+        },
+        { type: 'heading', text: 'After Launch' },
+        {
+          type: 'paragraph',
+          text: 'Watch crash reports and reviews closely in the first weeks, reply to users and ship small fixes quickly. A steady stream of updates tells the store, and your users, that the app is alive.',
+        },
+      ],
+    },
+    {
       slug: 'make-your-flutter-app-faster',
       title: '5 Ways to Make Your Flutter App Faster',
       excerpt:
-        'Simple, proven changes that cut jank and load time in real Flutter apps, from smarter rebuilds to lighter images.',
-      date: '2025-10-12',
+        'Simple changes that cut jank and load time in the GetX apps I build every day, from smaller rebuilds to parsing API responses off the UI thread.',
+      date: '2026-08-20',
       category: 'Performance',
       image: {
-        src: '/images/blog/make-your-flutter-app-faster-cover.webp',
-        alt: 'Light trails of night traffic on a road, taken with a long exposure',
-        credit: { name: 'Egor Litvinov', href: 'https://unsplash.com/@litvinov' },
+        src: '/images/blog/flutter-performance-cover.webp',
+        alt: 'Banner: 5 Ways to Make Your Flutter App Faster, with performance tips in Dart code and a phone showing 60 FPS',
       },
       content: [
         { type: 'heading', text: 'Why Speed Matters' },
         {
           type: 'paragraph',
-          text: 'People judge an app in its first few seconds. A screen that stutters while scrolling or takes a moment too long to open feels broken, even when everything works. The good news is that most Flutter performance problems come from a handful of habits that are easy to fix.',
+          text: 'People judge an app in its first few seconds. A screen that stutters while scrolling or takes a moment too long to open feels broken, even when everything works. In the Flutter apps I build at BlackDevs, almost every slow screen came down to one of the five habits below, and each one is easy to fix.',
         },
         { type: 'heading', text: '1. Rebuild Less' },
         {
           type: 'paragraph',
-          text: 'Every setState or provider change rebuilds a part of the widget tree. Keep state as close as possible to the widgets that use it, split large build methods into smaller widgets, and mark everything that never changes as const. Flutter skips const widgets entirely when it rebuilds.',
+          text: 'With GetX it is tempting to wrap a whole screen in one Obx. Then every change, even a single counter, rebuilds everything inside it. Wrap only the widget that shows the value, split large build methods into smaller widgets and mark everything that never changes as const, which Flutter skips entirely when it rebuilds.',
         },
         { type: 'heading', text: '2. Build Long Lists Lazily' },
         {
           type: 'paragraph',
-          text: 'A Column inside a SingleChildScrollView builds every item at once, even the hundreds you cannot see. Use ListView.builder or a SliverList, which only build the items on screen, and give items a fixed extent when they all have the same height.',
+          text: 'A Column inside a SingleChildScrollView builds every item at once, even the hundreds you cannot see. Lists of timecards, applications or products should use ListView.builder or a SliverList, which only build the items on screen, with a fixed item extent when all items have the same height.',
         },
         { type: 'heading', text: '3. Size Your Images' },
         {
           type: 'paragraph',
-          text: 'A 4000-pixel photo shown in a 100-pixel avatar still has to be decoded at full size. Set cacheWidth and cacheHeight, or resize images on the server, so the phone only decodes the pixels it actually shows.',
+          text: 'A 4000-pixel photo shown in a 100-pixel avatar still has to be decoded at full size. Set cacheWidth and cacheHeight, or ask the API for a smaller image, so the phone only decodes the pixels it actually shows.',
         },
-        { type: 'heading', text: '4. Move Heavy Work Off the UI Thread' },
+        { type: 'heading', text: '4. Parse API Responses Off the UI Thread' },
         {
           type: 'paragraph',
-          text: 'Parsing a large JSON response or processing an image on the main isolate freezes animations. Run that work with compute or Isolate.run, and the interface stays smooth while it finishes in the background.',
+          text: 'Decoding a large JSON response from a REST API on the main isolate freezes animations for a moment. Run that work with compute or Isolate.run, and the interface stays smooth while the data loads. The same goes for frequent WebSocket messages: update only the values that changed instead of rebuilding the whole list.',
         },
         { type: 'heading', text: '5. Measure Before You Guess' },
         {
@@ -213,149 +270,7 @@ export const BLOG = {
         { type: 'heading', text: 'Wrapping Up' },
         {
           type: 'paragraph',
-          text: 'You rarely need tricks to make a Flutter app fast. Rebuild less, build lazily, decode only what you show, keep heavy work off the UI thread and measure on real devices. Those five habits cover almost every slow app I have worked on.',
-        },
-      ],
-    },
-    {
-      slug: 'riverpod-vs-bloc',
-      title: 'Riverpod vs BLoC: Which One Should You Choose?',
-      excerpt:
-        'A practical comparison of the two most popular state management options in Flutter, and how I decide between them.',
-      date: '2025-08-28',
-      category: 'State Management',
-      image: {
-        src: '/images/blog/riverpod-vs-bloc-cover.webp',
-        alt: 'Code on a computer screen with a dark theme',
-        credit: { name: 'Bernd Dittrich', href: 'https://unsplash.com/@hdbernd' },
-      },
-      content: [
-        { type: 'heading', text: 'The Question Everyone Asks' },
-        {
-          type: 'paragraph',
-          text: 'Almost every Flutter developer reaches the same point: the app has grown, setState is no longer enough, and it is time to pick a state management library. Riverpod and BLoC are the two most common answers. Both are excellent; they simply suit different teams and projects.',
-        },
-        { type: 'heading', text: 'Riverpod in Short' },
-        {
-          type: 'paragraph',
-          text: 'Riverpod lets you declare small providers for each piece of state and read them anywhere, without depending on the widget tree. It handles loading and error states for you, caches results and disposes of what is no longer used.',
-        },
-        { type: 'heading', text: 'BLoC in Short' },
-        {
-          type: 'paragraph',
-          text: 'BLoC separates the app into events that come in and states that go out. Every change has a clear cause, which makes the flow of a feature easy to follow and to test, at the cost of more code for each feature.',
-        },
-        { type: 'heading', text: 'How I Choose' },
-        {
-          type: 'list',
-          items: [
-            'Small team or solo project, and speed matters: Riverpod.',
-            'Large team that needs strict, predictable structure: BLoC.',
-            'Many screens that load data from an API: Riverpod, thanks to its async providers.',
-            'Complex flows with many steps, like checkout or onboarding: BLoC.',
-          ],
-        },
-        {
-          type: 'quote',
-          text: 'The best state management library is the one your whole team understands and uses the same way.',
-        },
-        { type: 'heading', text: 'Conclusion' },
-        {
-          type: 'paragraph',
-          text: 'There is no wrong choice between the two. Pick one, agree on a few conventions with your team and apply them everywhere. Consistency matters far more than the library itself.',
-        },
-      ],
-    },
-    {
-      slug: 'offline-first-flutter-app',
-      title: 'Building an Offline-First App with Flutter and Hive',
-      excerpt:
-        'How to design an app that works without a connection: store data locally first, sync later and never lose a change.',
-      date: '2025-07-15',
-      category: 'Architecture',
-      image: {
-        src: '/images/blog/offline-first-flutter-app-cover.webp',
-        alt: 'A phone held up in front of an airplane window',
-        credit: { name: 'Valeria Kodra', href: 'https://unsplash.com/photos/j3BEkv_tSrU' },
-      },
-      content: [
-        { type: 'heading', text: 'What Offline-First Means' },
-        {
-          type: 'paragraph',
-          text: 'An offline-first app treats the phone’s own storage as the main source of truth. Every screen reads from the local database, and every change is saved there first. The network is used only to sync in the background, so the app is fast and works anywhere.',
-        },
-        { type: 'heading', text: 'Choosing Local Storage' },
-        {
-          type: 'paragraph',
-          text: 'Hive is a fast key-value database written in pure Dart, which makes it a good fit for most apps. When you need complex queries or relations, an SQL database such as Drift is the better choice. Either way, put it behind a repository class so the rest of the app never talks to the database directly.',
-        },
-        { type: 'heading', text: 'Syncing Changes' },
-        {
-          type: 'list',
-          items: [
-            'Save each change locally with a status such as pending.',
-            'Keep an outbox of pending changes and send them when the connection returns.',
-            'Give every item an id created on the phone, so a retry never creates a duplicate.',
-            'Mark items as synced only after the server confirms them.',
-          ],
-        },
-        { type: 'heading', text: 'Handling Conflicts' },
-        {
-          type: 'paragraph',
-          text: 'Sometimes the same item changes on two devices. For most apps the simplest rule works: the newest change wins. When data is too important for that, keep both versions and let the user choose.',
-        },
-        { type: 'heading', text: 'Final Thoughts' },
-        {
-          type: 'paragraph',
-          text: 'Offline-first takes a little more planning at the start, but it pays back quickly: the app feels instant, works on trains and in basements, and users never lose their work.',
-        },
-      ],
-    },
-    {
-      slug: 'publish-your-first-app',
-      title: 'From Code to Store: Publishing Your First App',
-      excerpt:
-        'A step-by-step checklist for releasing a Flutter app on Google Play and the App Store without last-minute surprises.',
-      date: '2025-05-30',
-      category: 'Publishing',
-      image: {
-        src: '/images/blog/publish-your-first-app-cover.webp',
-        alt: 'A rocket launching into a clear sky',
-        credit: { name: 'SpaceX', href: 'https://unsplash.com/@spacex' },
-      },
-      content: [
-        { type: 'heading', text: 'Before You Build' },
-        {
-          type: 'list',
-          items: [
-            'Choose a final app id (package name), as it cannot be changed after the first release.',
-            'Prepare the app icon, a short description and a privacy policy page.',
-            'Set the version and build number in pubspec.yaml.',
-          ],
-        },
-        { type: 'heading', text: 'Google Play' },
-        {
-          type: 'paragraph',
-          text: 'Create an upload key, configure signing and build an app bundle with flutter build appbundle. Start with an internal testing track: it reaches your testers within minutes and catches problems before the public sees them.',
-        },
-        { type: 'heading', text: 'The App Store' },
-        {
-          type: 'paragraph',
-          text: 'You need an Apple developer account, a Mac with Xcode and the app registered in App Store Connect. Build with flutter build ipa, upload it, and test it with TestFlight before submitting it for review.',
-        },
-        { type: 'heading', text: 'Store Listing' },
-        {
-          type: 'paragraph',
-          text: 'Screenshots sell the app more than the description does. Show the most useful screen first, add a short caption to each, and keep the first line of the description clear and specific.',
-        },
-        {
-          type: 'quote',
-          text: 'Release early to a small group of testers. Every surprise you find there is one your users never see.',
-        },
-        { type: 'heading', text: 'After Launch' },
-        {
-          type: 'paragraph',
-          text: 'Watch crash reports and reviews closely in the first weeks, reply to users and ship small fixes quickly. A steady stream of updates also tells the stores, and your users, that the app is alive.',
+          text: 'You rarely need tricks to make a Flutter app fast. Rebuild less, build lazily, decode only what you show, keep heavy work off the UI thread and measure on real devices. Those five habits cover almost every slow screen I have worked on.',
         },
       ],
     },
