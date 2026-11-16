@@ -23,6 +23,20 @@ const SETTLE_MS = 150;
 /** The list is drawn three times, so there is always a review on either side of the middle one. */
 const COPIES = 3;
 
+/** How far the mouse must move before a press counts as a drag rather than a click. */
+const DRAG_START_PX = 4;
+
+/** A mouse drag this long moves on at least one review, even if it didn't reach halfway. */
+const DRAG_FLICK_PX = 60;
+
+interface Drag {
+  pointerId: number;
+  startX: number;
+  startLeft: number;
+  startIndex: number;
+  moved: boolean;
+}
+
 /**
  * Steps from review `from` to review `to` the short way round the loop: from the last review to the first
  * is one step forward, not four back.
@@ -38,7 +52,8 @@ export const shortestStep = (from: number, to: number, count: number) => {
  * The list is drawn three times; whenever the row settles in the first or last copy it jumps, without
  * animation, to the same review in the middle copy, so it can keep going in either direction. It slides
  * to the next review every few seconds (not for visitors who prefer reduced motion) and stops while the
- * pointer or keyboard focus is on it. Visitors can also swipe or scroll it, or pick a review with the dots.
+ * pointer or keyboard focus is on it. Visitors can also swipe or scroll it, drag it with the mouse, or pick
+ * a review with the dots.
  * Screen readers get only the middle copy.
  */
 export default function TestimonialSlider({ items }: { items: readonly Testimonial[] }) {
@@ -46,7 +61,9 @@ export default function TestimonialSlider({ items }: { items: readonly Testimoni
   const track = useRef<HTMLUListElement>(null);
   const activeRef = useRef(count);
   const paused = useRef(false);
+  const drag = useRef<Drag | null>(null);
   const [active, setActive] = useState(count);
+  const [dragging, setDragging] = useState(false);
 
   /** Scrolls so card `index` (counting all copies) sits in the middle. */
   const goTo = useCallback((index: number, behavior: ScrollBehavior = 'smooth') => {
@@ -90,12 +107,17 @@ export default function TestimonialSlider({ items }: { items: readonly Testimoni
       activeRef.current = nearest;
       setActive(nearest);
 
-      // Once still, move from an outer copy back to the middle one.
+      // Once still, move from an outer copy back to the middle one. Not while the mouse still holds the row.
       clearTimeout(settle);
       settle = setTimeout(() => {
+        if (drag.current) return;
+
         const current = activeRef.current;
 
         if (current < count || current >= count * 2) goTo(count + (current % count), 'instant');
+
+        // A mouse drag turns snapping off; turn it back on now the row rests on a card.
+        list.style.scrollSnapType = '';
       }, SETTLE_MS);
     };
 
@@ -123,6 +145,61 @@ export default function TestimonialSlider({ items }: { items: readonly Testimoni
     paused.current = false;
   };
 
+  // Touch and trackpads already scroll the row; a mouse has to drag it.
+  const onPointerDown = (event: React.PointerEvent<HTMLUListElement>) => {
+    if (event.pointerType !== 'mouse' || event.button !== 0) return;
+
+    drag.current = {
+      pointerId: event.pointerId,
+      startX: event.clientX,
+      startLeft: event.currentTarget.scrollLeft,
+      startIndex: activeRef.current,
+      moved: false,
+    };
+  };
+
+  const onPointerMove = (event: React.PointerEvent<HTMLUListElement>) => {
+    const current = drag.current;
+    const list = event.currentTarget;
+
+    if (!current || current.pointerId !== event.pointerId) return;
+
+    const distance = event.clientX - current.startX;
+
+    if (!current.moved) {
+      if (Math.abs(distance) < DRAG_START_PX) return;
+
+      current.moved = true;
+      list.setPointerCapture(event.pointerId);
+      // Snapping would pull the row back to a card on every move, so it is off while dragging.
+      list.style.scrollSnapType = 'none';
+      setDragging(true);
+    }
+
+    list.scrollLeft = current.startLeft - distance;
+  };
+
+  const onPointerUp = (event: React.PointerEvent<HTMLUListElement>) => {
+    const current = drag.current;
+
+    if (!current || current.pointerId !== event.pointerId) return;
+
+    drag.current = null;
+
+    if (!current.moved) return;
+
+    setDragging(false);
+
+    const distance = event.clientX - current.startX;
+    let target = activeRef.current;
+
+    if (target === current.startIndex && Math.abs(distance) >= DRAG_FLICK_PX) {
+      target += distance < 0 ? 1 : -1;
+    }
+
+    goTo(target);
+  };
+
   const current = active % count;
   const cards = Array.from({ length: COPIES }, (_, copy) => items.map((item, index) => ({ ...item, copy, index })));
 
@@ -141,8 +218,12 @@ export default function TestimonialSlider({ items }: { items: readonly Testimoni
         // Focusable so keyboard users can scroll the row with the arrow keys.
         tabIndex={0}
         aria-label="Client reviews"
+        onPointerDown={onPointerDown}
+        onPointerMove={onPointerMove}
+        onPointerUp={onPointerUp}
+        onPointerCancel={onPointerUp}
         // From 768px the row fades out at both sides, so the neighbouring reviews don't end in a hard cut.
-        className="relative flex snap-x snap-mandatory gap-4 overflow-x-auto scrollbar-none md:gap-5 md:mask-[linear-gradient(to_right,transparent,black_6%,black_94%,transparent)] lg:mask-[linear-gradient(to_right,transparent,black_14%,black_86%,transparent)]"
+        className={`relative flex snap-x snap-mandatory gap-4 overflow-x-auto scrollbar-none md:gap-5 ${dragging ? 'cursor-grabbing select-none' : 'cursor-grab'} md:mask-[linear-gradient(to_right,transparent,black_6%,black_94%,transparent)] lg:mask-[linear-gradient(to_right,transparent,black_14%,black_86%,transparent)]`}
       >
         {cards.flat().map(({ quote, name, role, image, rating, copy, index }) => {
           const position = copy * count + index;
@@ -173,6 +254,8 @@ export default function TestimonialSlider({ items }: { items: readonly Testimoni
                       alt=""
                       width={48}
                       height={48}
+                      // The browser's own image drag would take over from dragging the row.
+                      draggable={false}
                       className="size-12 shrink-0 rounded-full ring-2 ring-foreground/10"
                     />
                     <span>

@@ -1,5 +1,6 @@
 import { EDUCATION } from '@/constants/profile';
 
+import { revealDelay } from './reveal';
 import SectionHeading from './SectionHeading';
 
 /**
@@ -27,10 +28,10 @@ export default function Education() {
           </h3>
 
           <ul className="grid gap-4 md:gap-5 lg:grid-cols-2 lg:gap-7.5">
-            {EDUCATION.items.map(({ degree, period, institution, text }) => (
+            {EDUCATION.items.map(({ degree, period, institution, text }, index) => (
               <li
                 key={degree}
-                className="glow-card flex flex-col justify-center rounded-2xl border border-foreground/6 bg-dark p-5 transition duration-300 hover:-translate-y-1 md:p-7 lg:px-9 lg:py-10"
+                className={`reveal ${revealDelay(index, 2)} glow-card flex flex-col justify-center rounded-2xl border border-foreground/6 bg-dark p-5 transition duration-300 hover:-translate-y-1 md:p-7 lg:px-9 lg:py-10`}
               >
                 <div className="flex flex-wrap items-baseline justify-between gap-x-2 gap-y-0.5">
                   <h4 className="text-base leading-6 font-semibold text-foreground md:text-xl md:leading-6.5">

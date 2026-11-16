@@ -12,8 +12,9 @@ Notable changes to the starter kit. The format follows [Keep a Changelog](https:
 - Portfolio skills section: three sliding rows of skill chips with logos.
 - Portfolio expertise section: two groups of skills with level bars.
 - Portfolio projects section: project cards with 4:3 app banners (iPhone mockups in a light studio; in dark mode, a black and crimson panel in the style of the Reeni template).
-- Portfolio testimonials section: an endless, auto-playing review slider with dots.
+- Portfolio testimonials section: an endless, auto-playing review slider with dots that can also be dragged with the mouse.
 - Portfolio contact section: contact details and a form that opens the visitor's email app.
+- Portfolio animations in CSS: the hero text rises in on load, sections reveal and skill level bars fill in as they come into view, and a pink bar under the header shows reading progress. Off for reduced motion.
 - `glow-card` utility: a pink border glow on hover that follows the pointer, on the service, achievement and education cards.
 - `allowedDevOrigins` for `192.168.*.*`, so the dev server can be opened from a phone on the same Wi-Fi.
 - Example CRUD module at `/projects` (list with pagination, create and edit forms with zod and API validation errors, delete, 404), with unit and e2e tests and mock API endpoints. See `docs/example-module.md`.

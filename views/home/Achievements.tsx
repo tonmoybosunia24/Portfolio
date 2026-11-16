@@ -25,7 +25,7 @@ export default function Achievements() {
         />
 
         <div className="mt-8 grid gap-4.5 md:mt-12 md:gap-6 lg:grid-cols-2 lg:gap-5">
-          <div className="flex flex-col justify-center rounded-[20px] bg-linear-to-br from-[#211a1d] to-[#6d0e2c] px-5 py-7.5 text-white md:px-13 md:py-11">
+          <div className="reveal-left flex flex-col justify-center rounded-[20px] bg-linear-to-br from-[#211a1d] to-[#6d0e2c] px-5 py-7.5 text-white md:px-13 md:py-11">
             <h3 className="flex items-center gap-5 font-bold md:gap-11">
               <span className="text-[80px] leading-none text-pink-primary md:text-[100px] xl:text-[140px] 2xl:text-[167px]">
                 {twoDigits(experience.years)}
@@ -38,7 +38,7 @@ export default function Achievements() {
             <p className="mt-3 font-rubik text-base leading-6.5 text-white/90 md:mt-6">{experience.text}</p>
           </div>
 
-          <ul className="grid grid-cols-2 gap-4.5 md:gap-6 lg:gap-5">
+          <ul className="reveal-right grid grid-cols-2 gap-4.5 md:gap-6 lg:gap-5">
             {/*
               Styled like the service cards: a round icon, then the number and its label, left-aligned, with a
               large faint card number in the corner.

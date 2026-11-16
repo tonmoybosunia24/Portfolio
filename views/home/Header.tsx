@@ -68,7 +68,7 @@ export default function Header() {
     <header className={cn('inset-x-0 top-0 z-40', sticky ? 'fixed' : 'absolute')}>
       <div
         className={cn(
-          'border-b transition-colors duration-300',
+          'relative border-b transition-colors duration-300',
           sticky ? 'border-white-overlay bg-background/60 backdrop-blur-md' : 'border-transparent bg-transparent',
         )}
       >
@@ -108,6 +108,11 @@ export default function Header() {
             </button>
           </div>
         </div>
+        {/* How far down the page the visitor is, drawn over the bottom border. */}
+        <span
+          aria-hidden="true"
+          className="scroll-progress absolute inset-x-0 -bottom-px h-0.5 origin-left bg-pink-primary"
+        />
       </div>
 
       <div

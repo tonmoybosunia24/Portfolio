@@ -7,6 +7,7 @@ import GlowTracker from './GlowTracker';
 import Header from './Header';
 import Hero from './Hero';
 import Projects from './Projects';
+import ScrollReveal from './ScrollReveal';
 import Services from './Services';
 import Skills from './Skills';
 import Testimonials from './Testimonials';
@@ -14,7 +15,7 @@ import Testimonials from './Testimonials';
 /** The portfolio home page. Sections are added below the hero one at a time. */
 export default function Home() {
   return (
-    <div className="relative">
+    <div className="relative overflow-x-clip">
       <Header />
       <main>
         <Hero />
@@ -29,6 +30,7 @@ export default function Home() {
       </main>
       <Footer />
       <GlowTracker />
+      <ScrollReveal />
     </div>
   );
 }

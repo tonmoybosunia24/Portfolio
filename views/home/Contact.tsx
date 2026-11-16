@@ -16,7 +16,7 @@ export default function Contact() {
     <section id="contact" aria-labelledby="contact-title" className="pb-15 md:pb-20 lg:pb-30">
       <div className="section">
         <div className="grid items-center gap-10 rounded-3xl bg-black-soft px-5 py-10 md:rounded-4xl md:p-12 lg:grid-cols-[minmax(0,4fr)_minmax(0,9fr)] lg:gap-14 xl:gap-16 xl:px-20 xl:py-20">
-          <div>
+          <div className="reveal-left">
             <h2
               id="contact-title"
               className="text-4xl leading-[1.15] font-bold md:text-5xl lg:text-[40px] xl:text-[46px] 2xl:text-[52px]"
@@ -54,7 +54,7 @@ export default function Contact() {
             </ul>
           </div>
 
-          <div>
+          <div className="reveal-right">
             <h3 className="mb-6 text-[28px] leading-tight font-bold uppercase md:text-[32px]">{CONTACT.formTitle}</h3>
             <ContactForm />
           </div>

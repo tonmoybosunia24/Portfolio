@@ -17,7 +17,7 @@ export default function Footer() {
   return (
     <footer className="bg-black-soft">
       <div className="section grid gap-10 py-15 md:grid-cols-2 md:gap-x-8 md:py-20 lg:grid-cols-[minmax(0,5.5fr)_minmax(0,2.5fr)_minmax(0,4fr)] lg:gap-x-7.5 lg:py-25 xl:grid-cols-[minmax(0,6fr)_minmax(0,2.5fr)_minmax(0,3.5fr)]">
-        <div className="md:col-span-2 lg:col-span-1">
+        <div className="reveal md:col-span-2 lg:col-span-1">
           <Logo />
           <p className="mt-6 max-w-105 text-4xl leading-[1.2] md:text-[44px] lg:text-[50px]">
             <span className="font-bold">{FOOTER.headline[0]}</span>{' '}
@@ -26,7 +26,7 @@ export default function Footer() {
           <FooterEmailForm />
         </div>
 
-        <nav aria-labelledby="footer-links-title">
+        <nav aria-labelledby="footer-links-title" className="reveal reveal-delay-1">
           <h2 id="footer-links-title" className="text-2xl leading-7.5 font-bold">
             {FOOTER.linksTitle}
           </h2>
@@ -44,7 +44,7 @@ export default function Footer() {
           </ul>
         </nav>
 
-        <div>
+        <div className="reveal reveal-delay-2">
           <h2 className="text-2xl leading-7.5 font-bold">{FOOTER.contactTitle}</h2>
           <ul className="mt-6 flex flex-col gap-4">
             {SIDEBAR.contacts.map(({ icon, label, value, href }) => {

@@ -20,8 +20,8 @@ export default function Expertise() {
         />
 
         <div className="mt-8 grid gap-10 md:mt-12 lg:grid-cols-2 lg:gap-7.5">
-          {EXPERTISE.groups.map(group => (
-            <div key={group.title}>
+          {EXPERTISE.groups.map((group, index) => (
+            <div key={group.title} className={index % 2 === 0 ? 'reveal-left' : 'reveal-right'}>
               <h3 className="mb-6 flex items-center gap-5 text-[28px] leading-10.5 font-bold md:mb-7.5 md:text-[32px]">
                 {group.title}
                 {/* A short line with a dot at each end, as on the previous site. */}
@@ -32,7 +32,7 @@ export default function Expertise() {
               </h3>
 
               <ul className="flex flex-col gap-5 md:gap-6">
-                {group.skills.map(({ name, level }) => (
+                {group.skills.map(({ name, level }, index) => (
                   <li key={name}>
                     <div className="mb-3 flex justify-between gap-4 font-rubik text-sm leading-4.5 font-medium">
                       <span>{name}</span>
@@ -40,8 +40,9 @@ export default function Expertise() {
                     </div>
                     <div aria-hidden="true" className="h-1.5 overflow-hidden rounded-full bg-dark">
                       <div
-                        className="animate-grow-in-view h-full origin-left rounded-full bg-pink-primary"
-                        style={{ width: `${level}%` }}
+                        className="reveal-grow h-full origin-left rounded-full bg-pink-primary"
+                        // Each bar starts a little after the one above it.
+                        style={{ width: `${level}%`, animationDelay: `${index * 120}ms` }}
                       />
                     </div>
                   </li>

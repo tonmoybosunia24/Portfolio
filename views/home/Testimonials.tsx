@@ -14,7 +14,7 @@ export default function Testimonials() {
           title={TESTIMONIALS.title}
           description={TESTIMONIALS.description}
         />
-        <div className="mt-8 md:mt-12">
+        <div className="reveal mt-8 md:mt-12">
           <TestimonialSlider items={TESTIMONIALS.items} />
         </div>
       </div>

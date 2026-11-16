@@ -180,16 +180,102 @@ body {
   }
 }
 
-/* Skill level bars fill from the left as they scroll into view, in browsers that support it. */
+/* Skill level bars fill from the left (`reveal-grow`). */
 @keyframes grow {
   from {
     transform: scaleX(0);
   }
 }
 
+/*
+ * Scroll reveals: content fades in and slides into place once it scrolls into view. `reveal` rises from
+ * below; from 992px `reveal-left` and `reveal-right` come in from the side and `reveal-zoom` grows (below
+ * 992px they rise like `reveal`). `reveal-delay-1` and `-2` start a little later, for cards side by side.
+ * `ScrollReveal` (views/home) marks the page `reveal-ready` and adds `is-revealed` to each element as it
+ * comes on screen. Without it, or with reduced motion, content simply shows.
+ */
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translate(var(--reveal-x, 0), var(--reveal-y, 40px)) scale(var(--reveal-scale, 1));
+  }
+}
+
+/* Hero content rises in once when the page loads. */
+@keyframes intro {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+}
+
+/* The reading progress bar under the header. */
+@keyframes progress {
+  from {
+    transform: scaleX(0);
+  }
+}
+
+.scroll-progress {
+  transform: scaleX(0);
+}
+
+@supports (animation-timeline: scroll()) {
+  .scroll-progress {
+    animation: progress linear both;
+    animation-timeline: scroll(root);
+  }
+}
+
 @media (prefers-reduced-motion: no-preference) {
   html {
     scroll-behavior: smooth;
+  }
+
+  .animate-intro {
+    animation: intro 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .intro-delay-1 {
+    animation-delay: 0.15s;
+  }
+
+  .intro-delay-2 {
+    animation-delay: 0.3s;
+  }
+
+  .reveal-ready :is(.reveal, .reveal-left, .reveal-right, .reveal-zoom):not(.is-revealed) {
+    opacity: 0;
+    transform: translate(var(--reveal-x, 0), var(--reveal-y, 40px)) scale(var(--reveal-scale, 1));
+  }
+
+  .reveal-ready :is(.reveal, .reveal-left, .reveal-right, .reveal-zoom).is-revealed {
+    animation: reveal 0.9s cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0s) both;
+  }
+
+  .reveal-delay-1 {
+    --reveal-delay: 0.12s;
+  }
+
+  .reveal-delay-2 {
+    --reveal-delay: 0.24s;
+  }
+
+  @media (min-width: 62rem) {
+    .reveal-left {
+      --reveal-x: -60px;
+      --reveal-y: 0;
+    }
+
+    .reveal-right {
+      --reveal-x: 60px;
+      --reveal-y: 0;
+    }
+
+    .reveal-zoom {
+      --reveal-y: 0;
+      --reveal-scale: 0.92;
+    }
   }
 
   .animate-float {
@@ -214,11 +300,12 @@ body {
     animation-play-state: paused;
   }
 
-  @supports (animation-timeline: view()) {
-    .animate-grow-in-view {
-      animation: grow linear both;
-      animation-timeline: view();
-      animation-range: entry 0% cover 35%;
-    }
+  /* Skill level bars fill from the left once they come on screen, one after another (see `ScrollReveal`). */
+  .reveal-ready .reveal-grow:not(.is-revealed) {
+    transform: scaleX(0);
+  }
+
+  .reveal-ready .reveal-grow.is-revealed {
+    animation: grow 1.2s cubic-bezier(0.22, 1, 0.36, 1) both;
   }
 }

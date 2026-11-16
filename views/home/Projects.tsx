@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { type Project, PROJECTS } from '@/constants/profile';
 
 import { ArrowUpRightIcon } from './icons';
+import { revealDelay } from './reveal';
 import SectionHeading from './SectionHeading';
 
 const BANNER_SIZES = '(min-width: 1400px) 600px, (min-width: 768px) 50vw, 100vw';
@@ -53,8 +54,8 @@ export default function Projects() {
         />
 
         <ul className="mt-8 grid gap-10 md:mt-12 md:grid-cols-2 md:gap-x-6 md:gap-y-12 lg:gap-x-7.5">
-          {PROJECTS.items.map((project: Project) => (
-            <li key={project.title} className="group relative">
+          {PROJECTS.items.map((project: Project, index) => (
+            <li key={project.title} className={`reveal-zoom ${revealDelay(index, 2)} group relative`}>
               <div className="rounded-3xl border-[1.5px] border-foreground/12 bg-black-soft p-3 transition-colors duration-300 md:p-4 xl:p-5">
                 <Preview project={project} />
               </div>

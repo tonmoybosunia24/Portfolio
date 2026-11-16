@@ -47,7 +47,7 @@ export default function Hero() {
       */}
       <div className="section grid items-center gap-7.5 pt-30 lg:min-h-svh lg:grid-cols-2 2xl:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)] compact:pt-25">
         <div className="relative z-30 flex flex-col items-start">
-          <h1 id="hero-title" className="flex flex-col font-bold">
+          <h1 id="hero-title" className="animate-intro flex flex-col font-bold">
             <span className="text-[22px] leading-7 md:mb-3.75 md:text-[28px] md:leading-9.5 compact:mb-2 compact:text-[22px] compact:leading-7.5">
               {PROFILE.greeting}
             </span>
@@ -63,11 +63,11 @@ export default function Hero() {
             </span>
           </h1>
 
-          <p className="mt-2.25 font-rubik text-base leading-7 text-gray-light md:mt-5.5 md:text-lg md:leading-8.5 compact:mt-4 compact:text-base compact:leading-7">
+          <p className="animate-intro intro-delay-1 mt-2.25 font-rubik text-base leading-7 text-gray-light md:mt-5.5 md:text-lg md:leading-8.5 compact:mt-4 compact:text-base compact:leading-7">
             {PROFILE.intro}
           </p>
 
-          <div className="mt-6 flex flex-wrap gap-3 font-rubik text-[15px] font-medium tracking-[0.5px] md:mt-9.75 md:gap-3.75 md:text-base compact:mt-7">
+          <div className="animate-intro intro-delay-2 mt-6 flex flex-wrap gap-3 font-rubik text-[15px] font-medium tracking-[0.5px] md:mt-9.75 md:gap-3.75 md:text-base compact:mt-7">
             <a
               href="#projects"
               className="group inline-flex h-12 items-center gap-2 rounded-full bg-pink-primary px-5 md:h-15 md:px-7.5 compact:h-13 text-white transition-colors hover:bg-red-primary"

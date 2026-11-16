@@ -15,7 +15,7 @@ interface SectionHeadingProps {
  */
 export default function SectionHeading({ id, label, title, description }: SectionHeadingProps) {
   return (
-    <div className="flex flex-col items-center gap-2 text-center md:gap-3">
+    <div className="reveal flex flex-col items-center gap-2 text-center md:gap-3">
       <p className="flex items-center gap-3 font-rubik text-xs leading-5 font-medium tracking-[3px] text-gray-light uppercase md:text-sm">
         <span aria-hidden="true" className="h-px w-6 bg-foreground/25 md:w-8" />
         {label}
