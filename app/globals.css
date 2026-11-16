@@ -1,26 +1,318 @@
 @import 'tailwindcss';
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: dark;
+
+  --background: #060606;
+  --foreground: #fff;
+  --hero-bg: #0e0e10;
+  --dark: #141414;
+  --black-soft: #151515;
+  --gray-light: #c2c2c2;
+  --white-overlay: rgb(255 255 255 / 8%);
+  --line: rgb(255 255 253 / 6%);
 }
 
+:root[data-theme='light'] {
+  color-scheme: light;
+
+  --background: #f8f9fa;
+  --foreground: #141414;
+  --hero-bg: #eef0f4;
+  --dark: #fff;
+  --black-soft: #f1f3f6;
+  --gray-light: #52525b;
+  --white-overlay: rgb(20 20 20 / 8%);
+  --line: rgb(20 20 20 / 8%);
+}
+
+/* Colors and fonts of the portfolio, usable as Tailwind classes (`text-pink-primary`, `font-rubik`). */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-pink-primary: #ff014f;
+  --color-gray-light: var(--gray-light);
+  --color-black-soft: var(--black-soft);
+  --color-dark: var(--dark);
+  --color-white-overlay: var(--white-overlay);
+  --color-line: var(--line);
+  --font-sans: var(--font-rajdhani);
+  --font-rubik: var(--font-rubik);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* Screen breakpoints of the design: 576, 768, 992, 1200, 1400 and 1600px. */
+@theme {
+  --breakpoint-sm: 36rem;
+  --breakpoint-md: 48rem;
+  --breakpoint-lg: 62rem;
+  --breakpoint-xl: 75rem;
+  --breakpoint-2xl: 87.5rem;
+  --breakpoint-3xl: 100rem;
+}
+
+/*
+ * Laptops with a short screen (two-column layout, at most 800px tall), e.g. a 13" laptop at 150% scaling.
+ * Used to tighten the hero so it fits without scrolling.
+ */
+/* Styles for light mode only (the site is dark unless `data-theme='light'` is set on <html>). */
+@custom-variant light (&:where([data-theme='light'], [data-theme='light'] *));
+
+@custom-variant compact (@media (min-width: 62rem) and (max-height: 800px));
+
+/* Tailwind 4 gives buttons the default arrow cursor; show the hand on every button that can be clicked. */
+@layer base {
+  button:not(:disabled),
+  [role='button']:not([aria-disabled='true']) {
+    cursor: pointer;
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-rajdhani), Arial, Helvetica, sans-serif;
+}
+
+/*
+ * The page width every section lines up with. Content is 345px wide on a 375px phone, then 510, 705, 945,
+ * 1125 and at most 1275px.
+ */
+@utility section {
+  inline-size: 100%;
+  margin-inline: auto;
+  padding-inline: 15px;
+
+  @variant sm {
+    max-inline-size: 540px;
+  }
+
+  @variant md {
+    max-inline-size: 720px;
+    padding-inline: 7.5px;
+  }
+
+  @variant lg {
+    max-inline-size: 960px;
+  }
+
+  @variant xl {
+    max-inline-size: 1140px;
+  }
+
+  @variant 2xl {
+    max-inline-size: 1290px;
+  }
+}
+
+@utility text-stroke {
+  -webkit-text-stroke: 1px var(--foreground);
+}
+
+/*
+ * A pink glow on the card's border at the corner nearest the pointer: solid at that corner, then fading
+ * along its two edges all the way to the next corners, where it ends, so only one corner lights up.
+ * `GlowTracker` sets --glow-x and --glow-y to that corner (0% or 100%), and the glow slides when the
+ * pointer moves to another corner. The ring is drawn over the card's own
+ * 1px border, so give cards a border (transparent is fine).
+ */
+@property --glow-cx {
+  syntax: '<percentage>';
+  inherits: false;
+  initial-value: 0%;
+}
+
+@property --glow-cy {
+  syntax: '<percentage>';
+  inherits: false;
+  initial-value: 0%;
+}
+
+@utility glow-card {
+  position: relative;
+
+  &::after {
+    --glow-cx: var(--glow-x, 0%);
+    --glow-cy: var(--glow-y, 0%);
+
+    position: absolute;
+    inset: -1px;
+    padding: 2px;
+    border-radius: inherit;
+    background: radial-gradient(
+      ellipse 100% 100% at var(--glow-cx) var(--glow-cy),
+      var(--color-pink-primary) 0%,
+      var(--color-pink-primary) 20%,
+      rgb(255 1 79 / 0.35) 65%,
+      transparent 100%
+    );
+    content: '';
+    mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    mask-composite: exclude;
+    opacity: 0;
+    pointer-events: none;
+    transition:
+      opacity 0.3s,
+      --glow-cx 0.4s ease,
+      --glow-cy 0.4s ease;
+  }
+
+  &:hover::after {
+    opacity: 1;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Moves a row that holds its content twice by one copy, so it loops without a jump. */
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Skill level bars fill from the left (`reveal-grow`). */
+@keyframes grow {
+  from {
+    transform: scaleX(0);
+  }
+}
+
+/*
+ * Scroll reveals: content fades in and slides into place once it scrolls into view. `reveal` rises from
+ * below; from 992px `reveal-left` and `reveal-right` come in from the side and `reveal-zoom` grows (below
+ * 992px they rise like `reveal`). `reveal-delay-1` and `-2` start a little later, for cards side by side.
+ * `ScrollReveal` (components/layout) marks the page `reveal-ready` and adds `is-revealed` to each element as it
+ * comes on screen. Without it, or with reduced motion, content simply shows.
+ */
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translate(var(--reveal-x, 0), var(--reveal-y, 40px)) scale(var(--reveal-scale, 1));
+  }
+}
+
+/* Hero content rises in once when the page loads. */
+@keyframes intro {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+}
+
+/* The reading progress bar under the header. */
+@keyframes progress {
+  from {
+    transform: scaleX(0);
+  }
+}
+
+.scroll-progress {
+  transform: scaleX(0);
+}
+
+@supports (animation-timeline: scroll()) {
+  .scroll-progress {
+    animation: progress linear both;
+    animation-timeline: scroll(root);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  .animate-intro {
+    animation: intro 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .intro-delay-1 {
+    animation-delay: 0.15s;
+  }
+
+  .intro-delay-2 {
+    animation-delay: 0.3s;
+  }
+
+  .reveal-ready :is(.reveal, .reveal-left, .reveal-right, .reveal-zoom):not(.is-revealed) {
+    opacity: 0;
+    transform: translate(var(--reveal-x, 0), var(--reveal-y, 40px)) scale(var(--reveal-scale, 1));
+  }
+
+  .reveal-ready :is(.reveal, .reveal-left, .reveal-right, .reveal-zoom).is-revealed {
+    animation: reveal 0.9s cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0s) both;
+  }
+
+  .reveal-delay-1 {
+    --reveal-delay: 0.12s;
+  }
+
+  .reveal-delay-2 {
+    --reveal-delay: 0.24s;
+  }
+
+  @media (min-width: 62rem) {
+    .reveal-left {
+      --reveal-x: -60px;
+      --reveal-y: 0;
+    }
+
+    .reveal-right {
+      --reveal-x: 60px;
+      --reveal-y: 0;
+    }
+
+    .reveal-zoom {
+      --reveal-y: 0;
+      --reveal-scale: 0.92;
+    }
+  }
+
+  .animate-float {
+    animation: float 2s ease-in-out infinite;
+  }
+
+  .animate-blink {
+    animation: blink 1s step-end infinite;
+  }
+
+  /* Rows move right to left; the reverse ones left to right. Hovering a row stops it. */
+  .animate-marquee {
+    animation: marquee 60s linear infinite;
+  }
+
+  .animate-marquee-reverse {
+    animation: marquee 60s linear infinite reverse;
+  }
+
+  .animate-marquee:hover,
+  .animate-marquee-reverse:hover {
+    animation-play-state: paused;
+  }
+
+  /* Skill level bars fill from the left once they come on screen, one after another (see `ScrollReveal`). */
+  .reveal-ready .reveal-grow:not(.is-revealed) {
+    transform: scaleX(0);
+  }
+
+  .reveal-ready .reveal-grow.is-revealed {
+    animation: grow 1.2s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
 }

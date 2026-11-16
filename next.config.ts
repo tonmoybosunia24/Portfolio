@@ -19,6 +19,13 @@ const nextConfig: NextConfig = {
   // Don't advertise the framework in an `X-Powered-By` header.
   poweredByHeader: false,
 
+  // Lets a phone on the same home Wi-Fi open the dev server (http://192.168.x.x:3000) with working
+  // scripts. Only affects `next dev`.
+  allowedDevOrigins: ['192.168.*.*'],
+
+  // Next.js 16 only allows quality 75 by default. 95 keeps the small text in the project banners sharp.
+  images: { qualities: [75, 95] },
+
   async headers() {
     return [{ source: '/:path*', headers: securityHeaders }];
   },

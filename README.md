@@ -80,6 +80,7 @@ Unit tests sit next to the code they test (`helpers.ts` → `helpers.test.ts`).
 
 | Guide                                                  | Covers                                                       |
 | ------------------------------------------------------ | ------------------------------------------------------------ |
+| [Portfolio](docs/portfolio.md)                         | Home page content, theme colors and fonts                    |
 | [Project structure](docs/project-structure.md)         | Folders, naming, imports, server vs client code              |
 | [Environment variables](docs/environment-variables.md) | Every variable, public vs server-only, load order            |
 | [API layer](docs/api-layer.md)                         | Calling the backend, options, errors, caching                |
