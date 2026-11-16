@@ -29,9 +29,9 @@ export interface Project {
 }
 
 /**
- * The "Projects" section and the project pages. The first three are your apps, with banners exported from
- * Figma (one banner for both themes); TODO: check their facts and tech, and add their links. The fourth
- * (chat app) is still a sample to replace.
+ * The "Projects" section and the project pages: your four projects, in the order they are shown, with
+ * banners exported from Figma (one banner for both themes). TODO: check their facts and tech, and add their
+ * links.
  */
 export const PROJECTS = {
   label: 'Latest Projects',
@@ -245,71 +245,73 @@ export const PROJECTS = {
       ],
     },
     {
-      slug: 'chat-app',
-      title: 'Real-Time Chat App',
-      category: 'Flutter · WebSockets',
+      slug: 'classyshop',
+      title: 'ClassyShop: Online Store',
+      category: 'Web App · E-Commerce',
       summary:
-        'A real-time messenger with one-to-one and group chats, typing indicators, read receipts and image sharing that works on slow networks.',
-      banner: { light: '/images/projects/chat-app.webp', dark: '/images/projects/chat-app-dark-reeni.webp' },
+        'A full-featured storefront with categories, deals, wishlist, cart and a user dashboard, built to feel just as good on a phone as on a laptop.',
+      banner: { light: '/images/projects/classyshop-banner.webp', dark: '/images/projects/classyshop-banner.webp' },
+      // TODO: check the facts and tech, and add the live site or repository links.
       facts: {
-        role: 'Full-Stack Mobile Developer',
-        client: 'TalkWave',
-        year: '2023',
-        duration: '6 Months',
-        platforms: 'Android & iOS',
+        role: 'Full-Stack Developer',
+        client: 'Client Project',
+        year: '2025',
+        duration: '3 Months',
+        platforms: 'Web, Desktop & Mobile',
       },
-      tech: ['Flutter', 'WebSockets', 'Node.js', 'PostgreSQL', 'Firebase Cloud Messaging'],
-      links: [{ label: 'Source Code', href: 'https://github.com/' }],
+      tech: ['React', 'Node.js', 'Express', 'MongoDB', 'Tailwind CSS'],
+      links: [],
       story: [
         { type: 'heading', text: 'Overview' },
         {
           type: 'paragraph',
-          text: 'TalkWave is a messaging app for small teams and communities. I built both the Flutter app and its Node.js backend: real-time messages over WebSockets, a PostgreSQL database and push notifications for people who are offline.',
+          text: 'ClassyShop, “Big Mega Store”, is an online store for furniture, fashion, electronics and accessories. Shoppers browse by category, find deals on the home page sliders, save products to a wishlist, fill a cart and follow their orders from a personal dashboard. The same storefront adapts from a wide desktop layout to a phone screen.',
         },
         { type: 'heading', text: 'The Problem' },
         {
           type: 'paragraph',
-          text: 'The client’s users were spread across areas with weak mobile coverage. Their previous chat tool lost messages when the connection dropped and showed no clear sign of whether a message had arrived.',
+          text: 'A store with a large and changing catalogue needs more than a product list. Shoppers have to find what they want in a few clicks, see the current offers straight away and come back later to finish an order, on whatever device they happen to use.',
         },
         { type: 'heading', text: 'The Solution' },
         {
           type: 'paragraph',
-          text: 'Messages are saved on the phone first and sent from an outbox that retries until the server confirms them. Each message shows its state: sending, sent, delivered and read. When the connection returns, the app catches up on everything it missed in a single request.',
+          text: 'The header puts a product search and a Shop by Categories menu on every page, next to the wishlist and cart counters. The home page opens with a large sale slider and side promotions, followed by a row of product categories. Signed-in shoppers get a dashboard with their orders, wishlist and details, and order tracking and a help centre are always one click away.',
+        },
+        {
+          type: 'quote',
+          text: 'Every page answers the same three questions: what is on offer, how do I find it, and how do I buy it.',
         },
         { type: 'heading', text: 'Key Features' },
         {
           type: 'list',
           items: [
-            'One-to-one and group chats with typing indicators.',
-            'Read receipts and clear message states.',
-            'Image sharing with compression for slow networks.',
-            'Offline outbox that sends messages as soon as the connection returns.',
-            'Push notifications through Firebase Cloud Messaging.',
+            'Product search and a Shop by Categories menu in the header.',
+            'Home page sliders for sales and side promotions for featured products.',
+            'Wishlist and cart with live counters, so products can be saved for later.',
+            'A user dashboard with orders, wishlist and account details.',
+            'Language and currency switchers, order tracking and a help centre.',
+            'Free delivery offers, such as free delivery on the first order.',
+            'A responsive layout that works on desktop, tablet and phone.',
           ],
         },
         { type: 'heading', text: 'Tech Stack & Architecture' },
         {
           type: 'paragraph',
-          text: 'The Flutter app keeps a local copy of recent conversations, so chats open instantly. The backend is a Node.js WebSocket server with PostgreSQL for messages and users, and Redis to share connection state between server instances. Images are uploaded to cloud storage and only their links travel through the socket.',
+          text: 'The storefront is a React single-page app styled with Tailwind CSS, talking to a Node.js and Express API with MongoDB for products, users, carts and orders. Reusable components, such as the product card, slider and category tile, keep every page consistent and make new sections quick to add.',
         },
         { type: 'heading', text: 'Challenges' },
         {
           type: 'paragraph',
-          text: 'Making sure no message is lost or shown twice when the connection keeps dropping took careful design. Every message gets an id on the phone, the server ignores ids it has already stored, and the app merges the server’s reply with its local copy.',
+          text: 'A wide desktop header with search, categories, language, currency, account, wishlist and cart does not fit on a phone. On small screens the header collapses into a menu button and compact icons, while the most important actions, search and cart, stay visible at all times.',
         },
-        { type: 'heading', text: 'Results' },
+        { type: 'heading', text: 'Highlights' },
         {
           type: 'list',
           items: [
-            'No lost messages reported after launch, even in low-coverage areas.',
-            'Median delivery time under 200 ms on a normal connection.',
-            'The server handled 5,000 concurrent connections on a single small instance.',
+            'Shoppers reach any category or product in a couple of clicks.',
+            'Wishlist and cart keep products saved between visits.',
+            'One codebase serves both the desktop and the mobile storefront.',
           ],
-        },
-        { type: 'heading', text: 'What I Learned' },
-        {
-          type: 'paragraph',
-          text: 'Building both the app and the server showed me how much a good protocol simplifies everything else. Thinking about failure first, such as dropped connections and duplicate requests, made the final app feel reliable to its users.',
         },
       ],
     },

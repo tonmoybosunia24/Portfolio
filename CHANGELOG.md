@@ -43,7 +43,7 @@ Notable changes to the starter kit. The format follows [Keep a Changelog](https:
 
 ### Changed
 
-- Portfolio projects: the first three samples are replaced by real apps (Crave, Time Tracking App, Amar Seba: Citizen Services) with banners from Figma, write-ups based on their features, and no store links until real ones are added. The chat app is still a sample.
+- Portfolio projects: the first three samples are replaced by real projects (Crave, Time Tracking App, Amar Seba: Citizen Services) with banners from Figma, write-ups based on their features, and no store links until real ones are added. The sample chat app is replaced by ClassyShop, an online store web app.
 - Portfolio header, footer, card glow and scroll reveals moved from `views/home/` to `components/layout/` (with `PageHero` for the top of inner pages) (with `SiteShell` wrapping a page in them), and the icons, `SectionHeading` and the project banner to `components/ui/`, as the project pages use them too. The write-up parts (`ArticleLayout`, `StoryBlock`, `TableOfContents`, `ContactCta`, `Breadcrumb`) moved to `components/article/` for the blog. Menu, footer and logo links now point to `/#<section>` so they work from any page.
 
 - Portfolio pink buttons turn into a pink outline on hover (transparent fill, pink border and text), and links turn the site pink, instead of the clashing red `#ff0003`; `red-primary` is removed. The contact form's Send button fits its text from 768px instead of spanning the form. Every button shows the hand cursor (Tailwind 4 gives buttons the arrow by default).
