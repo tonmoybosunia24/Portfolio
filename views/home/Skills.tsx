@@ -1,13 +1,14 @@
+import SectionHeading from '@/components/ui/SectionHeading';
+
 import { SKILLS } from '@/constants/profile';
 
-import SectionHeading from './SectionHeading';
 import SkillIcon from './SkillIcon';
 
 type Skill = (typeof SKILLS.rows)[number][number];
 
 function SkillChip({ name, icon, color }: Skill) {
   return (
-    <li className="flex h-10 shrink-0 items-center gap-2 rounded-md bg-dark px-3 text-base font-bold whitespace-nowrap md:h-12 md:gap-2.5 md:px-4 md:text-xl">
+    <li className="flex h-9 shrink-0 items-center gap-2 rounded-lg bg-dark px-3 text-base font-bold whitespace-nowrap md:h-11 md:gap-2.5 md:rounded-[10px] md:px-4 md:text-xl">
       <span className="shrink-0" style={{ color }}>
         <SkillIcon name={icon} className="block size-4 md:size-5" />
       </span>
@@ -37,13 +38,13 @@ export default function Skills() {
 
         <div
           aria-hidden="true"
-          className="mt-8 flex flex-col gap-3 mask-[linear-gradient(to_right,transparent,black_10%,black_90%,transparent)] md:mt-12 md:gap-4 motion-reduce:mask-none"
+          className="mt-8 flex flex-col gap-2.5 mask-[linear-gradient(to_right,transparent,black_10%,black_90%,transparent)] md:mt-12 md:gap-3 motion-reduce:mask-none"
         >
           {SKILLS.rows.map((row, index) => (
             <div key={row[0]?.name} className="overflow-hidden motion-reduce:overflow-x-auto">
               <div className={`flex w-max ${index % 2 === 1 ? 'animate-marquee-reverse' : 'animate-marquee'}`}>
                 {[0, 1].map(copy => (
-                  <ul key={copy} className="flex gap-3 pr-3 md:gap-5 md:pr-5">
+                  <ul key={copy} className="flex gap-2.5 pr-2.5 md:gap-4 md:pr-4">
                     {[...row, ...row].map((skill, position) => (
                       <SkillChip key={position} {...skill} />
                     ))}

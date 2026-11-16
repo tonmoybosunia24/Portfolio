@@ -9,11 +9,13 @@ Notable changes to the starter kit. The format follows [Keep a Changelog](https:
 - Portfolio home page: header with side panel and hero (typewriter roles, portrait, background drawn in code). Content lives in `constants/profile.ts`; see `docs/portfolio.md`.
 - Portfolio services section: six numbered cards under a shared `SectionHeading`, which the next sections reuse.
 - Portfolio achievements section: years of experience and four numbers.
-- Portfolio skills section: three sliding rows of skill chips with logos.
+- Portfolio skills section: three sliding rows of skill chips with logos (36px tall on phones and 44px from 768px, rounded 8px and 10px, 10px and 16px apart).
 - Portfolio expertise section: two groups of skills with level bars.
 - Portfolio projects section: project cards with 4:3 app banners (iPhone mockups in a light studio; in dark mode, a black and crimson panel in the style of the Reeni template).
 - Portfolio testimonials section: an endless, auto-playing review slider with dots that can also be dragged with the mouse.
 - Portfolio contact section: contact details and a form that opens the visitor's email app.
+- Portfolio blog: `/blog` lists every post and `/blog/<slug>` shows one, laid out like a project page (cover, author, date and reading time, the article with an "On this page" sidebar, then three more posts); both are in the sitemap. On the home page, a blogs section (`#blogs`, which the header's Blogs link now reaches) shows the three newest posts as cards with cover photos, date, reading time and excerpt, and a "View All Posts" button. Posts live in `constants/blog.ts`: a post about the Flutter Architecture Template (with its screenshots and a code block) and four samples. The template post's cover is its own banner; the other covers are Unsplash photos, credited on each post. Covers are 16:9. Write-ups can now hold screenshot galleries and code blocks.
+- Portfolio project pages at `/work/<slug>`, one per project, built ahead of time: breadcrumb, title, summary, tech chips, store and code links, the banner, five quick-fact cards and a full blog-style write-up with an "On this page" sidebar. Projects moved to `constants/projects.ts`. The project cards on the home page link to them, and they are listed in `/sitemap.xml`. Sample content for now.
 - Portfolio animations in CSS: the hero text rises in on load, sections reveal and skill level bars fill in as they come into view, and a pink bar under the header shows reading progress. Off for reduced motion.
 - `glow-card` utility: a pink border glow on hover that follows the pointer, on the service, achievement and education cards.
 - `allowedDevOrigins` for `192.168.*.*`, so the dev server can be opened from a phone on the same Wi-Fi.
@@ -40,6 +42,11 @@ Notable changes to the starter kit. The format follows [Keep a Changelog](https:
 - `ApiError.fieldErrors`: field errors as `{ field: ['message'] }` from the common API formats (Laravel, FastAPI, express-validator, zod, JSON:API).
 
 ### Changed
+
+- Portfolio projects: the first three samples are replaced by real apps (Crave, Time Tracking App, Amar Seba: Citizen Services) with banners from Figma, write-ups based on their features, and no store links until real ones are added. The chat app is still a sample.
+- Portfolio header, footer, card glow and scroll reveals moved from `views/home/` to `components/layout/` (with `PageHero` for the top of inner pages) (with `SiteShell` wrapping a page in them), and the icons, `SectionHeading` and the project banner to `components/ui/`, as the project pages use them too. The write-up parts (`ArticleLayout`, `StoryBlock`, `TableOfContents`, `ContactCta`, `Breadcrumb`) moved to `components/article/` for the blog. Menu, footer and logo links now point to `/#<section>` so they work from any page.
+
+- Portfolio pink buttons turn into a pink outline on hover (transparent fill, pink border and text), and links turn the site pink, instead of the clashing red `#ff0003`; `red-primary` is removed. The contact form's Send button fits its text from 768px instead of spanning the form. Every button shows the hand cursor (Tailwind 4 gives buttons the arrow by default).
 
 - **Breaking:** the API layer is server-only. `executeServerRequest` is no longer a server action; client components call your own server actions, which call the services.
 - **Breaking:** `handleRequest` always throws `ApiError` (with `status`, `message`, `errors`). The third `mode` argument is removed: catch `ApiError` instead of using `'raw'`.

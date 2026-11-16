@@ -1,7 +1,8 @@
+import { LocationIcon, MailIcon, PhoneIcon } from '@/components/ui/icons';
+
 import { CONTACT, SIDEBAR } from '@/constants/profile';
 
 import ContactForm from './ContactForm';
-import { LocationIcon, MailIcon, PhoneIcon } from './icons';
 
 const DETAIL_ICONS = { phone: PhoneIcon, mail: MailIcon, location: LocationIcon };
 

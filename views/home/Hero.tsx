@@ -1,9 +1,10 @@
 import Image from 'next/image';
 
+import { ArrowRightIcon } from '@/components/ui/icons';
+
 import { PROFILE } from '@/constants/profile';
 
 import HexPattern from './HexPattern';
-import { ArrowRightIcon } from './icons';
 import Typewriter from './Typewriter';
 
 const [backTitle, frontTitle] = PROFILE.titles;
@@ -31,7 +32,12 @@ function LightBeams() {
 /** Greeting with a typewriter role on the left, the portrait under two light beams on the right. */
 export default function Hero() {
   return (
-    <section id="home" aria-labelledby="hero-title" className="relative isolate overflow-hidden bg-(--hero-bg)">
+    <section
+      id="home"
+      data-page-hero
+      aria-labelledby="hero-title"
+      className="relative isolate overflow-hidden bg-(--hero-bg)"
+    >
       {/* Hexagon lines: around the top on phones, on the left from laptops, fading out at the edges. */}
       <HexPattern className="absolute inset-y-0 left-0 -z-10 h-full w-full text-pink-primary opacity-[0.22] mask-[radial-gradient(ellipse_100%_70%_at_50%_30%,black,transparent)] lg:w-3/4 lg:opacity-[0.14] lg:mask-[radial-gradient(ellipse_70%_60%_at_15%_45%,black,transparent)]" />
       {/* The whole bottom (background and photo) fades into the page below. The text column sits above it. */}
@@ -70,7 +76,7 @@ export default function Hero() {
           <div className="animate-intro intro-delay-2 mt-6 flex flex-wrap gap-3 font-rubik text-[15px] font-medium tracking-[0.5px] md:mt-9.75 md:gap-3.75 md:text-base compact:mt-7">
             <a
               href="#projects"
-              className="group inline-flex h-12 items-center gap-2 rounded-full bg-pink-primary px-5 md:h-15 md:px-7.5 compact:h-13 text-white transition-colors hover:bg-red-primary"
+              className="group inline-flex h-12 items-center gap-2 rounded-full border-2 border-pink-primary bg-pink-primary px-5 md:h-15 md:px-7.5 compact:h-13 text-white transition-colors duration-300 hover:bg-transparent hover:text-pink-primary"
             >
               View Portfolio
               <ArrowRightIcon className="size-4 transition-transform group-hover:translate-x-1" />

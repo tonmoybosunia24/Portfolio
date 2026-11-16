@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 
-import { QuoteIcon, StarIcon } from './icons';
+import { QuoteIcon, StarIcon } from '@/components/ui/icons';
 
 interface Testimonial {
   quote: string;

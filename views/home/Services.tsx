@@ -1,8 +1,9 @@
-import { SERVICES } from '@/constants/profile';
+import { revealDelay } from '@/lib/reveal';
 
-import { ServiceIconSvg } from './icons';
-import { revealDelay } from './reveal';
-import SectionHeading from './SectionHeading';
+import { ServiceIconSvg } from '@/components/ui/icons';
+import SectionHeading from '@/components/ui/SectionHeading';
+
+import { SERVICES } from '@/constants/profile';
 
 /** 1 → "01". */
 const twoDigits = (value: number) => String(value).padStart(2, '0');

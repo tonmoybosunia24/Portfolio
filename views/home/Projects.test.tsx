@@ -1,7 +1,7 @@
 import { render, screen, within } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 
-import { PROJECTS } from '@/constants/profile';
+import { PROJECTS } from '@/constants/projects';
 
 import Projects from './Projects';
 
@@ -20,11 +20,11 @@ describe('Projects', () => {
     });
   });
 
-  it('links a project only when it has a link', () => {
+  it('links every project to its own page', () => {
     render(<Projects />);
 
-    const linked = PROJECTS.items.filter(project => project.href);
-
-    expect(screen.queryAllByRole('link')).toHaveLength(linked.length);
+    PROJECTS.items.forEach(project => {
+      expect(screen.getByRole('link', { name: project.title })).toHaveAttribute('href', `/work/${project.slug}`);
+    });
   });
 });

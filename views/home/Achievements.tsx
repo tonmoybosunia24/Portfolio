@@ -1,7 +1,7 @@
-import { ACHIEVEMENTS } from '@/constants/profile';
+import { ServiceIconSvg } from '@/components/ui/icons';
+import SectionHeading from '@/components/ui/SectionHeading';
 
-import { ServiceIconSvg } from './icons';
-import SectionHeading from './SectionHeading';
+import { ACHIEVEMENTS } from '@/constants/profile';
 
 /** 2 → "02", like the previous site. */
 const twoDigits = (value: number) => String(value).padStart(2, '0');

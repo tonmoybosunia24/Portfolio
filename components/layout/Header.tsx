@@ -5,10 +5,11 @@ import Image from 'next/image';
 
 import { cn } from '@/lib/utils';
 
+import { CloseIcon, LocationIcon, MailIcon, MenuIcon, PhoneIcon } from '@/components/ui/icons';
+
 import { NAV_LINKS, SIDEBAR } from '@/constants/profile';
 
 import { Logo, roundIcon, SocialLinks } from './Brand';
-import { CloseIcon, LocationIcon, MailIcon, MenuIcon, PhoneIcon } from './icons';
 import ThemeToggle from './ThemeToggle';
 
 const CONTACT_ICONS = { phone: PhoneIcon, mail: MailIcon, location: LocationIcon };
@@ -24,7 +25,8 @@ export default function Header() {
 
   useEffect(() => {
     const updateSticky = () => {
-      const hero = document.getElementById('home');
+      // The top section of the page (the hero on the home page); the header sticks once it has scrolled past.
+      const hero = document.querySelector('[data-page-hero]');
 
       setSticky(Boolean(hero && window.scrollY > 0 && hero.getBoundingClientRect().bottom <= 0));
     };
@@ -82,7 +84,7 @@ export default function Header() {
                   <a
                     href={link.href}
                     className={cn(
-                      'block px-3 py-1 text-lg font-bold transition-colors hover:text-red-primary',
+                      'block px-3 py-1 text-lg font-bold transition-colors hover:text-pink-primary',
                       index === 0 && 'text-pink-primary',
                     )}
                   >
@@ -149,7 +151,7 @@ export default function Header() {
                   href={link.href}
                   onClick={close}
                   className={cn(
-                    'block font-semibold text-gray-light transition-colors hover:text-red-primary',
+                    'block font-semibold text-gray-light transition-colors hover:text-pink-primary',
                     index === 0 && 'font-bold text-pink-primary',
                   )}
                 >

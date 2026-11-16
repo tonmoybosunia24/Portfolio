@@ -2,9 +2,9 @@
 
 import { type FormEvent, useState } from 'react';
 
-import { CONTACT, FOOTER } from '@/constants/profile';
+import { MailIcon } from '@/components/ui/icons';
 
-import { MailIcon } from './icons';
+import { CONTACT, FOOTER } from '@/constants/profile';
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 

@@ -4,8 +4,9 @@ import { useEffect, useState } from 'react';
 
 import { cn } from '@/lib/utils';
 
+import { MoonIcon, SunIcon } from '@/components/ui/icons';
+
 import { roundIcon } from './Brand';
-import { MoonIcon, SunIcon } from './icons';
 
 type Theme = 'dark' | 'light';
 

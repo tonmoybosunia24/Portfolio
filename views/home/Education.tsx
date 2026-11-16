@@ -1,7 +1,8 @@
-import { EDUCATION } from '@/constants/profile';
+import { revealDelay } from '@/lib/reveal';
 
-import { revealDelay } from './reveal';
-import SectionHeading from './SectionHeading';
+import SectionHeading from '@/components/ui/SectionHeading';
+
+import { EDUCATION } from '@/constants/profile';
 
 /**
  * Academic milestones below Core Expertise: one card per row up to 992px, then two columns. Each card shows the degree and years on

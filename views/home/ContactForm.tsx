@@ -2,9 +2,9 @@
 
 import { type FormEvent, useState } from 'react';
 
-import { CONTACT } from '@/constants/profile';
+import { ArrowRightIcon } from '@/components/ui/icons';
 
-import { ArrowRightIcon } from './icons';
+import { CONTACT } from '@/constants/profile';
 
 type Field = 'name' | 'phone' | 'email' | 'subject' | 'message';
 type Errors = Partial<Record<Field, string>>;
@@ -117,7 +117,7 @@ export default function ContactForm() {
 
       <button
         type="submit"
-        className="group mt-2 flex h-13 items-center justify-center gap-2 rounded-full bg-pink-primary font-rubik text-base font-medium tracking-[0.5px] text-white transition-colors hover:bg-red-primary md:col-span-2 md:h-14"
+        className="group mt-2 flex h-13 items-center justify-center gap-2 rounded-full border-2 border-pink-primary bg-pink-primary font-rubik text-base font-medium tracking-[0.5px] text-white transition-colors duration-300 hover:bg-transparent hover:text-pink-primary md:col-span-2 md:h-14 md:w-fit md:justify-self-start md:px-7.5"
       >
         {CONTACT.submit}
         <ArrowRightIcon className="size-4 transition-transform group-hover:translate-x-1" />

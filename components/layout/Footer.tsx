@@ -1,8 +1,9 @@
+import { LocationIcon, MailIcon, PhoneIcon } from '@/components/ui/icons';
+
 import { FOOTER, PROFILE, SIDEBAR } from '@/constants/profile';
 
 import { Logo, SocialLinks } from './Brand';
 import FooterEmailForm from './FooterEmailForm';
-import { LocationIcon, MailIcon, PhoneIcon } from './icons';
 
 const DETAIL_ICONS = { phone: PhoneIcon, mail: MailIcon, location: LocationIcon };
 

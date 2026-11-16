@@ -47,12 +47,12 @@ export const SOCIALS: { name: SocialName; label: string; href: string }[] = [
 
 /** Header links. They point at the home page sections, added one by one. */
 export const NAV_LINKS = [
-  { label: 'Home', href: '#home' },
-  { label: 'About', href: '#about' },
-  { label: 'Services', href: '#services' },
-  { label: 'Blogs', href: '#blogs' },
-  { label: 'Projects', href: '#projects' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Home', href: '/#home' },
+  { label: 'About', href: '/#about' },
+  { label: 'Services', href: '/#services' },
+  { label: 'Blogs', href: '/#blogs' },
+  { label: 'Projects', href: '/#projects' },
+  { label: 'Contact', href: '/#contact' },
 ] as const;
 
 /** Line icons in `views/home/icons.tsx`, used by the service and achievement cards. */
@@ -252,59 +252,6 @@ export const EDUCATION = {
   ],
 } as const;
 
-export interface Project {
-  title: string;
-  category: string;
-  /**
-   * A 4:3 banner (2400×1800) in `public/images/projects/` for each theme: the app name, a short line about it and two
-   * phones showing its screens on a light studio background. The current banners were designed for this
-   * page from sample screens.
-   */
-  banner: { light: string; dark: string };
-  /** Store page, repository or demo. Without it the card has no link. */
-  href: string | null;
-}
-
-/** The "Projects" section. TODO: your real projects and links. */
-export const PROJECTS = {
-  label: 'Latest Projects',
-  title: 'Apps I Have Built',
-  description:
-    'A selection of mobile applications I have designed and built for Android and iOS, focused on clean UI and smooth performance.',
-  items: [
-    {
-      title: 'Habit Tracker App',
-      category: 'Flutter · Android & iOS',
-      banner: {
-        light: '/images/projects/habit-tracker.webp',
-        dark: '/images/projects/habit-tracker-dark-reeni.webp',
-      },
-      href: null,
-    },
-    {
-      title: 'E-Commerce App',
-      category: 'Flutter · Firebase',
-      banner: { light: '/images/projects/e-commerce.webp', dark: '/images/projects/e-commerce-dark-reeni.webp' },
-      href: null,
-    },
-    {
-      title: 'Fitness Tracker',
-      category: 'Kotlin · Jetpack Compose',
-      banner: {
-        light: '/images/projects/fitness-tracker.webp',
-        dark: '/images/projects/fitness-tracker-dark-reeni.webp',
-      },
-      href: null,
-    },
-    {
-      title: 'Real-Time Chat App',
-      category: 'Flutter · WebSockets',
-      banner: { light: '/images/projects/chat-app.webp', dark: '/images/projects/chat-app-dark-reeni.webp' },
-      href: null,
-    },
-  ] satisfies Project[],
-} as const;
-
 /**
  * The "Testimonials" section. TODO: these are sample reviews to show the layout. Replace them with real
  * feedback from your clients (with their permission) before the site goes live. The pictures are
@@ -382,17 +329,17 @@ export const FOOTER = {
   emailPlaceholder: 'Your email address',
   linksTitle: 'Quick Links',
   links: [
-    { label: 'Services', href: '#services' },
-    { label: 'Skills', href: '#skills' },
-    { label: 'Projects', href: '#projects' },
-    { label: 'Testimonials', href: '#testimonials' },
-    { label: 'Contact', href: '#contact' },
+    { label: 'Services', href: '/#services' },
+    { label: 'Skills', href: '/#skills' },
+    { label: 'Projects', href: '/#projects' },
+    { label: 'Testimonials', href: '/#testimonials' },
+    { label: 'Contact', href: '/#contact' },
   ],
   contactTitle: 'Contact',
   rights: 'All Rights Reserved',
   bottomLinks: [
     { label: 'Terms & Condition', href: '#' },
     { label: 'Privacy Policy', href: '#' },
-    { label: 'Contact Us', href: '#contact' },
+    { label: 'Contact Us', href: '/#contact' },
   ],
 } as const;

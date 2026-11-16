@@ -1,6 +1,7 @@
+import SectionHeading from '@/components/ui/SectionHeading';
+
 import { TESTIMONIALS } from '@/constants/profile';
 
-import SectionHeading from './SectionHeading';
 import TestimonialSlider from './TestimonialSlider';
 
 /** Client reviews in a slider, the current one large in the middle. */

@@ -7,6 +7,7 @@
  * --------------------------------------------------------------------------------------
  */
 
+export * from './content';
 export * from './pagination';
 export * from './projects';
 export * from './user';

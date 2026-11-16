@@ -1,12 +1,12 @@
-import { EXPERTISE } from '@/constants/profile';
+import SectionHeading from '@/components/ui/SectionHeading';
 
-import SectionHeading from './SectionHeading';
+import { EXPERTISE } from '@/constants/profile';
 
 /**
  * Two groups of skills, each skill with its level as a bar. Sizes follow the Reeni template (32px group
  * titles, 14px labels, a 6px track and pink bar). The name sits on the left and the percentage
- * on the right, so long names never run into it. Bars fill in as they scroll into view where the
- * browser supports scroll-driven animations; elsewhere they are simply full.
+ * on the right, so long names never run into it. Bars fill in one after another when they come on
+ * screen (`reveal-grow`); without JavaScript or with reduced motion they are simply full.
  */
 export default function Expertise() {
   return (
