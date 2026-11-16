@@ -185,7 +185,7 @@ export default function TestimonialSlider({ items }: { items: readonly Testimoni
                   <span
                     role="img"
                     aria-label={`Rated ${rating} out of 5`}
-                    className="flex shrink-0 gap-0.5 text-pink-primary md:mt-1"
+                    className="flex shrink-0 gap-0.5 text-foreground/80 md:mt-1"
                   >
                     {Array.from({ length: rating }, (_, star) => (
                       <StarIcon key={star} className="size-3.5 md:size-4" />

@@ -176,7 +176,7 @@ export default function Header() {
                     <Icon className="size-5" />
                   </span>
                   <div className="flex flex-col">
-                    <span className="text-sm font-semibold text-pink-primary uppercase">{contact.label}</span>
+                    <span className="text-sm font-semibold text-gray-light uppercase">{contact.label}</span>
                     {contact.href ? (
                       <a href={contact.href} className="font-rubik text-sm hover:underline">
                         {contact.value}

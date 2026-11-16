@@ -54,12 +54,12 @@ export default function Achievements() {
                 >
                   {twoDigits(index + 1)}
                 </span>
-                <span className="flex size-10 items-center justify-center rounded-full bg-foreground/8 text-pink-primary transition-colors duration-300 group-hover:bg-pink-primary group-hover:text-white md:size-12">
+                <span className="flex size-10 items-center justify-center rounded-full bg-foreground/8 text-foreground transition-colors duration-300 group-hover:bg-pink-primary group-hover:text-white md:size-12">
                   <ServiceIconSvg name={icon} className="size-5 md:size-5.5" />
                 </span>
                 <p className="mt-4 text-[34px] leading-none font-bold md:mt-5 md:text-[44px] lg:text-[40px] 2xl:text-5xl">
                   {twoDigits(count)}
-                  <span className="text-pink-primary">+</span>
+                  <span className="text-foreground/50">+</span>
                 </p>
                 <p className="mt-2 font-rubik text-sm leading-5 text-gray-light md:text-[15px] md:leading-6">{label}</p>
               </li>

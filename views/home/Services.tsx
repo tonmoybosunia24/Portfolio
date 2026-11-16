@@ -33,7 +33,7 @@ export default function Services() {
               >
                 {twoDigits(index + 1)}
               </span>
-              <span className="flex size-12 items-center justify-center rounded-full bg-foreground/8 text-pink-primary transition-colors duration-300 group-hover:bg-pink-primary group-hover:text-white">
+              <span className="flex size-12 items-center justify-center rounded-full bg-foreground/8 text-foreground transition-colors duration-300 group-hover:bg-pink-primary group-hover:text-white">
                 <ServiceIconSvg name={icon} className="size-5.5" />
               </span>
               <h3 className="mt-5 text-[22px] leading-7 font-bold lg:text-xl xl:text-[22px]">{title}</h3>

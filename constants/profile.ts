@@ -143,7 +143,11 @@ export type SkillIconName =
   | 'api'
   | 'code';
 
-/** The "Skills" section: three rows that scroll sideways, the middle one the other way. */
+/**
+ * The "Skills" section: three rows that scroll sideways, the middle one the other way. Each icon is drawn
+ * in its brand color, lightened where the real one is too dark to see; black logos (Apple, GitHub) use
+ * the text color so they show in both themes.
+ */
 export const SKILLS = {
   label: 'Tech Stack',
   title: 'Tools I Work With',
@@ -151,38 +155,38 @@ export const SKILLS = {
     'The frameworks, state management libraries, backend services and developer tools I use every day to craft modern mobile apps.',
   rows: [
     [
-      { name: 'Flutter', icon: 'flutter' },
-      { name: 'Dart', icon: 'dart' },
-      { name: 'Android', icon: 'android' },
-      { name: 'iOS', icon: 'apple' },
-      { name: 'Material Design', icon: 'materialdesign' },
-      { name: 'Responsive UI', icon: 'devices' },
-      { name: 'Animations', icon: 'motion' },
-      { name: 'Clean Architecture', icon: 'layers' },
+      { name: 'Flutter', icon: 'flutter', color: '#47c5fb' },
+      { name: 'Dart', icon: 'dart', color: '#29b6f6' },
+      { name: 'Android', icon: 'android', color: '#3ddc84' },
+      { name: 'iOS', icon: 'apple', color: 'var(--foreground)' },
+      { name: 'Material Design', icon: 'materialdesign', color: '#b0bec5' },
+      { name: 'Responsive UI', icon: 'devices', color: '#22d3ee' },
+      { name: 'Animations', icon: 'motion', color: '#f472b6' },
+      { name: 'Clean Architecture', icon: 'layers', color: '#a78bfa' },
     ],
     [
-      { name: 'Bloc', icon: 'state' },
-      { name: 'Riverpod', icon: 'state' },
-      { name: 'Provider', icon: 'state' },
-      { name: 'GetX', icon: 'getx' },
-      { name: 'REST API', icon: 'api' },
-      { name: 'JSON', icon: 'json' },
-      { name: 'Firebase', icon: 'firebase' },
-      { name: 'SQLite', icon: 'sqlite' },
-      { name: 'Google Maps', icon: 'googlemaps' },
+      { name: 'Bloc', icon: 'state', color: '#2dd4bf' },
+      { name: 'Riverpod', icon: 'state', color: '#38bdf8' },
+      { name: 'Provider', icon: 'state', color: '#fb923c' },
+      { name: 'GetX', icon: 'getx', color: '#a855f7' },
+      { name: 'REST API', icon: 'api', color: '#34d399' },
+      { name: 'JSON', icon: 'json', color: '#f5de19' },
+      { name: 'Firebase', icon: 'firebase', color: '#ffca28' },
+      { name: 'SQLite', icon: 'sqlite', color: '#44a3d6' },
+      { name: 'Google Maps', icon: 'googlemaps', color: '#ea4335' },
     ],
     [
-      { name: 'Git', icon: 'git' },
-      { name: 'GitHub', icon: 'github' },
-      { name: 'Postman', icon: 'postman' },
-      { name: 'Android Studio', icon: 'androidstudio' },
-      { name: 'VS Code', icon: 'code' },
-      { name: 'Xcode', icon: 'xcode' },
-      { name: 'Figma', icon: 'figma' },
-      { name: 'Google Play', icon: 'googleplay' },
-      { name: 'App Store', icon: 'appstore' },
+      { name: 'Git', icon: 'git', color: '#f05032' },
+      { name: 'GitHub', icon: 'github', color: 'var(--foreground)' },
+      { name: 'Postman', icon: 'postman', color: '#ff6c37' },
+      { name: 'Android Studio', icon: 'androidstudio', color: '#3ddc84' },
+      { name: 'VS Code', icon: 'code', color: '#3b9fe8' },
+      { name: 'Xcode', icon: 'xcode', color: '#1f8cff' },
+      { name: 'Figma', icon: 'figma', color: '#f24e1e' },
+      { name: 'Google Play', icon: 'googleplay', color: '#34a853' },
+      { name: 'App Store', icon: 'appstore', color: '#0d96f6' },
     ],
-  ] satisfies { name: string; icon: SkillIconName }[][],
+  ] satisfies { name: string; icon: SkillIconName; color: string }[][],
 } as const;
 
 /** The "Expertise" section: two groups of skills with a level bar each. TODO: check the percentages. */
@@ -248,31 +252,20 @@ export const EDUCATION = {
   ],
 } as const;
 
-export interface ProjectScreen {
-  /** A file in `public/images/projects/`. */
-  src: string;
-  /**
-   * The screenshot's edge color. Screenshots taller than a phone (390×844) are shrunk to fit and this
-   * color fills the thin strips beside them, so they blend in.
-   */
-  background?: string;
-}
-
 export interface Project {
   title: string;
   category: string;
-  /** The big text on the preview: a plain line, then a pink line. */
-  tagline: readonly [string, string];
-  /** Up to two app screenshots, main screen first. Without them the phones show a sketched screen. */
-  screens: readonly ProjectScreen[];
+  /**
+   * A 4:3 banner (2400×1800) in `public/images/projects/` for each theme: the app name, a short line about it and two
+   * phones showing its screens on a light studio background. The current banners were designed for this
+   * page from sample screens.
+   */
+  banner: { light: string; dark: string };
   /** Store page, repository or demo. Without it the card has no link. */
   href: string | null;
 }
 
-/**
- * The "Projects" section. TODO: your real projects and links. The shop, fitness and chat screens are
- * sample designs made for this page; replace them with screenshots of your own apps.
- */
+/** The "Projects" section. TODO: your real projects and links. */
 export const PROJECTS = {
   label: 'Latest Projects',
   title: 'Apps I Have Built',
@@ -282,32 +275,31 @@ export const PROJECTS = {
     {
       title: 'Habit Tracker App',
       category: 'Flutter · Android & iOS',
-      tagline: ['App For', 'Daily Habits'],
-      screens: [
-        { src: '/images/projects/habit-home.webp', background: '#f8f4f0' },
-        { src: '/images/projects/habit-calendar.webp', background: '#f8f4f0' },
-      ],
+      banner: {
+        light: '/images/projects/habit-tracker.webp',
+        dark: '/images/projects/habit-tracker-dark-reeni.webp',
+      },
       href: null,
     },
     {
       title: 'E-Commerce App',
       category: 'Flutter · Firebase',
-      tagline: ['App For', 'Online Shopping'],
-      screens: [{ src: '/images/projects/shop-home.webp' }, { src: '/images/projects/shop-product.webp' }],
+      banner: { light: '/images/projects/e-commerce.webp', dark: '/images/projects/e-commerce-dark-reeni.webp' },
       href: null,
     },
     {
       title: 'Fitness Tracker',
       category: 'Kotlin · Jetpack Compose',
-      tagline: ['App For', 'Daily Workouts'],
-      screens: [{ src: '/images/projects/fit-home.webp' }, { src: '/images/projects/fit-stats.webp' }],
+      banner: {
+        light: '/images/projects/fitness-tracker.webp',
+        dark: '/images/projects/fitness-tracker-dark-reeni.webp',
+      },
       href: null,
     },
     {
       title: 'Real-Time Chat App',
       category: 'Flutter · WebSockets',
-      tagline: ['App For', 'Live Messaging'],
-      screens: [{ src: '/images/projects/chat-list.webp' }, { src: '/images/projects/chat-thread.webp' }],
+      banner: { light: '/images/projects/chat-app.webp', dark: '/images/projects/chat-app-dark-reeni.webp' },
       href: null,
     },
   ] satisfies Project[],

@@ -11,7 +11,7 @@ Notable changes to the starter kit. The format follows [Keep a Changelog](https:
 - Portfolio achievements section: years of experience and four numbers.
 - Portfolio skills section: three sliding rows of skill chips with logos.
 - Portfolio expertise section: two groups of skills with level bars.
-- Portfolio projects section: project cards with phone previews, screenshots optional.
+- Portfolio projects section: project cards with 4:3 app banners (iPhone mockups in a light studio; in dark mode, a black and crimson panel in the style of the Reeni template).
 - Portfolio testimonials section: an endless, auto-playing review slider with dots.
 - Portfolio contact section: contact details and a form that opens the visitor's email app.
 - `glow-card` utility: a pink border glow on hover that follows the pointer, on the service, achievement and education cards.

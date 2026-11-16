@@ -55,6 +55,9 @@
  * Laptops with a short screen (two-column layout, at most 800px tall), e.g. a 13" laptop at 150% scaling.
  * Used to tighten the hero so it fits without scrolling.
  */
+/* Styles for light mode only (the site is dark unless `data-theme='light'` is set on <html>). */
+@custom-variant light (&:where([data-theme='light'], [data-theme='light'] *));
+
 @custom-variant compact (@media (min-width: 62rem) and (max-height: 800px));
 
 body {

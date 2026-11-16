@@ -5,10 +5,12 @@ import SkillIcon from './SkillIcon';
 
 type Skill = (typeof SKILLS.rows)[number][number];
 
-function SkillChip({ name, icon }: Skill) {
+function SkillChip({ name, icon, color }: Skill) {
   return (
     <li className="flex h-10 shrink-0 items-center gap-2 rounded-md bg-dark px-3 text-base font-bold whitespace-nowrap md:h-12 md:gap-2.5 md:px-4 md:text-xl">
-      <SkillIcon name={icon} className="size-4 text-pink-primary md:size-5" />
+      <span className="shrink-0" style={{ color }}>
+        <SkillIcon name={icon} className="block size-4 md:size-5" />
+      </span>
       {name}
     </li>
   );

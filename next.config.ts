@@ -23,6 +23,9 @@ const nextConfig: NextConfig = {
   // scripts. Only affects `next dev`.
   allowedDevOrigins: ['192.168.*.*'],
 
+  // Next.js 16 only allows quality 75 by default. 95 keeps the small text in the project banners sharp.
+  images: { qualities: [75, 95] },
+
   async headers() {
     return [{ source: '/:path*', headers: securityHeaders }];
   },

@@ -36,7 +36,7 @@ export default function Education() {
                   <h4 className="text-base leading-6 font-semibold text-foreground md:text-xl md:leading-6.5">
                     {degree}
                   </h4>
-                  <span className="text-sm font-bold text-pink-primary md:text-lg md:text-foreground">{period}</span>
+                  <span className="text-sm font-bold text-foreground md:text-lg">{period}</span>
                 </div>
                 <p className="mt-1.5 text-[17px] leading-6 font-bold text-foreground md:mt-2.5 md:text-[21px] md:leading-6.5">
                   {institution}
