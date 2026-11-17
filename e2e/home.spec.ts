@@ -11,7 +11,7 @@ test('home page renders without console errors', async ({ page }) => {
   await page.goto('/');
 
   await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
-  await expect(page.getByRole('link', { name: 'View Portfolio' })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Download Resume' })).toBeVisible();
   await page.waitForLoadState('networkidle');
   expect(errors).toEqual([]);
 });
@@ -33,12 +33,12 @@ test('responses carry the security headers', async ({ request }) => {
   expect(headers['x-powered-by']).toBeUndefined();
 });
 
-test('robots.txt keeps crawlers out of the API and protected pages', async ({ request }) => {
+// The site is not indexed yet (app/robots.ts). When it goes public, allow `/` there and update this test.
+test('robots.txt keeps every crawler off the whole site', async ({ request }) => {
   const body = await (await request.get('/robots.txt')).text();
 
-  expect(body).toContain('Disallow: /api/');
-  expect(body).toContain('Disallow: /dashboard');
-  expect(body).toMatch(/Sitemap: .*\/sitemap\.xml/);
+  expect(body).toContain('User-Agent: *');
+  expect(body).toMatch(/^Disallow: \/$/m);
 });
 
 test('the sitemap and social preview image are served', async ({ request }) => {

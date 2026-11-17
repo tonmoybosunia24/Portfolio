@@ -139,12 +139,12 @@ test.describe('token refresh', () => {
       { name: COOKIE_NAMES.ACCESS_TOKEN, value: 'old', url: baseURL! },
       { name: COOKIE_NAMES.REFRESH_TOKEN, value: 'valid-refresh-link', url: baseURL! },
     ]);
-    await page.goto('/');
+    await page.goto('/dashboard');
     await context.clearCookies({ name: COOKIE_NAMES.ACCESS_TOKEN });
 
-    await page.getByRole('link', { name: 'Dashboard' }).click();
+    await page.getByRole('link', { name: 'Reports' }).click();
 
-    await expect(page).toHaveURL('/dashboard');
+    await expect(page).toHaveURL('/dashboard?tab=reports');
     await expect(page.getByRole('heading', { name: 'Dashboard' })).toBeVisible();
     expect(await cookie(context, COOKIE_NAMES.ACCESS_TOKEN)).toMatchObject({ value: 'refreshed-access' });
   });
@@ -154,10 +154,10 @@ test.describe('token refresh', () => {
       { name: COOKIE_NAMES.ACCESS_TOKEN, value: 'old', url: baseURL! },
       { name: COOKIE_NAMES.REFRESH_TOKEN, value: 'revoked', url: baseURL! },
     ]);
-    await page.goto('/');
+    await page.goto('/dashboard');
     await context.clearCookies({ name: COOKIE_NAMES.ACCESS_TOKEN });
 
-    await page.getByRole('link', { name: 'Dashboard' }).click();
+    await page.getByRole('link', { name: 'Reports' }).click();
 
     await expect(page).toHaveURL(/\/login\?redirect=/);
     await expect(page.getByLabel('Email')).toBeVisible();

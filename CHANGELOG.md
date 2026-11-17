@@ -6,6 +6,7 @@ Notable changes to the starter kit. The format follows [Keep a Changelog](https:
 
 ### Added
 
+- Portfolio 404 page in the site's style (`views/not-found/`, text in `constants/not-found.ts`): header and footer, a large "404" with a floating pink zero, the message, Back to Home and View Projects buttons and the other header links, instead of the starter's plain text page.
 - Portfolio home page: header with side panel and hero (typewriter roles, portrait, background drawn in code). Content lives in `constants/profile.ts`; see `docs/portfolio.md`.
 - Portfolio services section: six numbered cards under a shared `SectionHeading`, which the next sections reuse.
 - Portfolio achievements section: years of experience and four numbers.
@@ -43,6 +44,10 @@ Notable changes to the starter kit. The format follows [Keep a Changelog](https:
 
 ### Changed
 
+- Portfolio hero: the main button is Download Resume (with a download icon) instead of View Portfolio, saving `public/Md_Tonmoy_Bosunia_Resume.pdf` (`PROFILE.resume`); the header's Projects link still leads to the projects. The e2e home test looks for the new button.
+- Portfolio projects: Crave and Precise Clock link to their App Store pages as well as Google Play (a second button on the project page), and their write-ups and the projects section say they are live on both stores. Amar Seba stays Google Play only.
+- Portfolio blog: the Flutter Architecture Template post is a full walkthrough of the template, written from its README and `docs/ARCHITECTURE.md` (getting started, project structure, layering rules, network layer, connecting a backend, screen states, adding a feature, design system, languages and RTL, app flow, tests, CI/CD, starting a real app, tech stack and roadmap). Its two screenshot galleries and the seven screenshots in `public/images/blog/flutter-architecture-template/` are removed.
+- Portfolio header stays fixed at the top from the start, like most sites: see-through at the top of the page, then a blurred background and border fade in after 50px of scrolling. Before, it only appeared once the whole hero had scrolled away, and jumped in. `data-page-hero` is no longer needed and is removed.
 - `/login` and `/dashboard` render a view like every other page (`views/login/index.tsx` with the form in `views/login/components/`, `views/dashboard/index.tsx`), and `npm run make:module` now creates `views/<name>/index.tsx` instead of `views/<name>/<Name>.tsx`.
 - One component per file, as AGENTS.md asks: `components/layout/Brand.tsx` is split into `Logo.tsx` and `SocialLinks.tsx`, and the shared round button classes became a `round-icon` utility in `app/globals.css`; `LightBeams` and `SkillChip` moved out of their sections into `views/home/components/`; the login form's `Field` into `views/login/components/`. Markup is unchanged.
 - Portfolio types moved out of `constants/` into `types/` (`project.ts`: `Project`, `ProjectKind`, `ProjectLink`; `blog.ts`: `BlogPost`; `icons.ts`: `SocialName`, `ServiceIcon`, `SkillIconName`), imported from `@/types`. The long comments in `constants/projects.ts` and `constants/blog.ts` are cut to one line each.
@@ -50,7 +55,7 @@ Notable changes to the starter kit. The format follows [Keep a Changelog](https:
 - Portfolio content constants are split by area instead of one 400-line `constants/profile.ts`: `profile.ts` (`PROFILE`, `SIDEBAR`, `SOCIALS`), `navigation.ts` (`NAV_LINKS`, `FOOTER`), `contact.ts` (`CONTACT`) and one file per home page section in `constants/home/`.
 - Portfolio project cards: the arrow in the corner button is larger (22px, 24px from 768px, instead of 18px).
 - Portfolio side panel banner is a photo of Md Tonmoy Bosunia at his BlackDevs desk (`sidebar-banner-v2.webp`, 1360×784 for sharp 2x screens, with alt text) instead of a stock photo at 340×196.
-- Portfolio side panel: the page behind it is blurred as well as dimmed while it is open (`backdrop-blur-sm` on a lighter `bg-black/60` overlay instead of `bg-black/80`).
+- Portfolio side panel: the page behind it is blurred as well as dimmed while it is open (a light 4px `backdrop-blur-xs` on a `bg-black/40` overlay instead of a plain `bg-black/80`).
 - Portfolio contact section gives the details column more room (5:8 instead of 4:9 from 992px), so the email address no longer breaks onto a second line on a 13" laptop.
 - Portfolio banners for Crave, Precise Clock, Amar Seba and ClassyShop and the three blog covers are exported again from Figma without the old website address at the bottom. They have new names (`*-banner-v2.webp`; Precise Clock's is now `precise-clock-banner-v2.webp`) so the image cache does not serve the old ones.
 - Portfolio projects add Vehicle Log (`/work/vehicle-log`), a mobile app UI/UX design made in Figma, with its Figma banner. Projects have a third `kind`, `design`, and `/work` a fourth tab, "UI/UX Design"; below 640px the tabs show short labels (All, Mobile, Web, UI/UX) so all four fit on a phone.
@@ -102,6 +107,7 @@ Notable changes to the starter kit. The format follows [Keep a Changelog](https:
 
 ### Fixed
 
+- E2E tests that failed in CI: the robots.txt test now expects the whole site to be disallowed (as `app/robots.ts` has done since indexing was turned off), and the two client-side token refresh tests click a new Reports link on `/dashboard` instead of a Dashboard link the portfolio home page no longer has.
 - API slugs can no longer escape `API_URL` (`/../admin`, `@other-host`).
 - Post-login redirects only go to paths on this site.
 - The unused `revalidate` server action, which let anyone clear any cache tag, is removed.

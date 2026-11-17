@@ -18,9 +18,12 @@ import { useActiveNav } from './use-active-nav';
 
 const CONTACT_ICONS = { phone: PhoneIcon, mail: MailIcon, location: LocationIcon };
 
+/** How far the page scrolls before the header gets its background. */
+const SCROLL_OFFSET = 50;
+
 export default function Header() {
   const [open, setOpen] = useState(false);
-  const [sticky, setSticky] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const menuButton = useRef<HTMLButtonElement>(null);
   const closeButton = useRef<HTMLButtonElement>(null);
   const wasOpen = useRef(false);
@@ -33,21 +36,12 @@ export default function Header() {
   const close = () => setOpen(false);
 
   useEffect(() => {
-    const updateSticky = () => {
-      // The top section of the page (the hero on the home page); the header sticks once it has scrolled past.
-      const hero = document.querySelector('[data-page-hero]');
+    const updateScrolled = () => setScrolled(window.scrollY > SCROLL_OFFSET);
 
-      setSticky(Boolean(hero && window.scrollY > 0 && hero.getBoundingClientRect().bottom <= 0));
-    };
+    updateScrolled();
+    window.addEventListener('scroll', updateScrolled, { passive: true });
 
-    updateSticky();
-    window.addEventListener('scroll', updateSticky, { passive: true });
-    window.addEventListener('resize', updateSticky);
-
-    return () => {
-      window.removeEventListener('scroll', updateSticky);
-      window.removeEventListener('resize', updateSticky);
-    };
+    return () => window.removeEventListener('scroll', updateScrolled);
   }, []);
 
   useEffect(() => {
@@ -76,11 +70,12 @@ export default function Header() {
   }, [open]);
 
   return (
-    <header className={cn('inset-x-0 top-0 z-40', sticky ? 'fixed' : 'absolute')}>
+    // Always at the top of the screen: see-through over the page's top, with a blurred background once scrolled.
+    <header className="fixed inset-x-0 top-0 z-40">
       <div
         className={cn(
-          'relative border-b transition-colors duration-300',
-          sticky ? 'border-white-overlay bg-background/60 backdrop-blur-md' : 'border-transparent bg-transparent',
+          'relative border-b transition-[background-color,border-color,backdrop-filter] duration-300',
+          scrolled ? 'border-white-overlay bg-background/60 backdrop-blur-md' : 'border-transparent bg-transparent',
         )}
       >
         <div className="section flex h-17.75 items-center justify-between xl:h-19.5">
@@ -131,7 +126,7 @@ export default function Header() {
         aria-hidden="true"
         onClick={close}
         className={cn(
-          'fixed inset-0 z-40 bg-black/60 backdrop-blur-sm transition-opacity duration-300',
+          'fixed inset-0 z-40 bg-black/40 backdrop-blur-xs transition-opacity duration-300',
           open ? 'opacity-100' : 'pointer-events-none opacity-0',
         )}
       />
