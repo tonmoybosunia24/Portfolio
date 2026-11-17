@@ -43,6 +43,9 @@ Notable changes to the starter kit. The format follows [Keep a Changelog](https:
 
 ### Changed
 
+- Portfolio project cards: the arrow in the corner button is larger (22px, 24px from 768px, instead of 18px).
+- Portfolio side panel banner is a photo of Md Tonmoy Bosunia at his BlackDevs desk (`sidebar-banner-v2.webp`, 1360×784 for sharp 2x screens, with alt text) instead of a stock photo at 340×196.
+- Portfolio side panel: the page behind it is blurred as well as dimmed while it is open (`backdrop-blur-sm` on a lighter `bg-black/60` overlay instead of `bg-black/80`).
 - Portfolio contact section gives the details column more room (5:8 instead of 4:9 from 992px), so the email address no longer breaks onto a second line on a 13" laptop.
 - Portfolio banners for Crave, Precise Clock, Amar Seba and ClassyShop and the three blog covers are exported again from Figma without the old website address at the bottom. They have new names (`*-banner-v2.webp`; Precise Clock's is now `precise-clock-banner-v2.webp`) so the image cache does not serve the old ones.
 - Portfolio projects add Vehicle Log (`/work/vehicle-log`), a mobile app UI/UX design made in Figma, with its Figma banner. Projects have a third `kind`, `design`, and `/work` a fourth tab, "UI/UX Design"; below 640px the tabs show short labels (All, Mobile, Web, UI/UX) so all four fit on a phone.

@@ -39,7 +39,7 @@ export default function ProjectCard({ project, heading: Heading = 'h3' }: Projec
           aria-hidden="true"
           className="flex size-11 shrink-0 items-center justify-center rounded-md border border-foreground/15 bg-background transition-colors duration-300 group-hover:border-primary group-hover:bg-primary group-hover:text-white md:size-12"
         >
-          <ArrowUpRightIcon className="size-4.5" />
+          <ArrowUpRightIcon className="size-5.5 md:size-6" />
         </span>
       </div>
     </>

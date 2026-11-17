@@ -129,7 +129,7 @@ export default function Header() {
         aria-hidden="true"
         onClick={close}
         className={cn(
-          'fixed inset-0 z-40 bg-black/80 transition-opacity duration-300',
+          'fixed inset-0 z-40 bg-black/60 backdrop-blur-sm transition-opacity duration-300',
           open ? 'opacity-100' : 'pointer-events-none opacity-0',
         )}
       />
@@ -173,8 +173,8 @@ export default function Header() {
 
         <div className="hidden flex-col gap-5 xl:flex">
           <Image
-            src="/images/sidebar-banner.png"
-            alt=""
+            src="/images/sidebar-banner-v2.webp"
+            alt="Md Tonmoy Bosunia at his desk at BlackDevs"
             width={340}
             height={196}
             sizes="340px"
