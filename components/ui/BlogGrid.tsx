@@ -1,13 +1,12 @@
 import { revealDelay } from '@/lib/reveal';
 import { cn } from '@/lib/utils';
 
-import type { BlogPost } from '@/constants/blog';
+import type { BlogPost } from '@/types';
 
 import BlogCard from './BlogCard';
 
 interface BlogGridProps {
   posts: readonly BlogPost[];
-  /** Hide the third card between 768px and 992px, so a row of three doesn't leave one card alone. */
   evenOnTablet?: boolean;
   className?: string;
 }

@@ -1,9 +1,7 @@
 /** A phone screenshot in a `gallery` block. */
 export interface ContentScreenshot {
-  /** A portrait image (9:19.5, like 1080×2340) in `public/images/`. */
   src: string;
   alt: string;
-  /** A short label shown below it. */
   caption: string;
 }
 

@@ -43,6 +43,11 @@ Notable changes to the starter kit. The format follows [Keep a Changelog](https:
 
 ### Changed
 
+- `/login` and `/dashboard` render a view like every other page (`views/login/index.tsx` with the form in `views/login/components/`, `views/dashboard/index.tsx`), and `npm run make:module` now creates `views/<name>/index.tsx` instead of `views/<name>/<Name>.tsx`.
+- One component per file, as AGENTS.md asks: `components/layout/Brand.tsx` is split into `Logo.tsx` and `SocialLinks.tsx`, and the shared round button classes became a `round-icon` utility in `app/globals.css`; `LightBeams` and `SkillChip` moved out of their sections into `views/home/components/`; the login form's `Field` into `views/login/components/`. Markup is unchanged.
+- Portfolio types moved out of `constants/` into `types/` (`project.ts`: `Project`, `ProjectKind`, `ProjectLink`; `blog.ts`: `BlogPost`; `icons.ts`: `SocialName`, `ServiceIcon`, `SkillIconName`), imported from `@/types`. The long comments in `constants/projects.ts` and `constants/blog.ts` are cut to one line each.
+- Portfolio code layout: the home page view follows the same layout as `/work` and `/blog`: `views/home/index.tsx`, one file per section in `views/home/sections/` (`HeroSection`, `ServicesSection`, …) and the parts only they use in `views/home/components/`. Markup and behaviour are unchanged.
+- Portfolio content constants are split by area instead of one 400-line `constants/profile.ts`: `profile.ts` (`PROFILE`, `SIDEBAR`, `SOCIALS`), `navigation.ts` (`NAV_LINKS`, `FOOTER`), `contact.ts` (`CONTACT`) and one file per home page section in `constants/home/`.
 - Portfolio project cards: the arrow in the corner button is larger (22px, 24px from 768px, instead of 18px).
 - Portfolio side panel banner is a photo of Md Tonmoy Bosunia at his BlackDevs desk (`sidebar-banner-v2.webp`, 1360×784 for sharp 2x screens, with alt text) instead of a stock photo at 340×196.
 - Portfolio side panel: the page behind it is blurred as well as dimmed while it is open (`backdrop-blur-sm` on a lighter `bg-black/60` overlay instead of `bg-black/80`).
@@ -106,6 +111,10 @@ Notable changes to the starter kit. The format follows [Keep a Changelog](https:
 
 ### Removed
 
+- Unused packages: `lucide-react` (the icons are drawn in `components/ui/icons.tsx`) and Testing Library (`@testing-library/dom`, `jest-dom`, `react`, `user-event`), no longer needed without UI tests.
+- UI component tests (all 18 `*.test.tsx` files): unit tests now cover logic only (`*.test.ts`, Node). `vitest.config.mts` has a single Node project and coverage counts `.ts` logic only; `vitest.setup.ts` no longer loads Testing Library.
+- The example CRUD module at `/projects` is removed (pages, views, service, types, endpoint, unit and e2e tests, mock API endpoints and `docs/example-module.md`). The API layer, login, `/login` and `/dashboard` stay. `/projects` is no longer a protected route.
+- Six unused project images (`e-commerce*`, `fitness-tracker*`, `habit-tracker*`) are removed from `public/images/projects/`.
 - `crypto-js`, `ts-node`, `fs-extra`, `services/app/cache.service.ts`.
 
 ## [1.0.3] and earlier

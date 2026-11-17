@@ -3,13 +3,12 @@ import Link from 'next/link';
 import { ArrowUpRightIcon } from '@/components/ui/icons';
 import ProjectBanner from '@/components/ui/ProjectBanner';
 
-import type { Project } from '@/constants/projects';
+import type { Project } from '@/types';
 
 const BANNER_SIZES = '(min-width: 1400px) 600px, (min-width: 768px) 50vw, 100vw';
 
 interface ProjectCardProps {
   project: Project;
-  /** The title's heading level: `h3` below a section heading, `h2` directly below the page title. */
   heading?: 'h2' | 'h3';
 }
 

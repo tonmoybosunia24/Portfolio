@@ -1,39 +1,6 @@
-import type { ContentBlock } from '@/types';
+import type { Project, ProjectKind } from '@/types';
 
-export interface ProjectLink {
-  label: string;
-  href: string;
-}
-
-export type ProjectKind = 'mobile' | 'web' | 'design';
-
-export interface Project {
-  /** The project page's address: `/work/<slug>`. Lowercase words joined by hyphens. */
-  slug: string;
-  /** Which tab of the `/work` page it is listed under. */
-  kind: ProjectKind;
-  /** Shown in the home page's projects section; every project is on `/work`. */
-  featured: boolean;
-  title: string;
-  category: string;
-  /** One or two sentences at the top of the project page. */
-  summary: string;
-  /**
-   * A 4:3 banner (2400×1800) in `public/images/projects/` for each theme, exported from Figma. The current
-   * projects use one banner for both themes.
-   */
-  banner: { light: string; dark: string };
-  /** Quick facts shown below the top of the project page. */
-  facts: { role: string; client: string; year: string; duration: string; platforms: string };
-  /** Languages, frameworks and services the app is built with. */
-  tech: readonly string[];
-  /** Store pages, repository or demo, as buttons on the project page. The first one is highlighted. */
-  links: readonly ProjectLink[];
-  /** The full write-up on the project page, read like a blog post. */
-  story: readonly ContentBlock[];
-}
-
-/** What every client app below is built with; Precise Clock adds WebSocket. */
+/** The shared stack of the three Flutter client apps. */
 const MOBILE_TECH = [
   'Flutter',
   'Dart',
@@ -45,26 +12,18 @@ const MOBILE_TECH = [
   'Google Maps',
 ] as const;
 
-/**
- * The "Projects" section and the project pages, in the order they are shown. The three Flutter apps are
- * client projects built at BlackDevs and live on Google Play; their write-ups follow the store listings.
- * Glacial Rental is a client booking site built with Laravel and React, and ClassyShop a full-stack web store
- * with public code. The `featured` ones are on the home page; all of them are on `/work`, under a tab for
- * their `kind`. Vehicle Log is a mobile app design made in Figma, not a built app.
- */
+/** All projects, in display order. The `featured` ones are also on the home page. */
 export const PROJECTS = {
   label: 'Latest Projects',
   title: 'Apps I Have Built',
   description:
     'Client apps I built with Flutter for Android and iOS, live on Google Play, and a rental booking website built with Laravel and React.',
-  /** The top of the `/work` page. */
   page: {
     label: 'My Work',
     title: 'Projects I Have Built',
     description:
       'Mobile apps for Android and iOS, websites and UI/UX designs, from client projects at BlackDevs to my own work.',
   },
-  /** The tabs of the `/work` page: every project, or only one kind. `short` is shown below 640px, where the full labels don't fit. */
   tabs: [
     { kind: 'all', label: 'All Projects', short: 'All' },
     { kind: 'mobile', label: 'Mobile Apps', short: 'Mobile' },
@@ -375,7 +334,6 @@ export const PROJECTS = {
         light: '/images/projects/classyshop-banner-v2.webp',
         dark: '/images/projects/classyshop-banner-v2.webp',
       },
-      // TODO: check the year, duration and client with the user.
       facts: {
         role: 'Full-Stack Developer',
         client: 'Personal Project',
@@ -456,7 +414,6 @@ export const PROJECTS = {
         light: '/images/projects/vehicle-log-banner.webp',
         dark: '/images/projects/vehicle-log-banner.webp',
       },
-      // TODO: check the year and client with the user.
       facts: {
         role: 'UI/UX Designer',
         client: 'Personal Project',
@@ -521,5 +478,4 @@ export const PROJECTS = {
   ] satisfies Project[],
 } as const;
 
-/** The project with this slug, or undefined. */
 export const findProject = (slug: string): Project | undefined => PROJECTS.items.find(item => item.slug === slug);

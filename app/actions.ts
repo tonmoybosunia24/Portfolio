@@ -5,7 +5,7 @@ import { z } from 'zod';
 import { buildContactEmail } from '@/utils/contact-email';
 import { isMailConfigured, sendMail } from '@/utils/mailer.server';
 
-import { CONTACT } from '@/constants/profile';
+import { CONTACT } from '@/constants/contact';
 
 export type ContactField = 'name' | 'phone' | 'email' | 'subject' | 'message';
 

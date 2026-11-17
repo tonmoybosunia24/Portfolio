@@ -181,7 +181,7 @@ static index = ({ page = 1 } = {}): Promise<Page<Project>> =>
 // → { items: Project[], page, perPage, total, lastPage }
 ```
 
-Numbers the API leaves out come from what you asked for (`{ page, perPage }`) or are worked out from the rest. `components/Pagination.tsx` renders previous / next links for a `Page`. See [example-module.md](example-module.md) for a full list page.
+Numbers the API leaves out come from what you asked for (`{ page, perPage }`) or are worked out from the rest. `components/Pagination.tsx` renders previous / next links for a `Page`.
 
 ### Checking responses with `parse`
 
@@ -208,7 +208,7 @@ Backends shape error bodies differently. `readApiError` in `services/api/api-err
 
 **Show 4xx messages to the user; log 5xx.** A 4xx `message` comes from your API and is meant for users ("These credentials do not match our records."). A 5xx message can contain internal details (`connect ECONNREFUSED 10.0.0.5`).
 
-**In server actions, return errors instead of throwing them.** In production Next.js replaces the message of an error thrown in a server action with a generic one, so the form couldn't show it. Catch `ApiError`, return `{ message, fieldErrors }`, and render it with `useActionState` (see `views/login/LoginForm.tsx`).
+**In server actions, return errors instead of throwing them.** In production Next.js replaces the message of an error thrown in a server action with a generic one, so the form couldn't show it. Catch `ApiError`, return `{ message, fieldErrors }`, and render it with `useActionState` (see `views/login/components/LoginForm.tsx`).
 
 **In Server Components, let errors throw.** `app/error.tsx` shows a "Try again" page, and `instrumentation.ts` logs the error.
 

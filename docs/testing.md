@@ -1,11 +1,11 @@
 # Testing
 
-| Kind               | Tool                           | Location         | Command            |
-| ------------------ | ------------------------------ | ---------------- | ------------------ |
-| Unit and component | Vitest + React Testing Library | Next to the code | `npm test`         |
-| End-to-end         | Playwright                     | `e2e/`           | `npm run test:e2e` |
+| Kind       | Tool       | Location         | Command            |
+| ---------- | ---------- | ---------------- | ------------------ |
+| Unit       | Vitest     | Next to the code | `npm test`         |
+| End-to-end | Playwright | `e2e/`           | `npm run test:e2e` |
 
-## Unit and component tests
+## Unit tests
 
 ```bash
 npm test               # watch mode
@@ -15,33 +15,19 @@ npm run test:coverage  # once, with a coverage report in coverage/index.html
 
 ### Where tests go
 
-Put the test next to the file it tests. The extension picks the environment:
+Put the test next to the file it tests: `thing.ts` → `thing.test.ts`. Unit tests cover logic only (utilities, services, route handlers, server actions and other server code) and run in Node. UI components have no unit tests; the e2e tests cover the pages.
 
-| File name            | Environment     | Use for                                          |
-| -------------------- | --------------- | ------------------------------------------------ |
-| `something.test.ts`  | Node            | Utilities, services, route handlers, server code |
-| `Something.test.tsx` | jsdom (browser) | React components and hooks                       |
-
-A `.test.ts` file that needs browser APIs starts with `// @vitest-environment jsdom` (see `services/app/cookie.service.client.test.ts`).
+A test that needs browser APIs starts with `// @vitest-environment jsdom` (see `services/app/cookie.service.client.test.ts`).
 
 ### Setup
 
 `vitest.config.mts` and `vitest.setup.ts` give every test:
 
 - the `@/` import alias
-- `@testing-library/jest-dom` matchers: `toBeInTheDocument()`, `toHaveTextContent()` and the rest
 - a mocked `server-only`, so `*.server.ts` modules can be imported
-- clean state: mocks, `vi.stubEnv` and `vi.stubGlobal` are undone and rendered components unmounted after each test
+- clean state: mocks, `vi.stubEnv` and `vi.stubGlobal` are undone after each test
 
 ### Patterns
-
-**Components.** Find elements by role and name as a user would, and interact with `userEvent`:
-
-```tsx
-render(<ErrorPage error={new Error('boom')} retry={retry} />);
-await userEvent.click(screen.getByRole('button', { name: 'Try again' }));
-expect(retry).toHaveBeenCalledOnce();
-```
 
 **Next.js server APIs.** `cookies()`, `headers()`, `updateTag()` and `redirect()` need a request, so mock them:
 

@@ -1,7 +1,6 @@
 import type { JSX } from 'react';
 
-import type { ServiceIcon, SocialName } from '@/constants/profile';
-import type { Project } from '@/constants/projects';
+import type { Project, ServiceIcon, SocialName } from '@/types';
 
 interface IconProps {
   className?: string;

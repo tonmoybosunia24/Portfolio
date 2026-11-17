@@ -16,12 +16,12 @@ A starter for Next.js apps that talk to a separate REST API, whatever it's built
 - **AES-256-GCM encryption** with purpose labels, expiry and key rotation
 - **Redux Toolkit** with typed hooks and a per-request store
 - **Tailwind CSS 4**
-- **Vitest + React Testing Library** for unit and component tests, **Playwright** for end-to-end tests
+- **Vitest** for unit tests of the logic, **Playwright** for end-to-end tests
 - **ESLint** (Next.js, React, accessibility rules), **Prettier**, **Stylelint**, and a **pre-commit hook** that runs them on staged files
 - **GitHub Actions** CI with a dependency audit, and **Dependabot**
 - **Security headers**, error, global-error and 404 pages, server error reporting hook
 - **SEO basics**: `robots.txt`, `sitemap.xml`, social preview image
-- **Generators** for new feature modules and types, and a complete **example CRUD module** (`/projects`) to copy from
+- **Generators** for new feature modules and types
 
 ## Getting started
 
@@ -78,20 +78,19 @@ Unit tests sit next to the code they test (`helpers.ts` → `helpers.test.ts`).
 
 ## Documentation
 
-| Guide                                                  | Covers                                                       |
-| ------------------------------------------------------ | ------------------------------------------------------------ |
-| [Portfolio](docs/portfolio.md)                         | Home page content, theme colors and fonts                    |
-| [Project structure](docs/project-structure.md)         | Folders, naming, imports, server vs client code              |
-| [Environment variables](docs/environment-variables.md) | Every variable, public vs server-only, load order            |
-| [API layer](docs/api-layer.md)                         | Calling the backend, options, errors, caching                |
-| [Authentication](docs/auth-and-cookies.md)             | Login, logout, protected routes, cookies, redirects          |
-| [Encryption](docs/encryption.md)                       | Encrypting data, contexts, expiry, key rotation              |
-| [State management](docs/state-management.md)           | When to use Redux, adding slices                             |
-| [Code generators](docs/code-generators.md)             | `make:module` and `make:type`                                |
-| [Example module](docs/example-module.md)               | The `projects` CRUD example: list, pagination, forms, errors |
-| [Testing](docs/testing.md)                             | Unit, component and e2e tests, patterns, coverage            |
-| [Code quality and CI](docs/code-quality-and-ci.md)     | Linting, formatting, pre-commit hook, CI checks, Dependabot  |
-| [Security](docs/security.md)                           | What's built in, what to decide, go-live checklist           |
+| Guide                                                  | Covers                                                      |
+| ------------------------------------------------------ | ----------------------------------------------------------- |
+| [Portfolio](docs/portfolio.md)                         | Home page content, theme colors and fonts                   |
+| [Project structure](docs/project-structure.md)         | Folders, naming, imports, server vs client code             |
+| [Environment variables](docs/environment-variables.md) | Every variable, public vs server-only, load order           |
+| [API layer](docs/api-layer.md)                         | Calling the backend, options, errors, caching               |
+| [Authentication](docs/auth-and-cookies.md)             | Login, logout, protected routes, cookies, redirects         |
+| [Encryption](docs/encryption.md)                       | Encrypting data, contexts, expiry, key rotation             |
+| [State management](docs/state-management.md)           | When to use Redux, adding slices                            |
+| [Code generators](docs/code-generators.md)             | `make:module` and `make:type`                               |
+| [Testing](docs/testing.md)                             | Unit, component and e2e tests, patterns, coverage           |
+| [Code quality and CI](docs/code-quality-and-ci.md)     | Linting, formatting, pre-commit hook, CI checks, Dependabot |
+| [Security](docs/security.md)                           | What's built in, what to decide, go-live checklist          |
 
 AI coding agents (Claude Code, Codex, Cursor, Copilot) read [AGENTS.md](AGENTS.md); `CLAUDE.md` imports it.
 

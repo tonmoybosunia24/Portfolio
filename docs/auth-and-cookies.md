@@ -4,18 +4,18 @@ How users log in and out, how pages are protected, how tokens are stored and ref
 
 ## Overview
 
-| Piece                            | File                                              |
-| -------------------------------- | ------------------------------------------------- |
-| Login page and form              | `app/login/page.tsx`, `views/login/LoginForm.tsx` |
-| Login server action              | `app/login/actions.ts`                            |
-| Login request and response check | `services/api/auth.service.ts`                    |
-| Token response shapes, refresh   | `services/api/auth-tokens.ts`                     |
-| Storing and refreshing tokens    | `services/app/session.service.ts`                 |
-| Refresh before a page renders    | `app/api/auth/refresh/route.ts`                   |
-| Page protection                  | `proxy.ts`, `constants/routes.ts`                 |
-| Logout and expired sessions      | `app/api/auth/clear/route.ts`                     |
-| Return-to-page after login       | `utils/redirect-path.ts`                          |
-| Example protected page           | `app/dashboard/page.tsx`                          |
+| Piece                            | File                                 |
+| -------------------------------- | ------------------------------------ |
+| Login page and form              | `app/login/page.tsx`, `views/login/` |
+| Login server action              | `app/login/actions.ts`               |
+| Login request and response check | `services/api/auth.service.ts`       |
+| Token response shapes, refresh   | `services/api/auth-tokens.ts`        |
+| Storing and refreshing tokens    | `services/app/session.service.ts`    |
+| Refresh before a page renders    | `app/api/auth/refresh/route.ts`      |
+| Page protection                  | `proxy.ts`, `constants/routes.ts`    |
+| Logout and expired sessions      | `app/api/auth/clear/route.ts`        |
+| Return-to-page after login       | `utils/redirect-path.ts`             |
+| Example protected page           | `app/dashboard/page.tsx`             |
 
 ## Logging in
 

@@ -1,13 +1,7 @@
-/**
- * Create a central types file to export all types from different modules
- * This helps in maintaining and importing types easily across the project
- * Example:
- * export * from './auth'
- * export * from './article'
- * --------------------------------------------------------------------------------------
- */
-
+/** Shared types. Import them from `@/types`. */
+export * from './blog';
 export * from './content';
+export * from './icons';
 export * from './pagination';
-export * from './projects';
+export * from './project';
 export * from './user';

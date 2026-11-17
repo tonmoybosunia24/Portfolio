@@ -4,7 +4,8 @@ import { type KeyboardEvent, useLayoutEffect, useRef, useState } from 'react';
 
 import ProjectGrid from '@/components/ui/ProjectGrid';
 
-import { type Project, PROJECTS } from '@/constants/projects';
+import { PROJECTS } from '@/constants/projects';
+import type { Project } from '@/types';
 
 type TabKind = (typeof PROJECTS.tabs)[number]['kind'];
 

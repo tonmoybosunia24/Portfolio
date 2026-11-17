@@ -1,9 +1,7 @@
 import Link from 'next/link';
 
 interface BreadcrumbProps {
-  /** The pages above this one, from Home down. */
   trail: readonly { label: string; href: string }[];
-  /** This page's name, shown last and not as a link. */
   current: string;
 }
 

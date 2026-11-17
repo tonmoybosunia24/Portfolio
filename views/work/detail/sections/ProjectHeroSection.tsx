@@ -3,7 +3,7 @@ import ExternalLinks from '@/components/article/ExternalLinks';
 import PageHero from '@/components/layout/PageHero';
 import ProjectBanner from '@/components/ui/ProjectBanner';
 
-import type { Project } from '@/constants/projects';
+import type { Project } from '@/types';
 
 const TRAIL = [
   { label: 'Home', href: '/' },

@@ -1,11 +1,7 @@
 interface SectionHeadingProps {
-  /** Used for the section's `aria-labelledby`. */
   id: string;
-  /** A word or two above the title. */
   label: string;
-  /** One short line. */
   title: string;
-  /** A short two-line summary below the title. */
   description?: string;
 }
 

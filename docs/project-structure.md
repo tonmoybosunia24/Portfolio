@@ -7,13 +7,13 @@ Where code goes and the conventions that keep it consistent.
 | Folder          | Holds                                                                                      |
 | --------------- | ------------------------------------------------------------------------------------------ |
 | `app/`          | Routes: pages, layouts, `error.tsx`, `not-found.tsx` and route handlers (`app/api/**`)     |
-| `views/`        | The UI of a page. `app/<route>/page.tsx` stays thin and renders a view                     |
-| `components/`   | Reusable UI shared by several views (create it when you need it)                           |
+| `views/`        | The UI of a page: `index.tsx`, `sections/` and view-only `components/`. See below          |
+| `components/`   | UI shared by several views, grouped by area: `layout/`, `ui/`, `article/`                  |
 | `services/api/` | The API layer and one service class per backend resource. See [api-layer.md](api-layer.md) |
 | `services/app/` | App-level services that aren't API calls: cookies and the login session                    |
 | `lib/`          | Redux store, typed hooks, slices (`lib/features/`) and `cn()`                              |
 | `utils/`        | Framework-free helpers. Files ending in `.server.ts` can only be imported on the server    |
-| `constants/`    | Endpoint paths (`constants/api/`), cookie names, protected routes and other fixed values   |
+| `constants/`    | Site content (`profile.ts`, `projects.ts`, `blog.ts`, `home/`), endpoint paths, routes     |
 | `types/`        | Shared TypeScript types, all exported from `types/index.ts`                                |
 | `scripts/`      | The `make:module` and `make:type` generators. See [code-generators.md](code-generators.md) |
 | `e2e/`          | Playwright end-to-end tests                                                                |
@@ -22,18 +22,20 @@ Where code goes and the conventions that keep it consistent.
 
 ## Naming
 
-| What                  | Pattern                                     | Example                              |
-| --------------------- | ------------------------------------------- | ------------------------------------ |
-| Route folder          | kebab-case, plural                          | `app/blog-posts/page.tsx`            |
-| View / component      | PascalCase                                  | `views/blog-posts/BlogPosts.tsx`     |
-| API service           | `<snake_plural>.service.ts`                 | `services/api/blog_posts.service.ts` |
-| Endpoint constants    | `<snake_plural>.api.ts`                     | `constants/api/blog_posts.api.ts`    |
-| Types                 | `<snake_plural>.ts`                         | `types/blog_posts.ts`                |
-| Server-only module    | `<name>.server.ts` + `import 'server-only'` | `utils/encryption.server.ts`         |
-| Unit / component test | next to the file, `.test.ts` / `.test.tsx`  | `utils/helpers.test.ts`              |
-| End-to-end test       | `e2e/<feature>.spec.ts`                     | `e2e/home.spec.ts`                   |
+| What               | Pattern                                     | Example                               |
+| ------------------ | ------------------------------------------- | ------------------------------------- |
+| Route folder       | kebab-case, plural                          | `app/blog-posts/page.tsx`             |
+| View               | `index.tsx` in the route's folder           | `views/blog/index.tsx`                |
+| Page section       | `sections/<Name>Section.tsx`                | `views/home/sections/HeroSection.tsx` |
+| Component          | PascalCase, one component per file          | `components/layout/Logo.tsx`          |
+| API service        | `<snake_plural>.service.ts`                 | `services/api/blog_posts.service.ts`  |
+| Endpoint constants | `<snake_plural>.api.ts`                     | `constants/api/blog_posts.api.ts`     |
+| Types              | `<snake_plural>.ts`                         | `types/blog_posts.ts`                 |
+| Server-only module | `<name>.server.ts` + `import 'server-only'` | `utils/encryption.server.ts`          |
+| Unit test          | next to the file, `.test.ts`                | `utils/helpers.test.ts`               |
+| End-to-end test    | `e2e/<feature>.spec.ts`                     | `e2e/home.spec.ts`                    |
 
-`npm run make:module <name>` creates the first five with these names.
+`npm run make:module <name>` creates the route, the view (`index.tsx`), the service, the endpoint constant and the types with these names.
 
 Types live in `.ts` files, not `.d.ts`. The project uses `skipLibCheck`, which skips checking every `.d.ts` file, including your own, so a mistake in a `.d.ts` type would never be reported.
 
@@ -63,7 +65,9 @@ Components are Server Components unless the file starts with `'use client'`. Kee
 | File                            | Purpose                                                                                   |
 | ------------------------------- | ----------------------------------------------------------------------------------------- |
 | `app/layout.tsx`                | Root layout: fonts, metadata (title template from `NEXT_PUBLIC_APP_NAME`), Redux provider |
-| `app/page.tsx`                  | Home page. Replace it                                                                     |
+| `app/page.tsx`                  | The portfolio home page; renders `views/home`                                             |
+| `app/work/`, `app/blog/`        | All projects and posts, and a page for each (`[slug]`)                                    |
+| `app/actions.ts`                | Server action that sends the contact form by email                                        |
 | `app/login/`                    | Login page and its server action. See [auth-and-cookies.md](auth-and-cookies.md)          |
 | `app/dashboard/page.tsx`        | Example page behind login. Replace it                                                     |
 | `app/error.tsx`                 | Shown when a page throws: a reference ID and "Try again"                                  |

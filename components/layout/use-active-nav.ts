@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 
-import { NAV_LINKS } from '@/constants/profile';
+import { NAV_LINKS } from '@/constants/navigation';
 
 /** How far down the screen a section's top must be to count as the one being read. */
 const READING_LINE = 0.35;

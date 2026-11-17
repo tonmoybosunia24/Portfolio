@@ -1,14 +1,12 @@
 import Image from 'next/image';
 
-import type { Project } from '@/constants/projects';
+import type { Project } from '@/types';
 
 const BANNER_CLASS = 'object-cover transition-transform duration-500 group-hover:scale-[1.03]';
 
 interface ProjectBannerProps {
   project: Project;
-  /** The `sizes` of the image: how wide it is shown at each screen width. */
   sizes: string;
-  /** Load it first, for a banner at the top of the page. */
   preload?: boolean;
 }
 

@@ -49,7 +49,7 @@ Scaffold a new feature with `npm run make:module <name>` (page, view, service, t
 - Pass `parse` with a zod schema so responses are checked at runtime.
 - Pass query parameters with the `query` option, not by building the query string.
 - Read paginated lists with `parse: parsePage(ItemSchema, { page, perPage })` (`services/api/pagination.ts`); render them with `components/Pagination.tsx`. Files: `responseType: 'blob'`.
-- For a new resource, follow the `projects` example module (`docs/example-module.md`): service with zod schemas, reads in the page, writes in server actions that return 4xx errors to a `useActionState` form.
+- For a new resource, scaffold it with `npm run make:module <name>` and fill it in: service with zod schemas, reads in the page, writes in server actions that return 4xx errors to a `useActionState` form.
 - API error bodies are read by `readApiError` in `services/api/api-errors.ts`; adapt it there, not per call. Forms use `ApiError.fieldErrors` (`{ field: ['message'] }`).
 - `handleRequest` throws `ApiError` (`status`, `message`, `errors`, `fieldErrors`). In server actions, catch it and **return** `{ message, fieldErrors }` for 4xx; rethrow or log 5xx. Messages of errors thrown from server actions are hidden in production.
 - Encode user input in paths: `` `${PROJECTS}/${encodeURIComponent(id)}` ``.
@@ -82,8 +82,7 @@ Scaffold a new feature with `npm run make:module <name>` (page, view, service, t
 
 ### Tests
 
-- Unit tests sit next to the code: `thing.ts` → `thing.test.ts` (node), `Thing.tsx` → `Thing.test.tsx` (jsdom).
-- Query by role and label (`getByRole`, `getByLabelText`), not by class or test ID.
+- Unit tests cover logic only and sit next to the code: `thing.ts` → `thing.test.ts`. UI components (`.tsx`) have no unit tests; pages are covered by the e2e tests.
 - Mock the layer below: test a server action by mocking its service, a service by mocking `handleRequest`.
 - E2E tests use the mock API in `e2e/mock-api.mjs`; add endpoints there when a flow needs them.
 - Don't lower the coverage thresholds in `vitest.config.mts` to make a run pass.

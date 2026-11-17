@@ -2,11 +2,10 @@ import { revealDelay } from '@/lib/reveal';
 
 import ProjectCard from '@/components/ui/ProjectCard';
 
-import type { Project } from '@/constants/projects';
+import type { Project } from '@/types';
 
 interface ProjectGridProps {
   projects: readonly Project[];
-  /** The cards' heading level, passed to `ProjectCard`. */
   heading?: 'h2' | 'h3';
   className?: string;
 }

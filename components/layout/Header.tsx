@@ -8,9 +8,11 @@ import { cn } from '@/lib/utils';
 
 import { CloseIcon, LocationIcon, MailIcon, MenuIcon, PhoneIcon } from '@/components/ui/icons';
 
-import { NAV_LINKS, SIDEBAR } from '@/constants/profile';
+import { NAV_LINKS } from '@/constants/navigation';
+import { SIDEBAR } from '@/constants/profile';
 
-import { Logo, roundIcon, SocialLinks } from './Brand';
+import Logo from './Logo';
+import SocialLinks from './SocialLinks';
 import ThemeToggle from './ThemeToggle';
 import { useActiveNav } from './use-active-nav';
 
@@ -146,7 +148,13 @@ export default function Header() {
       >
         <div className="flex items-center justify-between">
           <Logo onClick={close} />
-          <button ref={closeButton} type="button" aria-label="Close menu" onClick={close} className={roundIcon}>
+          <button
+            ref={closeButton}
+            type="button"
+            aria-label="Close menu"
+            onClick={close}
+            className="round-icon size-10"
+          >
             <CloseIcon className="size-4.5" />
           </button>
         </div>
