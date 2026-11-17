@@ -6,7 +6,8 @@ import { EXPERTISE } from '@/constants/profile';
  * Two groups of skills, each skill with its level as a bar. Sizes follow the Reeni template (32px group
  * titles, 14px labels, a 6px track and pink bar). The name sits on the left and the percentage
  * on the right, so long names never run into it. Bars fill in one after another when they come on
- * screen (`reveal-grow`); without JavaScript or with reduced motion they are simply full.
+ * screen (`reveal-grow` on the track, which is watched instead of the bar, as the hidden bar has no width
+ * and phones never see it come into view); without JavaScript or with reduced motion they are simply full.
  */
 export default function Expertise() {
   return (
@@ -38,9 +39,9 @@ export default function Expertise() {
                       <span>{name}</span>
                       <span className="text-gray-light">{level}%</span>
                     </div>
-                    <div aria-hidden="true" className="h-1.5 overflow-hidden rounded-full bg-dark">
+                    <div aria-hidden="true" className="reveal-grow h-1.5 overflow-hidden rounded-full bg-dark">
                       <div
-                        className="reveal-grow h-full origin-left rounded-full bg-primary"
+                        className="h-full origin-left rounded-full bg-primary"
                         // Each bar starts a little after the one above it.
                         style={{ width: `${level}%`, animationDelay: `${index * 120}ms` }}
                       />
