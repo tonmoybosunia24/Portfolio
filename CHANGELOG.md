@@ -43,6 +43,7 @@ Notable changes to the starter kit. The format follows [Keep a Changelog](https:
 
 ### Changed
 
+- Portfolio blog: the Flutter Architecture Template post is a full walkthrough of the template, written from its README and `docs/ARCHITECTURE.md` (getting started, project structure, layering rules, network layer, connecting a backend, screen states, adding a feature, design system, languages and RTL, app flow, tests, CI/CD, starting a real app, tech stack and roadmap). Its two screenshot galleries and the seven screenshots in `public/images/blog/flutter-architecture-template/` are removed.
 - Portfolio header stays fixed at the top from the start, like most sites: see-through at the top of the page, then a blurred background and border fade in after 50px of scrolling. Before, it only appeared once the whole hero had scrolled away, and jumped in. `data-page-hero` is no longer needed and is removed.
 - `/login` and `/dashboard` render a view like every other page (`views/login/index.tsx` with the form in `views/login/components/`, `views/dashboard/index.tsx`), and `npm run make:module` now creates `views/<name>/index.tsx` instead of `views/<name>/<Name>.tsx`.
 - One component per file, as AGENTS.md asks: `components/layout/Brand.tsx` is split into `Logo.tsx` and `SocialLinks.tsx`, and the shared round button classes became a `round-icon` utility in `app/globals.css`; `LightBeams` and `SkillChip` moved out of their sections into `views/home/components/`; the login form's `Field` into `views/login/components/`. Markup is unchanged.
