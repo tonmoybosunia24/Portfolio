@@ -359,8 +359,7 @@ export const TESTIMONIALS = {
 } as const;
 
 /**
- * The "Contact" section. The details reuse `SIDEBAR.contacts`. The form has no server yet: sending it
- * opens the visitor's email app with a message to `email`, already filled in.
+ * The "Contact" section. The details reuse `SIDEBAR.contacts`. Sending the form emails the message to the site owner (`app/actions.ts`); `email` is shown when sending fails.
  */
 export const CONTACT = {
   label: 'Contact',

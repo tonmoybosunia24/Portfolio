@@ -43,6 +43,7 @@ Notable changes to the starter kit. The format follows [Keep a Changelog](https:
 
 ### Changed
 
+- Portfolio contact form sends a styled HTML and plain-text email (`utils/contact-email.ts`) to your inbox with Nodemailer (Gmail) through a server action, instead of opening the visitor's email app. Needs `EMAIL_USER` and `EMAIL_PASSWORD`.
 - Portfolio theme switch: the new theme spreads out in a circle from the toggle button. Off for reduced motion.
 - Portfolio colours: the page uses GitHub's neutrals (dark `#0d1117` with `#161b22` panels, light white with `#f6f8fa` panels and `#1f2328` text). The highlight cards (years of experience, "Have an app idea?") turn soft pink with dark text in light mode instead of staying dark crimson. The accent token is now `primary` (was `pink-primary`), still `#ff014f`.
 - Portfolio post titles are smaller (30px beside the cover at 992px, 36px from 1200px, 40px from 1400px and on tablets) so a long title takes two lines instead of three.

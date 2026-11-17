@@ -4,12 +4,16 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import { CONTACT, SIDEBAR } from '@/constants/profile';
 
 import Contact from './Contact';
-import { buildMailto, validate } from './ContactForm';
+import { validate } from './ContactForm';
+
+const sendContactMessage = vi.hoisted(() => vi.fn());
+
+vi.mock('@/app/actions', () => ({ sendContactMessage }));
 
 const empty = { name: '', phone: '', email: '', subject: '', message: '' };
 
 describe('Contact', () => {
-  afterEach(() => vi.unstubAllGlobals());
+  afterEach(() => sendContactMessage.mockReset());
 
   it('shows the contact details with working links', () => {
     render(<Contact />);
@@ -57,14 +61,5 @@ describe('validate', () => {
     expect(validate({ ...empty, name: 'Ana', email: 'ana@', message: 'Hi' })).toEqual({
       email: 'Please enter a valid email.',
     });
-  });
-});
-
-describe('buildMailto', () => {
-  it('uses the subject, or a default one, and puts the details above the message', () => {
-    const link = buildMailto({ ...empty, name: 'Ana', email: 'ana@example.com', phone: '123', message: 'Hello' });
-
-    expect(link).toContain(`subject=${encodeURIComponent('Message from Ana')}`);
-    expect(decodeURIComponent(link.split('body=')[1]!)).toBe('Name: Ana\nEmail: ana@example.com\nPhone: 123\n\nHello');
   });
 });

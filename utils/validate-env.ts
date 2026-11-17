@@ -35,10 +35,16 @@ const EnvSchema = z
     TRUSTED_CLIENT_IP_HEADER: optional(
       z.string().regex(/^[A-Za-z0-9-]+$/, 'TRUSTED_CLIENT_IP_HEADER must be a header name, e.g. x-real-ip'),
     ),
+    EMAIL_USER: optional(z.email({ error: 'EMAIL_USER must be an email address, e.g. you@gmail.com' })),
+    EMAIL_PASSWORD: optional(z.string()),
   })
   .refine(env => !env.ENCRYPTION_KEY_PREVIOUS || env.ENCRYPTION_KEY, {
     error: 'ENCRYPTION_KEY_PREVIOUS is set without ENCRYPTION_KEY',
     path: ['ENCRYPTION_KEY'],
+  })
+  .refine(env => Boolean(env.EMAIL_USER) === Boolean(env.EMAIL_PASSWORD), {
+    error: 'EMAIL_USER and EMAIL_PASSWORD must be set together',
+    path: ['EMAIL_PASSWORD'],
   });
 
 /** Returns one message per invalid variable; empty when the environment is valid. */

@@ -1,12 +1,13 @@
 'use client';
 
-import { type FormEvent, useState } from 'react';
+import { type FormEvent, startTransition, useActionState, useEffect, useRef, useState } from 'react';
 
 import { ArrowRightIcon } from '@/components/ui/icons';
 
 import { CONTACT } from '@/constants/profile';
+import { type ContactField, type ContactState, sendContactMessage } from '@/app/actions';
 
-type Field = 'name' | 'phone' | 'email' | 'subject' | 'message';
+type Field = ContactField;
 type Errors = Partial<Record<Field, string>>;
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -23,18 +24,6 @@ export function validate(values: Record<Field, string>): Errors {
   return errors;
 }
 
-/** The email the visitor's mail app opens with: their details first, then their message. */
-export function buildMailto(values: Record<Field, string>) {
-  const subject = values.subject.trim() || `Message from ${values.name.trim()}`;
-  const details = [`Name: ${values.name.trim()}`, `Email: ${values.email.trim()}`];
-
-  if (values.phone.trim()) details.push(`Phone: ${values.phone.trim()}`);
-
-  const body = `${details.join('\n')}\n\n${values.message.trim()}`;
-
-  return `mailto:${CONTACT.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-}
-
 const fieldClass =
   'w-full rounded-xl border border-foreground/10 bg-transparent px-5 font-rubik text-base text-foreground transition-colors outline-none placeholder:text-gray-light/70 hover:border-foreground/20 focus:border-primary aria-invalid:border-primary';
 
@@ -45,14 +34,22 @@ const FIELDS: { name: Field; label: string; type: string; autoComplete: string; 
   { name: 'subject', label: 'Subject', type: 'text', autoComplete: 'off' },
 ];
 
+const INITIAL: ContactState = { status: 'idle' };
+
 /**
  * The contact form: name and number, email and subject side by side from 768px, then the message and a
- * send button. Name, email and message are required. There is no server: a valid form opens the
- * visitor's email app with the message ready to send.
+ * send button. Name, email and message are required and checked here first; the server action
+ * (`sendContactMessage` in `app/actions.ts`) checks them again and emails the message to the site owner.
+ * The form clears once the message is sent, and keeps what was typed when sending fails.
  */
 export default function ContactForm() {
+  const [state, formAction, pending] = useActionState(sendContactMessage, INITIAL);
   const [errors, setErrors] = useState<Errors>({});
-  const [sent, setSent] = useState(false);
+  const formRef = useRef<HTMLFormElement>(null);
+
+  useEffect(() => {
+    if (state.status === 'sent') formRef.current?.reset();
+  }, [state]);
 
   const onSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -64,22 +61,25 @@ export default function ContactForm() {
     const found = validate(values);
 
     setErrors(found);
-    setSent(false);
     if (Object.keys(found).length > 0) return;
 
-    window.location.href = buildMailto(values);
-    setSent(true);
+    startTransition(() => formAction(data));
   };
 
-  const errorFor = (field: Field) =>
-    errors[field] ? (
+  const errorText = (field: Field) => errors[field] ?? (pending ? undefined : state.fieldErrors?.[field]?.[0]);
+
+  const errorFor = (field: Field) => {
+    const text = errorText(field);
+
+    return text ? (
       <p id={`contact-${field}-error`} className="mt-1.5 font-rubik text-sm text-primary">
-        {errors[field]}
+        {text}
       </p>
     ) : null;
+  };
 
   return (
-    <form noValidate onSubmit={onSubmit} className="grid gap-4 md:grid-cols-2 md:gap-5">
+    <form ref={formRef} noValidate onSubmit={onSubmit} className="grid gap-4 md:grid-cols-2 md:gap-5">
       {FIELDS.map(({ name, label, type, autoComplete }) => (
         <div key={name}>
           <label htmlFor={`contact-${name}`} className="sr-only">
@@ -91,8 +91,8 @@ export default function ContactForm() {
             type={type}
             autoComplete={autoComplete}
             placeholder={label}
-            aria-invalid={errors[name] ? true : undefined}
-            aria-describedby={errors[name] ? `contact-${name}-error` : undefined}
+            aria-invalid={errorText(name) ? true : undefined}
+            aria-describedby={errorText(name) ? `contact-${name}-error` : undefined}
             className={`${fieldClass} h-14`}
           />
           {errorFor(name)}
@@ -108,23 +108,37 @@ export default function ContactForm() {
           name="message"
           rows={5}
           placeholder="Your Message"
-          aria-invalid={errors.message ? true : undefined}
-          aria-describedby={errors.message ? 'contact-message-error' : undefined}
+          aria-invalid={errorText('message') ? true : undefined}
+          aria-describedby={errorText('message') ? 'contact-message-error' : undefined}
           className={`${fieldClass} block min-h-36 resize-y py-4`}
         />
         {errorFor('message')}
       </div>
 
+      {/* A trap for bots: hidden from people, so anything typed here marks the message as spam. */}
+      <div aria-hidden="true" className="absolute left-[-9999px] size-px overflow-hidden">
+        <label htmlFor="contact-website">Website</label>
+        <input id="contact-website" name="website" type="text" tabIndex={-1} autoComplete="off" />
+      </div>
+
       <button
         type="submit"
-        className="group mt-2 flex h-13 items-center justify-center gap-2 rounded-full border-2 border-primary bg-primary font-rubik text-base font-medium tracking-[0.5px] text-white transition-colors duration-300 hover:bg-transparent hover:text-primary md:col-span-2 md:h-14 md:w-fit md:justify-self-start md:px-7.5"
+        disabled={pending}
+        className="group mt-2 flex h-13 items-center justify-center gap-2 rounded-full border-2 border-primary bg-primary font-rubik text-base font-medium tracking-[0.5px] text-white transition-colors duration-300 hover:bg-transparent hover:text-primary disabled:cursor-wait disabled:opacity-70 md:col-span-2 md:h-14 md:w-fit md:justify-self-start md:px-7.5"
       >
-        {CONTACT.submit}
+        {pending ? 'Sending…' : CONTACT.submit}
         <ArrowRightIcon className="size-4 transition-transform group-hover:translate-x-1" />
       </button>
 
-      <p role="status" className="font-rubik text-sm text-gray-light md:col-span-2 empty:hidden">
-        {sent ? 'Your email app should open with the message ready. Just press send.' : ''}
+      <p
+        role="status"
+        className={`font-rubik text-sm md:col-span-2 empty:hidden ${state.status === 'error' ? 'text-primary' : 'text-gray-light'}`}
+      >
+        {pending
+          ? ''
+          : state.status === 'sent'
+            ? 'Thanks! Your message has been sent. I will get back to you soon.'
+            : (state.message ?? '')}
       </p>
     </form>
   );
