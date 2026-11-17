@@ -18,6 +18,8 @@ Text, links and contact details live in `constants/`, one file per area:
 
 Their types (`Project`, `BlogPost`, the icon names) are in `types/` and imported from `@/types`, so the files in `constants/` hold only content. Values marked `TODO` are placeholders. Images are in `public/images/`.
 
+The hero's main button downloads the resume: `PROFILE.resume` in `constants/profile.ts` points at a PDF in `public/` (`/Md_Tonmoy_Bosunia_Resume.pdf`) and names the saved file. Replace the PDF with the same name to update it.
+
 ## Theme
 
 Colors and fonts are defined in `app/globals.css` and used as Tailwind classes. The neutrals follow GitHub's colours, in both themes:

@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-import { ArrowRightIcon } from '@/components/ui/icons';
+import { DownloadIcon } from '@/components/ui/icons';
 
 import { PROFILE } from '@/constants/profile';
 
@@ -51,11 +51,12 @@ export default function HeroSection() {
 
           <div className="animate-intro intro-delay-2 mt-6 flex flex-wrap gap-3 font-rubik text-[15px] font-medium tracking-[0.5px] md:mt-9.75 md:gap-3.75 md:text-base compact:mt-7">
             <a
-              href="#projects"
+              href={PROFILE.resume.href}
+              download={PROFILE.resume.fileName}
               className="group inline-flex h-12 items-center gap-2 rounded-full border-2 border-primary bg-primary px-5 md:h-15 md:px-7.5 compact:h-13 text-white transition-colors duration-300 hover:bg-transparent hover:text-primary"
             >
-              View Portfolio
-              <ArrowRightIcon className="size-4 transition-transform group-hover:translate-x-1" />
+              {PROFILE.resume.label}
+              <DownloadIcon className="size-4 transition-transform group-hover:translate-y-0.5" />
             </a>
             <a
               href="#contact"

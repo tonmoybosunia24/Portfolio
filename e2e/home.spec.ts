@@ -11,7 +11,7 @@ test('home page renders without console errors', async ({ page }) => {
   await page.goto('/');
 
   await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
-  await expect(page.getByRole('link', { name: 'View Portfolio' })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Download Resume' })).toBeVisible();
   await page.waitForLoadState('networkidle');
   expect(errors).toEqual([]);
 });

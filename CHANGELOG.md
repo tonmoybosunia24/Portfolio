@@ -44,6 +44,7 @@ Notable changes to the starter kit. The format follows [Keep a Changelog](https:
 
 ### Changed
 
+- Portfolio hero: the main button is Download Resume (with a download icon) instead of View Portfolio, saving `public/Md_Tonmoy_Bosunia_Resume.pdf` (`PROFILE.resume`); the header's Projects link still leads to the projects. The e2e home test looks for the new button.
 - Portfolio projects: Crave and Precise Clock link to their App Store pages as well as Google Play (a second button on the project page), and their write-ups and the projects section say they are live on both stores. Amar Seba stays Google Play only.
 - Portfolio blog: the Flutter Architecture Template post is a full walkthrough of the template, written from its README and `docs/ARCHITECTURE.md` (getting started, project structure, layering rules, network layer, connecting a backend, screen states, adding a feature, design system, languages and RTL, app flow, tests, CI/CD, starting a real app, tech stack and roadmap). Its two screenshot galleries and the seven screenshots in `public/images/blog/flutter-architecture-template/` are removed.
 - Portfolio header stays fixed at the top from the start, like most sites: see-through at the top of the page, then a blurred background and border fade in after 50px of scrolling. Before, it only appeared once the whole hero had scrolled away, and jumped in. `data-page-hero` is no longer needed and is removed.

@@ -13,6 +13,12 @@ export const PROFILE = {
   intro:
     'I’m a frontend developer focused on mobile apps. At BlackDevs I build Flutter apps for Android and iOS, and I also create fast, responsive web interfaces with React and Next.js.',
   titles: ['Web Developer', 'APP DEVELOPER'],
+  /** The hero's main button. The PDF lives in `public/`; `fileName` is the name it is saved under. */
+  resume: {
+    label: 'Download Resume',
+    href: '/Md_Tonmoy_Bosunia_Resume.pdf',
+    fileName: 'Md_Tonmoy_Bosunia_Resume.pdf',
+  },
 } as const;
 
 /** Shown in the side panel the menu button opens. */
