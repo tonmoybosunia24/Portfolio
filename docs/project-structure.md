@@ -71,7 +71,7 @@ Components are Server Components unless the file starts with `'use client'`. Kee
 | `app/not-found.tsx`             | 404 page for unknown URLs and `notFound()`                                                |
 | `app/api/auth/clear/route.ts`   | Ends a session (logout and expired tokens)                                                |
 | `app/api/auth/refresh/route.ts` | Refreshes the access token, then returns to the page                                      |
-| `app/robots.ts`                 | `/robots.txt`: keeps crawlers out of `/api/` and protected pages                          |
+| `app/robots.ts`                 | `/robots.txt`: asks every crawler to stay off the whole site (no indexing)                |
 | `app/sitemap.ts`                | `/sitemap.xml`: add your public pages                                                     |
 | `app/opengraph-image.tsx`       | Preview image for shared links. Replace it with your design                               |
 | `app/globals.css`               | Tailwind import and the theme's color and font variables                                  |
