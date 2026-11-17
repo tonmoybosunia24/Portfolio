@@ -8,7 +8,7 @@ const DETAIL_ICONS = { phone: PhoneIcon, mail: MailIcon, location: LocationIcon 
 
 /**
  * One large dark card: a big title and the contact details on the left, vertically centred, and the form
- * on the right. Stacked below 992px.
+ * on the right (5:8, so the email address fits on one line on a 1280px screen). Stacked below 992px.
  */
 export default function Contact() {
   const details = CONTACT.detailOrder.flatMap(icon => SIDEBAR.contacts.filter(contact => contact.icon === icon));
@@ -16,7 +16,7 @@ export default function Contact() {
   return (
     <section id="contact" aria-labelledby="contact-title" className="pb-15 md:pb-20 lg:pb-30">
       <div className="section">
-        <div className="grid items-center gap-10 rounded-3xl bg-black-soft px-5 py-10 md:rounded-4xl md:p-12 lg:grid-cols-[minmax(0,4fr)_minmax(0,9fr)] lg:gap-14 xl:gap-16 xl:px-20 xl:py-20">
+        <div className="grid items-center gap-10 rounded-3xl bg-black-soft px-5 py-10 md:rounded-4xl md:p-12 lg:grid-cols-[minmax(0,5fr)_minmax(0,8fr)] lg:gap-14 xl:gap-16 xl:px-20 xl:py-20">
           <div className="reveal-left">
             <h2
               id="contact-title"

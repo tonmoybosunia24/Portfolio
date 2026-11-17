@@ -43,6 +43,7 @@ Notable changes to the starter kit. The format follows [Keep a Changelog](https:
 
 ### Changed
 
+- Portfolio contact section gives the details column more room (5:8 instead of 4:9 from 992px), so the email address no longer breaks onto a second line on a 13" laptop.
 - Portfolio banners for Crave, Precise Clock, Amar Seba and ClassyShop and the three blog covers are exported again from Figma without the old website address at the bottom. They have new names (`*-banner-v2.webp`; Precise Clock's is now `precise-clock-banner-v2.webp`) so the image cache does not serve the old ones.
 - Portfolio projects add Vehicle Log (`/work/vehicle-log`), a mobile app UI/UX design made in Figma, with its Figma banner. Projects have a third `kind`, `design`, and `/work` a fourth tab, "UI/UX Design"; below 640px the tabs show short labels (All, Mobile, Web, UI/UX) so all four fit on a phone.
 - Portfolio projects add Glacial Rental (`/work/glacial-rental`), a refrigerated trailer rental site built with Laravel, Inertia.js and React in 10 days, with its Figma banner and a link to the live site. It takes ClassyShop’s place on the home page; ClassyShop stays on `/work`.

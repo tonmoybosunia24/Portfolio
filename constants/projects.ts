@@ -456,7 +456,7 @@ export const PROJECTS = {
         light: '/images/projects/vehicle-log-banner.webp',
         dark: '/images/projects/vehicle-log-banner.webp',
       },
-      // TODO: check the year and client with the user, and add the Figma link (the user will send it).
+      // TODO: check the year and client with the user.
       facts: {
         role: 'UI/UX Designer',
         client: 'Personal Project',
@@ -465,7 +465,9 @@ export const PROJECTS = {
         platforms: 'Mobile App',
       },
       tech: ['Figma', 'UI Design', 'UX Design', 'Mobile App Design'],
-      links: [],
+      links: [
+        { label: 'View in Figma', href: 'https://www.figma.com/design/ISmUcMZI89jEeIzCCwicNt/Vehicle-Log?node-id=1-5' },
+      ],
       story: [
         { type: 'heading', text: 'Overview' },
         {
