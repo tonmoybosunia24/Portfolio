@@ -124,8 +124,8 @@ export const ACHIEVEMENTS = {
   stats: [
     { count: 10, plus: true, label: 'Projects Done', icon: 'check' },
     { count: 6, plus: false, label: 'Apps Published', icon: 'rocket' },
-    { count: 3, plus: false, label: 'Platforms: Android, iOS, Web', icon: 'monitor' },
-    { count: 4, plus: false, label: 'Frameworks I Build With', icon: 'layers' },
+    { count: 3, plus: false, label: 'Platforms', icon: 'monitor' },
+    { count: 4, plus: false, label: 'Frameworks', icon: 'layers' },
   ] satisfies { count: number; plus: boolean; label: string; icon: ServiceIcon }[],
 } as const;
 

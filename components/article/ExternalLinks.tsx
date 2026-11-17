@@ -6,11 +6,11 @@ import type { ProjectLink } from '@/constants/projects';
 
 /** The first link: pink, turning into an outline on hover, like the home page's main button. */
 const PRIMARY_LINK =
-  'inline-flex h-12 items-center gap-2 rounded-full border-2 border-pink-primary bg-pink-primary px-5 text-white transition-colors duration-300 hover:bg-transparent hover:text-pink-primary md:h-14 md:px-7';
+  'inline-flex h-12 items-center gap-2 rounded-full border-2 border-primary bg-primary px-5 text-white transition-colors duration-300 hover:bg-transparent hover:text-primary md:h-14 md:px-7';
 
 /** The other links: an outline that turns pink on hover. */
 const SECONDARY_LINK =
-  'inline-flex h-12 items-center gap-2 rounded-full border-2 border-white-overlay px-5 transition-colors duration-300 hover:border-pink-primary hover:text-pink-primary md:h-14 md:px-7';
+  'inline-flex h-12 items-center gap-2 rounded-full border-2 border-white-overlay px-5 transition-colors duration-300 hover:border-primary hover:text-primary md:h-14 md:px-7';
 
 /**
  * Links to other sites (a store page, a repository) as round buttons with an arrow, each opening in a new

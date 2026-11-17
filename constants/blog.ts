@@ -12,7 +12,7 @@ export interface BlogPost {
   date: string;
   category: string;
   /**
-   * The cover: a 16:9 webp (1600×900) in `public/images/blog/`. For a photo from Unsplash (free to use
+   * The cover: a 4:3 webp (1600×1200) in `public/images/blog/`. For a photo from Unsplash (free to use
    * under the Unsplash License), `credit` names the photographer and links to them; leave it out for your
    * own images.
    */
@@ -44,8 +44,8 @@ export const BLOG = {
       date: '2026-11-16',
       category: 'Flutter Template',
       image: {
-        src: '/images/blog/flutter-architecture-template-cover.webp',
-        alt: 'Banner: My Flutter Architecture Template, Start Every App Production-Ready, with the lib folder structure and a phone showing Build Better With Flutter',
+        src: '/images/blog/flutter-architecture-template-banner.webp',
+        alt: 'Banner: My Flutter Architecture Template, Start Every App Production-Ready, with four stacked blue layers',
       },
       links: [{ label: 'View on GitHub', href: 'https://github.com/tonmoybosunia24/flutter_template' }],
       content: [
@@ -167,8 +167,8 @@ export const BLOG = {
       date: '2026-10-08',
       category: 'Publishing',
       image: {
-        src: '/images/blog/publishing-six-apps-cover.webp',
-        alt: 'Banner: From Code to Store, What I Learned Publishing Six Apps, with a release checklist and a phone showing a published app',
+        src: '/images/blog/publishing-six-apps-banner.webp',
+        alt: 'Banner: From Code to Store, What I Learned Publishing Six Apps, with a play icon linked to six coloured dots',
       },
       content: [
         { type: 'heading', text: 'Why a Checklist' },
@@ -225,8 +225,8 @@ export const BLOG = {
       date: '2026-08-20',
       category: 'Performance',
       image: {
-        src: '/images/blog/flutter-performance-cover.webp',
-        alt: 'Banner: 5 Ways to Make Your Flutter App Faster, with performance tips in Dart code and a phone showing 60 FPS',
+        src: '/images/blog/flutter-performance-banner.webp',
+        alt: 'Banner: 5 Ways to Make Your Flutter App Faster, with five rising bars numbered 1 to 5',
       },
       content: [
         { type: 'heading', text: 'Why Speed Matters' },

@@ -102,14 +102,14 @@ export default function ProjectTabs() {
                 onKeyDown={event => onKeyDown(event, index)}
                 className={`relative flex items-center gap-2 pt-1 pb-2 font-rubik text-[15px] font-medium whitespace-nowrap transition-colors duration-300 max-[359px]:text-sm md:pb-2.5 md:text-lg ${
                   selected
-                    ? 'text-foreground after:absolute after:inset-x-0 after:-bottom-px after:h-0.5 after:bg-pink-primary group-data-ready/tabs:after:hidden'
+                    ? 'text-foreground after:absolute after:inset-x-0 after:-bottom-px after:h-0.5 after:bg-primary group-data-ready/tabs:after:hidden'
                     : 'text-gray-light hover:text-foreground'
                 }`}
               >
                 {label}
                 <span
                   className={`hidden text-xs font-semibold transition-colors duration-300 sm:inline md:text-sm ${
-                    selected ? 'text-pink-primary' : 'text-gray-light/70'
+                    selected ? 'text-primary' : 'text-gray-light/70'
                   }`}
                 >
                   {String(count(kind)).padStart(2, '0')}
@@ -121,7 +121,7 @@ export default function ProjectTabs() {
           <span
             ref={barRef}
             aria-hidden="true"
-            className="absolute -bottom-px left-0 hidden h-0.5 rounded-full bg-pink-primary group-data-ready/tabs:block group-data-ready/tabs:transition-[transform,width] group-data-ready/tabs:duration-300 group-data-ready/tabs:ease-out"
+            className="absolute -bottom-px left-0 hidden h-0.5 rounded-full bg-primary group-data-ready/tabs:block group-data-ready/tabs:transition-[transform,width] group-data-ready/tabs:duration-300 group-data-ready/tabs:ease-out"
           />
         </div>
       </div>

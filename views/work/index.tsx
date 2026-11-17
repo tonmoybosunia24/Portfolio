@@ -14,7 +14,7 @@ export default function Work() {
     <SiteShell>
       <PageHero labelledBy="work-title" className="animate-intro flex flex-col items-start">
         <Breadcrumb trail={TRAIL} current="Projects" />
-        <p className="mt-5 font-rubik text-xs leading-5 font-medium tracking-[3px] text-pink-primary uppercase md:mt-6 md:text-sm">
+        <p className="mt-5 font-rubik text-xs leading-5 font-medium tracking-[3px] text-primary uppercase md:mt-6 md:text-sm">
           {PROJECTS.page.label}
         </p>
         <h1

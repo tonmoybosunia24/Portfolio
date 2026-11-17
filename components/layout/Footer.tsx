@@ -36,7 +36,7 @@ export default function Footer() {
               <li key={link.href}>
                 <a
                   href={link.href}
-                  className="font-rubik text-[15px] leading-6 font-medium text-foreground transition-colors hover:text-pink-primary"
+                  className="font-rubik text-[15px] leading-6 font-medium text-foreground transition-colors hover:text-primary"
                 >
                   {link.label}
                 </a>
@@ -65,7 +65,7 @@ export default function Footer() {
                     <a
                       href={href}
                       aria-label={`${label}: ${value}`}
-                      className="flex items-center gap-3 font-rubik text-sm text-foreground transition-colors hover:text-pink-primary"
+                      className="flex items-center gap-3 font-rubik text-sm text-foreground transition-colors hover:text-primary"
                     >
                       {content}
                     </a>
@@ -95,7 +95,7 @@ export default function Footer() {
                     href={href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-foreground transition-colors hover:text-pink-primary"
+                    className="flex items-center gap-2 text-foreground transition-colors hover:text-primary"
                   >
                     <Icon className="size-4" />
                     {label}

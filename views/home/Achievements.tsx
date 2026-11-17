@@ -25,9 +25,9 @@ export default function Achievements() {
         />
 
         <div className="mt-8 grid gap-4.5 md:mt-12 md:gap-6 lg:grid-cols-2 lg:gap-5">
-          <div className="reveal-left flex flex-col justify-center rounded-[20px] bg-linear-to-br from-[#211a1d] to-[#6d0e2c] px-5 py-7.5 text-white md:px-13 md:py-11">
+          <div className="reveal-left flex flex-col justify-center rounded-[20px] bg-linear-to-br from-feature-start to-feature-end px-5 py-7.5 text-feature-fg md:px-13 md:py-11">
             <h3 className="flex items-center gap-5 font-bold md:gap-11">
-              <span className="text-[80px] leading-none text-pink-primary md:text-[100px] xl:text-[140px] 2xl:text-[167px]">
+              <span className="text-[80px] leading-none text-primary md:text-[100px] xl:text-[140px] 2xl:text-[167px]">
                 {twoDigits(experience.years)}
               </span>
               <span className="text-[26px] leading-[1.3] md:text-[37px] xl:text-[42px] 2xl:text-5xl">
@@ -35,7 +35,7 @@ export default function Achievements() {
                 Experience
               </span>
             </h3>
-            <p className="mt-3 font-rubik text-base leading-6.5 text-white/90 md:mt-6">{experience.text}</p>
+            <p className="mt-3 font-rubik text-base leading-6.5 text-feature-fg/90 md:mt-6">{experience.text}</p>
           </div>
 
           <ul className="reveal-right grid grid-cols-2 gap-4.5 md:gap-6 lg:gap-5">
@@ -54,7 +54,7 @@ export default function Achievements() {
                 >
                   {twoDigits(index + 1)}
                 </span>
-                <span className="flex size-10 items-center justify-center rounded-full bg-foreground/8 text-foreground transition-colors duration-300 group-hover:bg-pink-primary group-hover:text-white md:size-12">
+                <span className="flex size-10 items-center justify-center rounded-full bg-foreground/8 text-foreground transition-colors duration-300 group-hover:bg-primary group-hover:text-white md:size-12">
                   <ServiceIconSvg name={icon} className="size-5 md:size-5.5" />
                 </span>
                 <p className="mt-4 text-[34px] leading-none font-bold md:mt-5 md:text-[44px] lg:text-[40px] 2xl:text-5xl">

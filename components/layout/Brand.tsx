@@ -9,7 +9,7 @@ import { PROFILE, SOCIALS } from '@/constants/profile';
 
 /** A round icon button: faint overlay, pink on hover. */
 export const roundIcon =
-  'flex size-10 items-center justify-center rounded-full bg-white-overlay transition-colors duration-300 hover:bg-pink-primary hover:text-white';
+  'flex size-10 items-center justify-center rounded-full bg-white-overlay transition-colors duration-300 hover:bg-primary hover:text-white';
 
 /** The logo mark and name, linking to the top of the home page. Used in the header, the side panel and the footer. */
 export function Logo({ onClick }: { onClick?: () => void }) {

@@ -14,7 +14,7 @@ export default function Breadcrumb({ trail, current }: BreadcrumbProps) {
       <ol className="flex flex-wrap items-center gap-2 font-rubik text-sm text-gray-light md:text-[15px]">
         {trail.map(link => (
           <li key={link.href} className="flex items-center gap-2">
-            <Link href={link.href} className="transition-colors hover:text-pink-primary">
+            <Link href={link.href} className="transition-colors hover:text-primary">
               {link.label}
             </Link>
             <span aria-hidden="true" className="text-foreground/30">

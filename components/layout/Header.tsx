@@ -92,8 +92,8 @@ export default function Header() {
                     href={link.href}
                     aria-current={currentFor(link.href)}
                     className={cn(
-                      'block px-3 py-1 text-lg font-bold transition-colors hover:text-pink-primary',
-                      active?.href === link.href && 'text-pink-primary',
+                      'block px-3 py-1 text-lg font-bold transition-colors hover:text-primary',
+                      active?.href === link.href && 'text-primary',
                     )}
                   >
                     {link.label}
@@ -112,7 +112,7 @@ export default function Header() {
               aria-expanded={open}
               aria-controls="side-panel"
               onClick={() => setOpen(true)}
-              className="flex size-11.25 items-center justify-center rounded-full border-2 border-pink-primary bg-pink-primary text-white transition-colors duration-300 hover:bg-transparent hover:text-pink-primary"
+              className="flex size-11.25 items-center justify-center rounded-full border-2 border-primary bg-primary text-white transition-colors duration-300 hover:bg-transparent hover:text-primary"
             >
               <MenuIcon className="size-5.25" />
             </button>
@@ -121,7 +121,7 @@ export default function Header() {
         {/* How far down the page the visitor is, drawn over the bottom border. */}
         <span
           aria-hidden="true"
-          className="scroll-progress absolute inset-x-0 -bottom-px h-0.5 origin-left bg-pink-primary"
+          className="scroll-progress absolute inset-x-0 -bottom-px h-0.5 origin-left bg-primary"
         />
       </div>
 
@@ -160,8 +160,8 @@ export default function Header() {
                   onClick={close}
                   aria-current={currentFor(link.href)}
                   className={cn(
-                    'block font-semibold text-gray-light transition-colors hover:text-pink-primary',
-                    active?.href === link.href && 'font-bold text-pink-primary',
+                    'block font-semibold text-gray-light transition-colors hover:text-primary',
+                    active?.href === link.href && 'font-bold text-primary',
                   )}
                 >
                   {link.label}

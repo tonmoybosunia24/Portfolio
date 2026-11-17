@@ -40,7 +40,7 @@ export default function ProjectFactsSection({ project }: { project: Project }) {
               >
                 {String(index + 1).padStart(2, '0')}
               </span>
-              <span className="flex size-11 items-center justify-center rounded-full bg-foreground/8 text-foreground transition-colors duration-300 group-hover:bg-pink-primary group-hover:text-white md:size-12">
+              <span className="flex size-11 items-center justify-center rounded-full bg-foreground/8 text-foreground transition-colors duration-300 group-hover:bg-primary group-hover:text-white md:size-12">
                 <FactIconSvg name={key} className="size-5 md:size-5.5" />
               </span>
               {label}

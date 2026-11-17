@@ -43,6 +43,10 @@ Notable changes to the starter kit. The format follows [Keep a Changelog](https:
 
 ### Changed
 
+- Portfolio theme switch: the new theme spreads out in a circle from the toggle button. Off for reduced motion.
+- Portfolio colours: the page uses GitHub's neutrals (dark `#0d1117` with `#161b22` panels, light white with `#f6f8fa` panels and `#1f2328` text). The highlight cards (years of experience, "Have an app idea?") turn soft pink with dark text in light mode instead of staying dark crimson. The accent token is now `primary` (was `pink-primary`), still `#ff014f`.
+- Portfolio post titles are smaller (30px beside the cover at 992px, 36px from 1200px, 40px from 1400px and on tablets) so a long title takes two lines instead of three.
+- Portfolio blog covers are new 4:3 banners (1600×1200, `*-banner.webp`, new names so the image cache does not serve the old ones), shown at 4:3 like the project banners instead of 16:9, so they stand taller on the cards and at the top of a post.
 - Portfolio header links are Home, Services, Experience, Projects, Blog and Contact (the broken "About" is gone). Projects and Blog open `/work` and `/blog`; the rest jump to home page sections from any page. The current link turns pink: the section in view while scrolling the home page, or the page link on `/work` and `/blog` and their detail pages (`use-active-nav.ts`), instead of Home always being pink.
 - Portfolio project tabs on `/work` are plain text ("All Projects", "Mobile Apps", "Web Apps") on the left, in line with the title and cards, with only a pink bar that slides under the selected tab and counts after the labels from 640px; they fit phones down to 320px.
 - Portfolio "View All Projects" and "View All Posts" are no longer outlined pills: the text and a round arrow sit between two thin fading lines, echoing the section labels; on hover the text turns pink and the round arrow fills pink, staying centred.
