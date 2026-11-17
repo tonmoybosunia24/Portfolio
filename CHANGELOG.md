@@ -6,6 +6,7 @@ Notable changes to the starter kit. The format follows [Keep a Changelog](https:
 
 ### Added
 
+- Portfolio 404 page in the site's style (`views/not-found/`, text in `constants/not-found.ts`): header and footer, a large "404" with a floating pink zero, the message, Back to Home and View Projects buttons and the other header links, instead of the starter's plain text page.
 - Portfolio home page: header with side panel and hero (typewriter roles, portrait, background drawn in code). Content lives in `constants/profile.ts`; see `docs/portfolio.md`.
 - Portfolio services section: six numbered cards under a shared `SectionHeading`, which the next sections reuse.
 - Portfolio achievements section: years of experience and four numbers.
