@@ -5,7 +5,7 @@ export interface ProjectLink {
   href: string;
 }
 
-export type ProjectKind = 'mobile' | 'web';
+export type ProjectKind = 'mobile' | 'web' | 'design';
 
 export interface Project {
   /** The project page's address: `/work/<slug>`. Lowercase words joined by hyphens. */
@@ -46,74 +46,31 @@ const MOBILE_TECH = [
 ] as const;
 
 /**
- * A placeholder web project for the `/work` page, until the real details are in: the shared sample facts,
- * a "Sample Project" banner (`public/images/projects/sample-<slug>-banner.webp`) and a short write-up.
- */
-function sampleProject(sample: {
-  slug: string;
-  title: string;
-  category: string;
-  summary: string;
-  tech: readonly string[];
-  features: readonly string[];
-}): Project {
-  const banner = `/images/projects/sample-${sample.slug}-banner.webp`;
-
-  return {
-    slug: sample.slug,
-    kind: 'web',
-    featured: false,
-    title: sample.title,
-    category: sample.category,
-    summary: sample.summary,
-    banner: { light: banner, dark: banner },
-    facts: {
-      role: 'Frontend Developer',
-      client: 'Sample Project',
-      year: '2025',
-      duration: '—',
-      platforms: 'Web',
-    },
-    tech: sample.tech,
-    links: [],
-    story: [
-      { type: 'heading', text: 'Overview' },
-      {
-        type: 'paragraph',
-        text: `${sample.summary} This is a sample project that shows how the projects page looks; the real write-up comes soon.`,
-      },
-      { type: 'heading', text: 'Key Features' },
-      { type: 'list', items: sample.features },
-      { type: 'heading', text: 'Tech Stack' },
-      { type: 'paragraph', text: `Built with ${sample.tech.join(', ')}.` },
-    ],
-  };
-}
-
-/**
  * The "Projects" section and the project pages, in the order they are shown. The three Flutter apps are
  * client projects built at BlackDevs and live on Google Play; their write-ups follow the store listings.
- * ClassyShop is a full-stack web store with public code. The `featured` ones are on the home page; all of
- * them are on `/work`, under a tab for their `kind`.
+ * Glacial Rental is a client booking site built with Laravel and React, and ClassyShop a full-stack web store
+ * with public code. The `featured` ones are on the home page; all of them are on `/work`, under a tab for
+ * their `kind`. Vehicle Log is a mobile app design made in Figma, not a built app.
  */
 export const PROJECTS = {
   label: 'Latest Projects',
   title: 'Apps I Have Built',
   description:
-    'Client apps I built with Flutter for Android and iOS, live on Google Play, and a full-stack online store built with React.',
+    'Client apps I built with Flutter for Android and iOS, live on Google Play, and a rental booking website built with Laravel and React.',
   /** The top of the `/work` page. */
   page: {
     label: 'My Work',
     title: 'Projects I Have Built',
     description:
-      'Mobile apps for Android and iOS and websites for the web, from client projects at BlackDevs to my own builds.',
+      'Mobile apps for Android and iOS, websites and UI/UX designs, from client projects at BlackDevs to my own work.',
   },
-  /** The tabs of the `/work` page: every project, or only one kind. */
+  /** The tabs of the `/work` page: every project, or only one kind. `short` is shown below 640px, where the full labels don't fit. */
   tabs: [
-    { kind: 'all', label: 'All Projects' },
-    { kind: 'mobile', label: 'Mobile Apps' },
-    { kind: 'web', label: 'Web Apps' },
-  ] satisfies { kind: ProjectKind | 'all'; label: string }[],
+    { kind: 'all', label: 'All Projects', short: 'All' },
+    { kind: 'mobile', label: 'Mobile Apps', short: 'Mobile' },
+    { kind: 'web', label: 'Web Apps', short: 'Web' },
+    { kind: 'design', label: 'UI/UX Design', short: 'UI/UX' },
+  ] satisfies { kind: ProjectKind | 'all'; label: string; short: string }[],
   items: [
     {
       slug: 'crave',
@@ -124,8 +81,8 @@ export const PROJECTS = {
       summary:
         'A supportive app that helps people understand their cravings: log them in seconds, track the emotions and triggers behind them and get healthier alternatives in the moment.',
       banner: {
-        light: '/images/projects/crave-banner.webp',
-        dark: '/images/projects/crave-banner.webp',
+        light: '/images/projects/crave-banner-v2.webp',
+        dark: '/images/projects/crave-banner-v2.webp',
       },
       facts: {
         role: 'Flutter Developer',
@@ -201,7 +158,10 @@ export const PROJECTS = {
       category: 'Flutter · Time Tracking',
       summary:
         'A professional time-tracking app for employees and managers: clock in with one tap, log hours against projects and roles, review every timecard and request corrections in the app.',
-      banner: { light: '/images/projects/time-tracker-banner.webp', dark: '/images/projects/time-tracker-banner.webp' },
+      banner: {
+        light: '/images/projects/precise-clock-banner-v2.webp',
+        dark: '/images/projects/precise-clock-banner-v2.webp',
+      },
       facts: {
         role: 'Flutter Developer',
         client: 'Client Project',
@@ -274,7 +234,7 @@ export const PROJECTS = {
       category: 'Flutter · Citizen Services',
       summary:
         'Union Parishad services for citizens of Bangladesh on their phone: apply for certificates online, follow each application and use holding tax and trade licence services, all in Bangla.',
-      banner: { light: '/images/projects/amar-seba-banner.webp', dark: '/images/projects/amar-seba-banner.webp' },
+      banner: { light: '/images/projects/amar-seba-banner-v2.webp', dark: '/images/projects/amar-seba-banner-v2.webp' },
       facts: {
         role: 'Flutter Developer',
         client: 'Client Project',
@@ -333,14 +293,88 @@ export const PROJECTS = {
       ],
     },
     {
-      slug: 'classyshop',
+      slug: 'glacial-rental',
       kind: 'web',
       featured: true,
+      title: 'Glacial Rental: Refrigerated Trailers',
+      category: 'Laravel · Equipment Rental',
+      summary:
+        'A booking site for refrigerated trailers in Southern Ohio: customers check their address, pick dates and pay online, and admins run it all from one dashboard.',
+      banner: {
+        light: '/images/projects/glacial-rental-banner.webp',
+        dark: '/images/projects/glacial-rental-banner.webp',
+      },
+      facts: {
+        role: 'Web Developer',
+        client: 'Client Project',
+        year: '2025',
+        duration: '10 Days',
+        platforms: 'Web',
+      },
+      tech: ['Laravel', 'Inertia.js', 'React', 'TypeScript', 'MySQL', 'Stripe', 'SendGrid', 'Google Maps'],
+      links: [{ label: 'Live Site', href: 'https://glacialrental.potholedoctors.dev/' }],
+      story: [
+        { type: 'heading', text: 'Overview' },
+        {
+          type: 'paragraph',
+          text: 'Glacial Rental rents mobile refrigerated trailers across Southern Ohio, for catering and weddings, county fairs and festivals, and for restaurants or hospitals whose cold storage breaks down. The website takes a customer from “will you deliver to me?” to a paid booking, and gives the team one dashboard to run orders, invoices and the booking calendar. It was built in 10 days.',
+        },
+        { type: 'heading', text: 'The Problem' },
+        {
+          type: 'paragraph',
+          text: 'A trailer rental depends on three questions: can the trailer reach the customer, is it free on those dates, and what will it cost. Answering them by phone or email for every request is slow for the customer and for the business, and bookings, invoices and site content end up spread across different places.',
+        },
+        { type: 'heading', text: 'The Solution' },
+        {
+          type: 'paragraph',
+          text: 'The storefront answers all three on its own. Customers enter their address to check that it is inside the service area, pick dates and times, see tiered per-day pricing and pay with Stripe. Behind it, admins manage orders, invoices, a booking calendar, products and the site’s pages and blog from a single dashboard.',
+        },
+        { type: 'heading', text: 'Key Features' },
+        {
+          type: 'list',
+          items: [
+            'Service area check from the customer’s address with Google Maps.',
+            'Date and time selection for each rental.',
+            'Tiered per-day pricing shown before checkout.',
+            'Online payment with Stripe and emails through SendGrid.',
+            'Admin dashboard for orders, invoices, a booking calendar and products.',
+            'Pages and blog managed from the dashboard.',
+            'An SEO-friendly, mobile-first storefront.',
+          ],
+        },
+        { type: 'heading', text: 'Tech Stack & Architecture' },
+        {
+          type: 'paragraph',
+          text: 'The site is a modular monolith on Laravel with MySQL. Each module (orders, products, customers, pages, blog) has its own controllers, services and repositories, so a feature stays in one place. Inertia.js connects Laravel to a React and TypeScript interface without a separate API. Payments go through a gateway interface, so another provider can sit beside Stripe, SendGrid sends the emails and Google Maps handles addresses.',
+        },
+        { type: 'heading', text: 'Challenges' },
+        {
+          type: 'paragraph',
+          text: 'The whole site had to be ready in 10 days, from the booking flow to the admin dashboard. Splitting it into modules from the start made that possible: each part could be built and checked on its own, and the shared pieces, like the payment gateway interface, were written once and reused.',
+        },
+        { type: 'heading', text: 'Highlights' },
+        {
+          type: 'list',
+          items: [
+            'Live site for a real rental business.',
+            'From address check to paid booking without a phone call.',
+            'Built in 10 days on a modular structure that is easy to extend.',
+          ],
+        },
+      ],
+    },
+    {
+      slug: 'classyshop',
+      kind: 'web',
+      featured: false,
       title: 'ClassyShop: Online Store',
       category: 'MERN · E-Commerce',
       summary:
         'A full-stack online store with product categories, wishlist, cart, online payment, PDF invoices and an admin dashboard with sales charts.',
-      banner: { light: '/images/projects/classyshop-banner.webp', dark: '/images/projects/classyshop-banner.webp' },
+      banner: {
+        light: '/images/projects/classyshop-banner-v2.webp',
+        dark: '/images/projects/classyshop-banner-v2.webp',
+      },
       // TODO: check the year, duration and client with the user.
       facts: {
         role: 'Full-Stack Developer',
@@ -410,56 +444,78 @@ export const PROJECTS = {
         },
       ],
     },
-    // TODO: samples that show the `/work` page with more web projects. Replace them with real projects.
-    sampleProject({
-      slug: 'taskflow',
-      title: 'TaskFlow: Team Task Manager',
-      category: 'Next.js · Productivity',
+    {
+      slug: 'vehicle-log',
+      kind: 'design',
+      featured: false,
+      title: 'Vehicle Log: Mobile App Design',
+      category: 'Figma · UI/UX Design',
       summary:
-        'A task board where small teams plan work, move tasks from To Do to Done and see who is working on what.',
-      tech: ['Next.js', 'Tailwind CSS', 'TanStack Query', 'MongoDB'],
-      features: [
-        'Boards with To Do, In Progress and Done columns.',
-        'Tasks with owners, due dates and labels.',
-        'A dashboard of what each person is working on.',
+        'A mobile app design for car owners and rental businesses: track trips, rentals and expenses for every car and driver, with document reminders and clear profit reports.',
+      banner: {
+        light: '/images/projects/vehicle-log-banner.webp',
+        dark: '/images/projects/vehicle-log-banner.webp',
+      },
+      // TODO: check the year and client with the user, and add the Figma link (the user will send it).
+      facts: {
+        role: 'UI/UX Designer',
+        client: 'Personal Project',
+        year: '2026',
+        duration: '10 Days',
+        platforms: 'Mobile App',
+      },
+      tech: ['Figma', 'UI Design', 'UX Design', 'Mobile App Design'],
+      links: [],
+      story: [
+        { type: 'heading', text: 'Overview' },
+        {
+          type: 'paragraph',
+          text: 'Vehicle Log is a mobile app I designed in Figma for people who earn from their cars: owners who rent them out, take them on tours or use them themselves. It keeps trips, rentals, expenses, drivers and vehicle papers in one place and turns them into a clear answer to one question: is each car making money?',
+        },
+        { type: 'heading', text: 'The Problem' },
+        {
+          type: 'paragraph',
+          text: 'A small car rental business usually runs on memory, notebooks and scattered receipts. Fuel, driver salaries, repairs and tolls add up, rent days are counted by hand, and a fitness certificate, insurance or tax token can expire without anyone noticing. At the end of the month it is hard to tell which car earned and which one lost money.',
+        },
+        { type: 'heading', text: 'The Solution' },
+        {
+          type: 'paragraph',
+          text: 'The home screen opens with this month’s expenses, trips, distance and fuel, quick actions to start a trip or add an expense, a vehicle or a driver, and the reminders that need attention, each marked valid, expiring soon or expired. The reports screen shows net profit, income against expense week by week, profit or loss for every vehicle, where the money went and how each car was used.',
+        },
+        { type: 'heading', text: 'Key Features' },
+        {
+          type: 'list',
+          items: [
+            'An overview of the month: expenses, trips, distance and fuel.',
+            'Quick actions to start a trip or add an expense, a vehicle or a driver.',
+            'Reminders for fitness certificates, insurance and tax tokens, with clear status colours.',
+            'Profit and loss for every vehicle, with its number plate and rent days.',
+            'An expense breakdown by fuel, driver salary, maintenance, toll and parking.',
+            'A usage split between rent, tours and personal use, and an exportable report.',
+            'Home, Garage, Rentals, Reports and Settings in the bottom navigation.',
+          ],
+        },
+        { type: 'heading', text: 'Design Approach' },
+        {
+          type: 'paragraph',
+          text: 'The interface uses one strong orange for the main actions and summary cards on a calm white background, so the important numbers stand out first. Amounts are shown in Taka and number plates in the Bangladeshi format, because the app is made for local rental businesses. Cards, chips, list rows and the bottom navigation are shared components, so every screen feels part of the same app.',
+        },
+        { type: 'heading', text: 'Challenges' },
+        {
+          type: 'paragraph',
+          text: 'A report screen can easily become a wall of numbers. The design starts with a single headline figure, the net profit and its change from last month, and only then goes into charts, vehicles and expense details, so the owner gets the answer at a glance and the reasons when they scroll.',
+        },
+        { type: 'heading', text: 'Highlights' },
+        {
+          type: 'list',
+          items: [
+            'A complete mobile app designed in Figma, from home screen to reports.',
+            'Built for the real needs of small car rental businesses in Bangladesh.',
+            'Clear profit and loss for every vehicle at a glance.',
+          ],
+        },
       ],
-    }),
-    sampleProject({
-      slug: 'foodie',
-      title: 'Foodie: Restaurant Website',
-      category: 'React · Restaurant',
-      summary: 'A restaurant website with a menu by category, online table booking and food ordering.',
-      tech: ['React', 'Tailwind CSS', 'Firebase'],
-      features: [
-        'A menu grouped by category, with prices and photos.',
-        'Table booking with a date and time picker.',
-        'A cart and order form for takeaway.',
-      ],
-    }),
-    sampleProject({
-      slug: 'edulearn',
-      title: 'EduLearn: Online Courses',
-      category: 'MERN · Education',
-      summary: 'An online course platform where students enrol in courses, watch lessons and track their progress.',
-      tech: ['React', 'Express', 'MongoDB', 'JWT'],
-      features: [
-        'A course catalogue with search and categories.',
-        'Lessons with progress tracking for each student.',
-        'An instructor dashboard to add courses and lessons.',
-      ],
-    }),
-    sampleProject({
-      slug: 'travelnest',
-      title: 'TravelNest: Travel Agency',
-      category: 'Next.js · Travel',
-      summary: 'A travel agency website with tour packages, destination guides and a booking request form.',
-      tech: ['Next.js', 'Tailwind CSS'],
-      features: [
-        'Tour packages with prices, dates and itineraries.',
-        'Destination pages with photos and travel tips.',
-        'A booking request form that emails the agency.',
-      ],
-    }),
+    },
   ] satisfies Project[],
 } as const;
 

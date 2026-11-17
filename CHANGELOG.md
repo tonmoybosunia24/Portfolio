@@ -43,6 +43,10 @@ Notable changes to the starter kit. The format follows [Keep a Changelog](https:
 
 ### Changed
 
+- Portfolio banners for Crave, Precise Clock, Amar Seba and ClassyShop and the three blog covers are exported again from Figma without the old website address at the bottom. They have new names (`*-banner-v2.webp`; Precise Clock's is now `precise-clock-banner-v2.webp`) so the image cache does not serve the old ones.
+- Portfolio projects add Vehicle Log (`/work/vehicle-log`), a mobile app UI/UX design made in Figma, with its Figma banner. Projects have a third `kind`, `design`, and `/work` a fourth tab, "UI/UX Design"; below 640px the tabs show short labels (All, Mobile, Web, UI/UX) so all four fit on a phone.
+- Portfolio projects add Glacial Rental (`/work/glacial-rental`), a refrigerated trailer rental site built with Laravel, Inertia.js and React in 10 days, with its Figma banner and a link to the live site. It takes ClassyShop’s place on the home page; ClassyShop stays on `/work`.
+- Portfolio sample web projects (TaskFlow, Foodie, EduLearn, TravelNest) and their placeholder banners are removed; `/work` lists only the four real projects until more are added.
 - Portfolio contact form sends a styled HTML and plain-text email (`utils/contact-email.ts`) to your inbox with Nodemailer (Gmail) through a server action, instead of opening the visitor's email app. Needs `EMAIL_USER` and `EMAIL_PASSWORD`.
 - Portfolio theme switch: the new theme spreads out in a circle from the toggle button. Off for reduced motion.
 - Portfolio colours: the page uses GitHub's neutrals (dark `#0d1117` with `#161b22` panels, light white with `#f6f8fa` panels and `#1f2328` text). The highlight cards (years of experience, "Have an app idea?") turn soft pink with dark text in light mode instead of staying dark crimson. The accent token is now `primary` (was `pink-primary`), still `#ff014f`.

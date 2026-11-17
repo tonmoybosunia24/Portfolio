@@ -38,13 +38,13 @@ export const BLOG = {
   posts: [
     {
       slug: 'flutter-architecture-template',
-      title: 'My Flutter Architecture Template: Start Every App Production-Ready',
+      title: 'My Flutter Architecture Template: Start Every App',
       excerpt:
         'Why I built a feature-first Flutter starter on GetX, what it gives you out of the box and how to start your next app with it.',
       date: '2026-11-16',
       category: 'Flutter Template',
       image: {
-        src: '/images/blog/flutter-architecture-template-banner.webp',
+        src: '/images/blog/flutter-architecture-template-banner-v2.webp',
         alt: 'Banner: My Flutter Architecture Template, Start Every App Production-Ready, with four stacked blue layers',
       },
       links: [{ label: 'View on GitHub', href: 'https://github.com/tonmoybosunia24/flutter_template' }],
@@ -167,7 +167,7 @@ export const BLOG = {
       date: '2026-10-08',
       category: 'Publishing',
       image: {
-        src: '/images/blog/publishing-six-apps-banner.webp',
+        src: '/images/blog/publishing-six-apps-banner-v2.webp',
         alt: 'Banner: From Code to Store, What I Learned Publishing Six Apps, with a play icon linked to six coloured dots',
       },
       content: [
@@ -225,7 +225,7 @@ export const BLOG = {
       date: '2026-08-20',
       category: 'Performance',
       image: {
-        src: '/images/blog/flutter-performance-banner.webp',
+        src: '/images/blog/flutter-performance-banner-v2.webp',
         alt: 'Banner: 5 Ways to Make Your Flutter App Faster, with five rising bars numbered 1 to 5',
       },
       content: [
