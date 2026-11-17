@@ -126,7 +126,7 @@ export default function Header() {
         aria-hidden="true"
         onClick={close}
         className={cn(
-          'fixed inset-0 z-40 bg-black/60 backdrop-blur-sm transition-opacity duration-300',
+          'fixed inset-0 z-40 bg-black/40 backdrop-blur-xs transition-opacity duration-300',
           open ? 'opacity-100' : 'pointer-events-none opacity-0',
         )}
       />
