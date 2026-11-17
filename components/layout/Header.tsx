@@ -8,9 +8,11 @@ import { cn } from '@/lib/utils';
 
 import { CloseIcon, LocationIcon, MailIcon, MenuIcon, PhoneIcon } from '@/components/ui/icons';
 
-import { NAV_LINKS, SIDEBAR } from '@/constants/profile';
+import { NAV_LINKS } from '@/constants/navigation';
+import { SIDEBAR } from '@/constants/profile';
 
-import { Logo, roundIcon, SocialLinks } from './Brand';
+import Logo from './Logo';
+import SocialLinks from './SocialLinks';
 import ThemeToggle from './ThemeToggle';
 import { useActiveNav } from './use-active-nav';
 
@@ -129,7 +131,7 @@ export default function Header() {
         aria-hidden="true"
         onClick={close}
         className={cn(
-          'fixed inset-0 z-40 bg-black/80 transition-opacity duration-300',
+          'fixed inset-0 z-40 bg-black/60 backdrop-blur-sm transition-opacity duration-300',
           open ? 'opacity-100' : 'pointer-events-none opacity-0',
         )}
       />
@@ -146,7 +148,13 @@ export default function Header() {
       >
         <div className="flex items-center justify-between">
           <Logo onClick={close} />
-          <button ref={closeButton} type="button" aria-label="Close menu" onClick={close} className={roundIcon}>
+          <button
+            ref={closeButton}
+            type="button"
+            aria-label="Close menu"
+            onClick={close}
+            className="round-icon size-10"
+          >
             <CloseIcon className="size-4.5" />
           </button>
         </div>
@@ -173,8 +181,8 @@ export default function Header() {
 
         <div className="hidden flex-col gap-5 xl:flex">
           <Image
-            src="/images/sidebar-banner.png"
-            alt=""
+            src="/images/sidebar-banner-v2.webp"
+            alt="Md Tonmoy Bosunia at his desk at BlackDevs"
             width={340}
             height={196}
             sizes="340px"

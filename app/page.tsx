@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 import { PROFILE } from '@/constants/profile';
-import Home from '@/views/home/Home';
+import Home from '@/views/home';
 
 export const metadata: Metadata = {
   title: { absolute: `${PROFILE.fullName} - ${PROFILE.role}` },

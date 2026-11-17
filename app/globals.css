@@ -123,6 +123,23 @@ body {
   -webkit-text-stroke: 1px var(--foreground);
 }
 
+/* A round icon button (menu, theme, social links): a faint circle that turns pink on hover. Size it with `size-*`. */
+@utility round-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background-color: var(--color-white-overlay);
+  transition-property: color, background-color;
+  transition-duration: 300ms;
+  transition-timing-function: var(--default-transition-timing-function);
+
+  @variant hover {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+  }
+}
+
 /*
  * A pink glow on the card's border at the corner nearest the pointer: solid at that corner, then fading
  * along its two edges all the way to the next corners, where it ends, so only one corner lights up.

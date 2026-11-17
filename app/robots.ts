@@ -1,17 +1,15 @@
 import type { MetadataRoute } from 'next';
 
-import { PROTECTED_ROUTES } from '@/constants/routes';
-
-const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? 'http://localhost:3000';
-
-/** Served at /robots.txt. Keeps crawlers out of the API and pages behind login. */
+/**
+ * Served at /robots.txt. Asks every crawler to stay off the whole site, so search engines don't index it.
+ * To allow indexing again, allow `/` (keeping `/api/` and the pages behind login disallowed) and list the
+ * sitemap.
+ */
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: {
       userAgent: '*',
-      allow: '/',
-      disallow: ['/api/', ...PROTECTED_ROUTES],
+      disallow: '/',
     },
-    sitemap: new URL('/sitemap.xml', appUrl).href,
   };
 }

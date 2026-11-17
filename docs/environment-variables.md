@@ -8,14 +8,16 @@ cp .env.example .env.local
 
 ## Variables
 
-| Variable                   | Where it's read  | Required           | Purpose                                                                                         |
-| -------------------------- | ---------------- | ------------------ | ----------------------------------------------------------------------------------------------- |
-| `NEXT_PUBLIC_APP_NAME`     | Server + browser | No                 | App name in the page title (`Settings \| <name>`). Defaults to "Next.js Starter Kit"            |
-| `NEXT_PUBLIC_APP_URL`      | Server + browser | In production      | Public URL of the app. Used as `metadataBase` for absolute Open Graph and canonical URLs        |
-| `API_URL`                  | Server only      | Yes                | Backend base URL, e.g. `http://localhost:8000/api`. Requests fail with a clear error without it |
-| `ENCRYPTION_KEY`           | Server only      | If encryption used | 32-byte key for `utils/encryption.server.ts`. See [encryption.md](encryption.md)                |
-| `ENCRYPTION_KEY_PREVIOUS`  | Server only      | No                 | The old key during a key rotation                                                               |
-| `TRUSTED_CLIENT_IP_HEADER` | Server only      | No                 | Header your proxy sets with the visitor's IP. See [security.md](security.md)                    |
+| Variable                   | Where it's read  | Required             | Purpose                                                                                                 |
+| -------------------------- | ---------------- | -------------------- | ------------------------------------------------------------------------------------------------------- |
+| `NEXT_PUBLIC_APP_NAME`     | Server + browser | No                   | App name in the page title (`Settings \| <name>`). Defaults to "Next.js Starter Kit"                    |
+| `NEXT_PUBLIC_APP_URL`      | Server + browser | In production        | Public URL of the app. Used as `metadataBase` for absolute Open Graph and canonical URLs                |
+| `API_URL`                  | Server only      | Yes                  | Backend base URL, e.g. `http://localhost:8000/api`. Requests fail with a clear error without it         |
+| `ENCRYPTION_KEY`           | Server only      | If encryption used   | 32-byte key for `utils/encryption.server.ts`. See [encryption.md](encryption.md)                        |
+| `ENCRYPTION_KEY_PREVIOUS`  | Server only      | No                   | The old key during a key rotation                                                                       |
+| `TRUSTED_CLIENT_IP_HEADER` | Server only      | No                   | Header your proxy sets with the visitor's IP. See [security.md](security.md)                            |
+| `EMAIL_USER`               | Server only      | For the contact form | Gmail address the contact form sends from and to. Set together with `EMAIL_PASSWORD`                    |
+| `EMAIL_PASSWORD`           | Server only      | For the contact form | A Gmail app password for `EMAIL_USER` (not the account password). Without both, the form shows an error |
 
 ## Startup check
 

@@ -4,7 +4,8 @@ import { type FormEvent, useState } from 'react';
 
 import { MailIcon } from '@/components/ui/icons';
 
-import { CONTACT, FOOTER } from '@/constants/profile';
+import { CONTACT } from '@/constants/contact';
+import { FOOTER } from '@/constants/navigation';
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 

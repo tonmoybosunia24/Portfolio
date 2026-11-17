@@ -1,7 +1,7 @@
 import ArticleLayout from '@/components/article/ArticleLayout';
 import SiteShell from '@/components/layout/SiteShell';
 
-import type { BlogPost } from '@/constants/blog';
+import type { BlogPost } from '@/types';
 
 import MorePostsSection from './sections/MorePostsSection';
 import PostHeroSection from './sections/PostHeroSection';

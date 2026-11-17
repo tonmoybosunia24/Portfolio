@@ -1,6 +1,6 @@
 import SiteShell from '@/components/layout/SiteShell';
 
-import type { Project } from '@/constants/projects';
+import type { Project } from '@/types';
 
 import ProjectFactsSection from './sections/ProjectFactsSection';
 import ProjectHeroSection from './sections/ProjectHeroSection';

@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { formatDate } from '@/utils/format-date';
 import { readingMinutes } from '@/utils/reading-time';
 
-import type { BlogPost } from '@/constants/blog';
+import type { BlogPost } from '@/types';
 
 import BlogCover from './BlogCover';
 import { ArrowRightIcon } from './icons';
@@ -32,7 +32,6 @@ export default function BlogCard({ post }: { post: BlogPost }) {
         </Link>
       </h3>
       <p className="mt-3 line-clamp-3 font-rubik text-[15px] leading-6.5 text-gray-light">{post.excerpt}</p>
-
       <span
         aria-hidden="true"
         className="mt-auto inline-flex items-center gap-2 pt-5 font-rubik text-[15px] font-medium text-primary"

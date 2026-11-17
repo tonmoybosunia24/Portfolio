@@ -1,35 +1,9 @@
-import type { ContentBlock } from '@/types';
+import type { BlogPost } from '@/types';
 
-import type { ProjectLink } from './projects';
-
-export interface BlogPost {
-  /** The post's address: `/blog/<slug>`. Lowercase words joined by hyphens. */
-  slug: string;
-  title: string;
-  /** One or two sentences shown on the post's card and below its title. */
-  excerpt: string;
-  /** The day it was published, as `YYYY-MM-DD`. Posts are listed newest first. */
-  date: string;
-  category: string;
-  /**
-   * The cover: a 4:3 webp (1600×1200) in `public/images/blog/`. For a photo from Unsplash (free to use
-   * under the Unsplash License), `credit` names the photographer and links to them; leave it out for your
-   * own images.
-   */
-  image: { src: string; alt: string; credit?: { name: string; href: string } };
-  /** Buttons below the title, such as the repository. The first one is highlighted. */
-  links?: readonly ProjectLink[];
-  /** The post itself, in the same blocks as a project's write-up. */
-  content: readonly ContentBlock[];
-}
-
-/** Where the template post's screenshots are. */
+/** The template post's screenshots. */
 const SCREENS = '/images/blog/flutter-architecture-template';
 
-/**
- * The "Latest Blogs" section and the blog pages: the Flutter template post and two posts written from
- * the client apps (publishing on Google Play, Flutter performance with GetX).
- */
+/** All posts. The home page shows the newest three. */
 export const BLOG = {
   label: 'Latest Blogs',
   title: 'Notes From My Work',
@@ -38,13 +12,13 @@ export const BLOG = {
   posts: [
     {
       slug: 'flutter-architecture-template',
-      title: 'My Flutter Architecture Template: Start Every App Production-Ready',
+      title: 'My Flutter Architecture Template: Start Every App',
       excerpt:
         'Why I built a feature-first Flutter starter on GetX, what it gives you out of the box and how to start your next app with it.',
       date: '2026-11-16',
       category: 'Flutter Template',
       image: {
-        src: '/images/blog/flutter-architecture-template-banner.webp',
+        src: '/images/blog/flutter-architecture-template-banner-v2.webp',
         alt: 'Banner: My Flutter Architecture Template, Start Every App Production-Ready, with four stacked blue layers',
       },
       links: [{ label: 'View on GitHub', href: 'https://github.com/tonmoybosunia24/flutter_template' }],
@@ -167,7 +141,7 @@ export const BLOG = {
       date: '2026-10-08',
       category: 'Publishing',
       image: {
-        src: '/images/blog/publishing-six-apps-banner.webp',
+        src: '/images/blog/publishing-six-apps-banner-v2.webp',
         alt: 'Banner: From Code to Store, What I Learned Publishing Six Apps, with a play icon linked to six coloured dots',
       },
       content: [
@@ -225,7 +199,7 @@ export const BLOG = {
       date: '2026-08-20',
       category: 'Performance',
       image: {
-        src: '/images/blog/flutter-performance-banner.webp',
+        src: '/images/blog/flutter-performance-banner-v2.webp',
         alt: 'Banner: 5 Ways to Make Your Flutter App Faster, with five rising bars numbered 1 to 5',
       },
       content: [
@@ -277,8 +251,6 @@ export const BLOG = {
   ] satisfies BlogPost[],
 } as const;
 
-/** All posts, newest first. */
 export const sortedPosts = (): BlogPost[] => [...BLOG.posts].sort((a, b) => b.date.localeCompare(a.date));
 
-/** The post with this slug, or undefined. */
 export const findPost = (slug: string): BlogPost | undefined => BLOG.posts.find(post => post.slug === slug);

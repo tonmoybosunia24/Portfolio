@@ -4,7 +4,8 @@ import { type KeyboardEvent, useLayoutEffect, useRef, useState } from 'react';
 
 import ProjectGrid from '@/components/ui/ProjectGrid';
 
-import { type Project, PROJECTS } from '@/constants/projects';
+import { PROJECTS } from '@/constants/projects';
+import type { Project } from '@/types';
 
 type TabKind = (typeof PROJECTS.tabs)[number]['kind'];
 
@@ -12,7 +13,8 @@ const count = (kind: TabKind) =>
   kind === 'all' ? PROJECTS.items.length : PROJECTS.items.filter(project => project.kind === kind).length;
 
 /**
- * Tabs above the project cards as plain text: All Projects, Mobile Apps and Web Apps, on the left (in line
+ * Tabs above the project cards as plain text: All Projects, Mobile Apps, Web Apps and UI/UX Design (short
+ * labels below 640px), on the left (in line
  * with the title above and the cards below, the first label starting at the edge). A pink bar slides
  * under the selected tab, with no line under the others. Until the page is
  * interactive the selected tab draws its own bar, so it never shows without one. Counts follow the labels
@@ -83,7 +85,7 @@ export default function ProjectTabs() {
           aria-label="Filter projects"
           className="group/tabs relative flex gap-6 sm:gap-8 md:gap-10"
         >
-          {PROJECTS.tabs.map(({ kind, label }, index) => {
+          {PROJECTS.tabs.map(({ kind, label, short }, index) => {
             const selected = kind === active;
 
             return (
@@ -106,7 +108,8 @@ export default function ProjectTabs() {
                     : 'text-gray-light hover:text-foreground'
                 }`}
               >
-                {label}
+                <span className="sm:hidden">{short}</span>
+                <span className="hidden sm:inline">{label}</span>
                 <span
                   className={`hidden text-xs font-semibold transition-colors duration-300 sm:inline md:text-sm ${
                     selected ? 'text-primary' : 'text-gray-light/70'

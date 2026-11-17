@@ -8,7 +8,7 @@ import ProjectTabs from './components/ProjectTabs';
 
 const TRAIL = [{ label: 'Home', href: '/' }];
 
-/** Every project: a short introduction at the top, then tabs for all, mobile and web projects and the cards. */
+/** Every project: a short introduction at the top, then tabs for all, mobile, web and design projects and the cards. */
 export default function Work() {
   return (
     <SiteShell>

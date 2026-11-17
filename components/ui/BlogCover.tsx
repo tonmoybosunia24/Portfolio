@@ -2,13 +2,11 @@ import Image from 'next/image';
 
 import { cn } from '@/lib/utils';
 
-import type { BlogPost } from '@/constants/blog';
+import type { BlogPost } from '@/types';
 
 interface BlogCoverProps {
   post: BlogPost;
-  /** The `sizes` of the photo: how wide it is shown at each screen width. */
   sizes: string;
-  /** Load it first, for a cover at the top of the page. */
   preload?: boolean;
   className?: string;
 }

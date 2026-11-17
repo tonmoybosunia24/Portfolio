@@ -3,11 +3,7 @@
 import { type MouseEvent, useEffect, useState } from 'react';
 import { flushSync } from 'react-dom';
 
-import { cn } from '@/lib/utils';
-
 import { MoonIcon, SunIcon } from '@/components/ui/icons';
-
-import { roundIcon } from './Brand';
 
 type Theme = 'dark' | 'light';
 
@@ -76,7 +72,7 @@ export default function ThemeToggle() {
       type="button"
       onClick={toggle}
       aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
-      className={cn(roundIcon, 'size-12')}
+      className="round-icon size-12"
     >
       {isDark ? <SunIcon className="size-5.25" /> : <MoonIcon className="size-5.25" />}
     </button>

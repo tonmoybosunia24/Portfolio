@@ -2,7 +2,7 @@ import { revealDelay } from '@/lib/reveal';
 
 import { FactIconSvg } from '@/components/ui/icons';
 
-import type { Project } from '@/constants/projects';
+import type { Project } from '@/types';
 
 const FACT_LABELS: Record<keyof Project['facts'], string> = {
   role: 'My Role',

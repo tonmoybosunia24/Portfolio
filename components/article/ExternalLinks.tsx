@@ -2,7 +2,7 @@ import { cn } from '@/lib/utils';
 
 import { ArrowUpRightIcon } from '@/components/ui/icons';
 
-import type { ProjectLink } from '@/constants/projects';
+import type { ProjectLink } from '@/types';
 
 /** The first link: pink, turning into an outline on hover, like the home page's main button. */
 const PRIMARY_LINK =

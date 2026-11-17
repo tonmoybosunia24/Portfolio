@@ -1,7 +1,8 @@
 import BlogGrid from '@/components/ui/BlogGrid';
 import SectionHeading from '@/components/ui/SectionHeading';
 
-import { type BlogPost, sortedPosts } from '@/constants/blog';
+import { sortedPosts } from '@/constants/blog';
+import type { BlogPost } from '@/types';
 
 /** How many other posts follow the article. */
 const MORE = 3;

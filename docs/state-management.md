@@ -86,4 +86,4 @@ Only client components can use the store.
 
    `RootState` picks it up automatically.
 
-3. Test the reducer directly and the store wiring with `makeStore()`. See `lib/features/pageTitle/pageTitleSlice.test.ts`. To test a component that uses the store, wrap it in `<StoreProvider>` (see `lib/StoreProvider.test.tsx`).
+3. Test the reducer directly and the store wiring with `makeStore()`. See `lib/features/pageTitle/pageTitleSlice.test.ts`.

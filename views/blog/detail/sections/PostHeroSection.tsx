@@ -8,8 +8,8 @@ import ExternalLinks from '@/components/article/ExternalLinks';
 import PageHero from '@/components/layout/PageHero';
 import BlogCover from '@/components/ui/BlogCover';
 
-import type { BlogPost } from '@/constants/blog';
 import { PROFILE } from '@/constants/profile';
+import type { BlogPost } from '@/types';
 
 const COVER_SIZES = '(min-width: 1400px) 620px, (min-width: 992px) 46vw, (min-width: 576px) 540px, 100vw';
 

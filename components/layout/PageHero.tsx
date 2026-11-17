@@ -3,9 +3,7 @@ import type { ReactNode } from 'react';
 import { cn } from '@/lib/utils';
 
 interface PageHeroProps {
-  /** The id of the page's `h1`, which names the section. */
   labelledBy: string;
-  /** Classes for the inner `section` container, which holds the content. */
   className?: string;
   children: ReactNode;
 }

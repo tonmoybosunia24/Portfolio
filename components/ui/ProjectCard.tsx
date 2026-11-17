@@ -3,13 +3,12 @@ import Link from 'next/link';
 import { ArrowUpRightIcon } from '@/components/ui/icons';
 import ProjectBanner from '@/components/ui/ProjectBanner';
 
-import type { Project } from '@/constants/projects';
+import type { Project } from '@/types';
 
 const BANNER_SIZES = '(min-width: 1400px) 600px, (min-width: 768px) 50vw, 100vw';
 
 interface ProjectCardProps {
   project: Project;
-  /** The title's heading level: `h3` below a section heading, `h2` directly below the page title. */
   heading?: 'h2' | 'h3';
 }
 
@@ -39,7 +38,7 @@ export default function ProjectCard({ project, heading: Heading = 'h3' }: Projec
           aria-hidden="true"
           className="flex size-11 shrink-0 items-center justify-center rounded-md border border-foreground/15 bg-background transition-colors duration-300 group-hover:border-primary group-hover:bg-primary group-hover:text-white md:size-12"
         >
-          <ArrowUpRightIcon className="size-4.5" />
+          <ArrowUpRightIcon className="size-5.5 md:size-6" />
         </span>
       </div>
     </>
