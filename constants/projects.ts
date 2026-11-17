@@ -17,7 +17,7 @@ export const PROJECTS = {
   label: 'Latest Projects',
   title: 'Apps I Have Built',
   description:
-    'Client apps I built with Flutter for Android and iOS, live on Google Play, and a rental booking website built with Laravel and React.',
+    'Client apps I built with Flutter for Android and iOS, live on Google Play and the App Store, and a rental booking website built with Laravel and React.',
   page: {
     label: 'My Work',
     title: 'Projects I Have Built',
@@ -51,12 +51,15 @@ export const PROJECTS = {
         platforms: 'Android & iOS',
       },
       tech: MOBILE_TECH,
-      links: [{ label: 'Google Play', href: 'https://play.google.com/store/apps/details?id=live.crave' }],
+      links: [
+        { label: 'Google Play', href: 'https://play.google.com/store/apps/details?id=live.crave' },
+        { label: 'App Store', href: 'https://apps.apple.com/us/app/cravetheapp/id6756185625' },
+      ],
       story: [
         { type: 'heading', text: 'Overview' },
         {
           type: 'paragraph',
-          text: 'Crave (CraveTheApp on Google Play) helps people take control of their cravings. When an urge shows up, the user logs what they crave, when, where and how strongly, notes how they feel, and gets a healthier alternative to ride it out. Over time the app turns those logs into patterns and insights, so the user understands what sets their cravings off.',
+          text: 'Crave (CraveTheApp on Google Play and the App Store) helps people take control of their cravings. When an urge shows up, the user logs what they crave, when, where and how strongly, notes how they feel, and gets a healthier alternative to ride it out. Over time the app turns those logs into patterns and insights, so the user understands what sets their cravings off.',
         },
         {
           type: 'paragraph',
@@ -102,7 +105,7 @@ export const PROJECTS = {
         {
           type: 'list',
           items: [
-            'Live on Google Play for a real client.',
+            'Live on Google Play and the App Store for a real client.',
             'Turns a difficult moment into useful data and a healthier choice.',
             'Grounded in the clinical experience of its physician founder.',
           ],
@@ -131,6 +134,7 @@ export const PROJECTS = {
       tech: [...MOBILE_TECH, 'WebSocket'],
       links: [
         { label: 'Google Play', href: 'https://play.google.com/store/apps/details?id=com.apexmgmt.preciseclock' },
+        { label: 'App Store', href: 'https://apps.apple.com/us/app/precise-clock/id6763989596' },
       ],
       story: [
         { type: 'heading', text: 'Overview' },
@@ -178,7 +182,7 @@ export const PROJECTS = {
         {
           type: 'list',
           items: [
-            'Live on Google Play for a real client.',
+            'Live on Google Play and the App Store for a real client.',
             'Clocking in takes a single tap from the first screen.',
             'Real-time updates over WebSocket keep hours accurate everywhere.',
           ],
