@@ -33,12 +33,12 @@ test('responses carry the security headers', async ({ request }) => {
   expect(headers['x-powered-by']).toBeUndefined();
 });
 
-test('robots.txt keeps crawlers out of the API and protected pages', async ({ request }) => {
+// The site is not indexed yet (app/robots.ts). When it goes public, allow `/` there and update this test.
+test('robots.txt keeps every crawler off the whole site', async ({ request }) => {
   const body = await (await request.get('/robots.txt')).text();
 
-  expect(body).toContain('Disallow: /api/');
-  expect(body).toContain('Disallow: /dashboard');
-  expect(body).toMatch(/Sitemap: .*\/sitemap\.xml/);
+  expect(body).toContain('User-Agent: *');
+  expect(body).toMatch(/^Disallow: \/$/m);
 });
 
 test('the sitemap and social preview image are served', async ({ request }) => {

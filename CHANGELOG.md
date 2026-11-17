@@ -104,6 +104,7 @@ Notable changes to the starter kit. The format follows [Keep a Changelog](https:
 
 ### Fixed
 
+- E2E tests that failed in CI: the robots.txt test now expects the whole site to be disallowed (as `app/robots.ts` has done since indexing was turned off), and the two client-side token refresh tests click a new Reports link on `/dashboard` instead of a Dashboard link the portfolio home page no longer has.
 - API slugs can no longer escape `API_URL` (`/../admin`, `@other-host`).
 - Post-login redirects only go to paths on this site.
 - The unused `revalidate` server action, which let anyone clear any cache tag, is removed.

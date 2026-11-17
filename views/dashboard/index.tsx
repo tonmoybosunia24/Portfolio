@@ -1,6 +1,9 @@
+import Link from 'next/link';
+
 /**
  * Example page behind login: `/dashboard` is in PROTECTED_ROUTES (constants/routes.ts), so proxy.ts
- * sends logged-out users to /login first. Replace it with your app.
+ * sends logged-out users to /login first. Replace it with your app. The Reports link is a client-side
+ * navigation, which the e2e tests use to check the token refresh on `<Link>` clicks.
  */
 export default function Dashboard() {
   return (
@@ -14,6 +17,9 @@ export default function Dashboard() {
         </form>
       </header>
       <p className="text-zinc-600 dark:text-zinc-400">You are logged in. Build your app from here.</p>
+      <Link href="/dashboard?tab=reports" className="font-medium underline underline-offset-4">
+        Reports
+      </Link>
     </main>
   );
 }
