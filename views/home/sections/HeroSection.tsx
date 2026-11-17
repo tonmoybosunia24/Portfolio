@@ -13,12 +13,7 @@ const [backTitle, frontTitle] = PROFILE.titles;
 /** Greeting with a typewriter role on the left, the portrait under two light beams on the right. */
 export default function HeroSection() {
   return (
-    <section
-      id="home"
-      data-page-hero
-      aria-labelledby="hero-title"
-      className="relative isolate overflow-hidden bg-(--hero-bg)"
-    >
+    <section id="home" aria-labelledby="hero-title" className="relative isolate overflow-hidden bg-(--hero-bg)">
       {/* Hexagon lines: around the top on phones, on the left from laptops, fading out at the edges. */}
       <HexPattern className="absolute inset-y-0 left-0 -z-10 h-full w-full text-primary opacity-[0.22] mask-[radial-gradient(ellipse_100%_70%_at_50%_30%,black,transparent)] lg:w-3/4 lg:opacity-[0.14] lg:mask-[radial-gradient(ellipse_70%_60%_at_15%_45%,black,transparent)]" />
       {/* The whole bottom (background and photo) fades into the page below. The text column sits above it. */}

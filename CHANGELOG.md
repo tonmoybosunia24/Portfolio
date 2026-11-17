@@ -43,6 +43,7 @@ Notable changes to the starter kit. The format follows [Keep a Changelog](https:
 
 ### Changed
 
+- Portfolio header stays fixed at the top from the start, like most sites: see-through at the top of the page, then a blurred background and border fade in after 50px of scrolling. Before, it only appeared once the whole hero had scrolled away, and jumped in. `data-page-hero` is no longer needed and is removed.
 - `/login` and `/dashboard` render a view like every other page (`views/login/index.tsx` with the form in `views/login/components/`, `views/dashboard/index.tsx`), and `npm run make:module` now creates `views/<name>/index.tsx` instead of `views/<name>/<Name>.tsx`.
 - One component per file, as AGENTS.md asks: `components/layout/Brand.tsx` is split into `Logo.tsx` and `SocialLinks.tsx`, and the shared round button classes became a `round-icon` utility in `app/globals.css`; `LightBeams` and `SkillChip` moved out of their sections into `views/home/components/`; the login form's `Field` into `views/login/components/`. Markup is unchanged.
 - Portfolio types moved out of `constants/` into `types/` (`project.ts`: `Project`, `ProjectKind`, `ProjectLink`; `blog.ts`: `BlogPost`; `icons.ts`: `SocialName`, `ServiceIcon`, `SkillIconName`), imported from `@/types`. The long comments in `constants/projects.ts` and `constants/blog.ts` are cut to one line each.
