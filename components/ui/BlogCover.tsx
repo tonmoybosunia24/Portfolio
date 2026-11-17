@@ -14,13 +14,13 @@ interface BlogCoverProps {
 }
 
 /**
- * A post's cover image at 16:9, with the category at the top left on a dark glassy pill and a soft
- * shade at the top so the pill stays readable on light photos. It zooms in slightly when a parent `group`
- * is hovered.
+ * A post's cover image at 4:3, like the project banners, with the category at the top left on a dark
+ * glassy pill and a soft shade at the top so the pill stays readable on light photos. It zooms in
+ * slightly when a parent `group` is hovered.
  */
 export default function BlogCover({ post, sizes, preload = false, className }: BlogCoverProps) {
   return (
-    <div className={cn('relative aspect-video overflow-hidden rounded-2xl bg-black-soft', className)}>
+    <div className={cn('relative aspect-4/3 overflow-hidden rounded-2xl bg-black-soft', className)}>
       <Image
         src={post.image.src}
         alt={post.image.alt}

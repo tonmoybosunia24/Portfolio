@@ -36,7 +36,7 @@ export function buildMailto(values: Record<Field, string>) {
 }
 
 const fieldClass =
-  'w-full rounded-xl border border-foreground/10 bg-transparent px-5 font-rubik text-base text-foreground transition-colors outline-none placeholder:text-gray-light/70 hover:border-foreground/20 focus:border-pink-primary aria-invalid:border-pink-primary';
+  'w-full rounded-xl border border-foreground/10 bg-transparent px-5 font-rubik text-base text-foreground transition-colors outline-none placeholder:text-gray-light/70 hover:border-foreground/20 focus:border-primary aria-invalid:border-primary';
 
 const FIELDS: { name: Field; label: string; type: string; autoComplete: string; wide?: boolean }[] = [
   { name: 'name', label: 'Your Name', type: 'text', autoComplete: 'name' },
@@ -73,7 +73,7 @@ export default function ContactForm() {
 
   const errorFor = (field: Field) =>
     errors[field] ? (
-      <p id={`contact-${field}-error`} className="mt-1.5 font-rubik text-sm text-pink-primary">
+      <p id={`contact-${field}-error`} className="mt-1.5 font-rubik text-sm text-primary">
         {errors[field]}
       </p>
     ) : null;
@@ -117,7 +117,7 @@ export default function ContactForm() {
 
       <button
         type="submit"
-        className="group mt-2 flex h-13 items-center justify-center gap-2 rounded-full border-2 border-pink-primary bg-pink-primary font-rubik text-base font-medium tracking-[0.5px] text-white transition-colors duration-300 hover:bg-transparent hover:text-pink-primary md:col-span-2 md:h-14 md:w-fit md:justify-self-start md:px-7.5"
+        className="group mt-2 flex h-13 items-center justify-center gap-2 rounded-full border-2 border-primary bg-primary font-rubik text-base font-medium tracking-[0.5px] text-white transition-colors duration-300 hover:bg-transparent hover:text-primary md:col-span-2 md:h-14 md:w-fit md:justify-self-start md:px-7.5"
       >
         {CONTACT.submit}
         <ArrowRightIcon className="size-4 transition-transform group-hover:translate-x-1" />

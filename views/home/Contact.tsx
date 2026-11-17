@@ -42,7 +42,7 @@ export default function Contact() {
                       {href ? (
                         <a
                           href={href}
-                          className="mt-0.5 block font-rubik text-[15px] leading-6 wrap-break-word text-foreground transition-colors hover:text-pink-primary"
+                          className="mt-0.5 block font-rubik text-[15px] leading-6 wrap-break-word text-foreground transition-colors hover:text-primary"
                         >
                           {value}
                         </a>

@@ -22,10 +22,10 @@ export default function BlogCard({ post }: { post: BlogPost }) {
 
       <p className="mt-5 flex items-center gap-2 font-rubik text-sm leading-5 text-gray-light">
         <time dateTime={post.date}>{formatDate(post.date)}</time>
-        <span aria-hidden="true" className="size-1 rounded-full bg-pink-primary" />
+        <span aria-hidden="true" className="size-1 rounded-full bg-primary" />
         {readingMinutes(post.content)} min read
       </p>
-      <h3 className="mt-2.5 text-[22px] leading-7.5 font-bold transition-colors duration-300 group-hover:text-pink-primary md:text-2xl md:leading-8">
+      <h3 className="mt-2.5 text-[22px] leading-7.5 font-bold transition-colors duration-300 group-hover:text-primary md:text-2xl md:leading-8">
         {/* Stretched over the whole card, so clicking anywhere opens the post. */}
         <Link href={`/blog/${post.slug}`} className="after:absolute after:inset-0 after:rounded-[20px]">
           {post.title}
@@ -35,7 +35,7 @@ export default function BlogCard({ post }: { post: BlogPost }) {
 
       <span
         aria-hidden="true"
-        className="mt-auto inline-flex items-center gap-2 pt-5 font-rubik text-[15px] font-medium text-pink-primary"
+        className="mt-auto inline-flex items-center gap-2 pt-5 font-rubik text-[15px] font-medium text-primary"
       >
         Read Article
         <ArrowRightIcon className="size-4 transition-transform duration-300 group-hover:translate-x-1" />

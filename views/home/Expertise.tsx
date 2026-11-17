@@ -40,7 +40,7 @@ export default function Expertise() {
                     </div>
                     <div aria-hidden="true" className="h-1.5 overflow-hidden rounded-full bg-dark">
                       <div
-                        className="reveal-grow h-full origin-left rounded-full bg-pink-primary"
+                        className="reveal-grow h-full origin-left rounded-full bg-primary"
                         // Each bar starts a little after the one above it.
                         style={{ width: `${level}%`, animationDelay: `${index * 120}ms` }}
                       />

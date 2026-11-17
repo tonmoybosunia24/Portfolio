@@ -16,9 +16,9 @@ export default function TableOfContents({ headings }: { headings: readonly strin
           <li key={heading} className="border-b border-line last:border-b-0">
             <a
               href={`#${slugify(heading)}`}
-              className="flex gap-3 py-2.5 font-rubik text-[15px] leading-6 text-gray-light transition-colors hover:text-pink-primary"
+              className="flex gap-3 py-2.5 font-rubik text-[15px] leading-6 text-gray-light transition-colors hover:text-primary"
             >
-              <span aria-hidden="true" className="w-5 shrink-0 font-medium text-pink-primary/70">
+              <span aria-hidden="true" className="w-5 shrink-0 font-medium text-primary/70">
                 {String(index + 1).padStart(2, '0')}
               </span>
               {heading}

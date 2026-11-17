@@ -17,7 +17,7 @@ export default function StoryBlock({ block }: { block: ContentBlock }) {
           id={slugify(block.text)}
           className="reveal mt-10 flex scroll-mt-28 items-center gap-3 text-[26px] leading-tight font-bold first:mt-0 md:mt-12 md:text-[32px]"
         >
-          <span aria-hidden="true" className="h-0.5 w-6 shrink-0 rounded-full bg-pink-primary md:w-8" />
+          <span aria-hidden="true" className="h-0.5 w-6 shrink-0 rounded-full bg-primary md:w-8" />
           {block.text}
         </h2>
       );
@@ -32,7 +32,7 @@ export default function StoryBlock({ block }: { block: ContentBlock }) {
         <ul className="mt-5 flex flex-col gap-3 font-rubik text-base leading-7 text-gray-light md:text-[17px]">
           {block.items.map(item => (
             <li key={item} className="flex gap-3">
-              <span aria-hidden="true" className="mt-3 size-1.5 shrink-0 rounded-full bg-pink-primary" />
+              <span aria-hidden="true" className="mt-3 size-1.5 shrink-0 rounded-full bg-primary" />
               {item}
             </li>
           ))}
@@ -40,7 +40,7 @@ export default function StoryBlock({ block }: { block: ContentBlock }) {
       );
     case 'quote':
       return (
-        <blockquote className="reveal mt-8 rounded-r-[20px] border-l-4 border-pink-primary bg-dark px-6 py-5 text-xl leading-8 font-semibold md:px-8 md:py-7 md:text-2xl md:leading-9">
+        <blockquote className="reveal mt-8 rounded-r-[20px] border-l-4 border-primary bg-dark px-6 py-5 text-xl leading-8 font-semibold md:px-8 md:py-7 md:text-2xl md:leading-9">
           <p>{block.text}</p>
         </blockquote>
       );

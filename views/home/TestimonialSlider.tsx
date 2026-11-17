@@ -293,7 +293,7 @@ export default function TestimonialSlider({ items }: { items: readonly Testimoni
             aria-label={`Show review ${index + 1} of ${count}`}
             aria-current={index === current ? 'true' : undefined}
             onClick={() => goTo(active + shortestStep(current, index, count))}
-            className={`h-2 rounded-full transition-all duration-300 ${index === current ? 'w-7 bg-pink-primary' : 'w-2 bg-foreground/25 hover:bg-foreground/50'}`}
+            className={`h-2 rounded-full transition-all duration-300 ${index === current ? 'w-7 bg-primary' : 'w-2 bg-foreground/25 hover:bg-foreground/50'}`}
           />
         ))}
       </div>

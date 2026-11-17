@@ -1,41 +1,56 @@
 @import 'tailwindcss';
 
+/*
+ * Neutrals follow GitHub's colours: the dark page is #0d1117 with #161b22 panels, the light page white
+ * with #f6f8fa panels and #1f2328 text. `--feature-*` is the highlight card (years of experience, "Have
+ * an app idea?"): a deep crimson gradient with white text in dark mode, a soft pink one with dark text
+ * in light mode.
+ */
 :root {
   color-scheme: dark;
 
-  --background: #060606;
-  --foreground: #fff;
-  --hero-bg: #0e0e10;
-  --dark: #141414;
-  --black-soft: #151515;
-  --gray-light: #c2c2c2;
-  --white-overlay: rgb(255 255 255 / 8%);
-  --line: rgb(255 255 253 / 6%);
+  --background: #0d1117;
+  --foreground: #f0f6fc;
+  --hero-bg: #10151c;
+  --dark: #161b22;
+  --black-soft: #151b23;
+  --gray-light: #b1bac4;
+  --white-overlay: rgb(240 246 252 / 8%);
+  --line: rgb(240 246 252 / 10%);
+  --feature-start: #161b22;
+  --feature-end: #6d0e2c;
+  --feature-fg: #fff;
 }
 
 :root[data-theme='light'] {
   color-scheme: light;
 
-  --background: #f8f9fa;
-  --foreground: #141414;
-  --hero-bg: #eef0f4;
-  --dark: #fff;
-  --black-soft: #f1f3f6;
-  --gray-light: #52525b;
-  --white-overlay: rgb(20 20 20 / 8%);
-  --line: rgb(20 20 20 / 8%);
+  --background: #fff;
+  --foreground: #1f2328;
+  --hero-bg: #f6f8fa;
+  --dark: #f6f8fa;
+  --black-soft: #f6f8fa;
+  --gray-light: #59636e;
+  --white-overlay: rgb(31 35 40 / 6%);
+  --line: rgb(31 35 40 / 12%);
+  --feature-start: #fff5f8;
+  --feature-end: #ffd6e2;
+  --feature-fg: #1f2328;
 }
 
-/* Colors and fonts of the portfolio, usable as Tailwind classes (`text-pink-primary`, `font-rubik`). */
+/* Colors and fonts of the portfolio, usable as Tailwind classes (`text-primary`, `font-rubik`). */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-pink-primary: #ff014f;
+  --color-primary: #ff014f;
   --color-gray-light: var(--gray-light);
   --color-black-soft: var(--black-soft);
   --color-dark: var(--dark);
   --color-white-overlay: var(--white-overlay);
   --color-line: var(--line);
+  --color-feature-start: var(--feature-start);
+  --color-feature-end: var(--feature-end);
+  --color-feature-fg: var(--feature-fg);
   --font-sans: var(--font-rajdhani);
   --font-rubik: var(--font-rubik);
 }
@@ -140,8 +155,8 @@ body {
     border-radius: inherit;
     background: radial-gradient(
       ellipse 100% 100% at var(--glow-cx) var(--glow-cy),
-      var(--color-pink-primary) 0%,
-      var(--color-pink-primary) 20%,
+      var(--color-primary) 0%,
+      var(--color-primary) 20%,
       rgb(255 1 79 / 0.35) 65%,
       transparent 100%
     );
@@ -214,6 +229,22 @@ body {
     opacity: 0;
     transform: translateY(24px);
   }
+}
+
+/*
+ * Theme switch (`ThemeToggle`): the new theme is revealed by a growing circle that the toggle animates on
+ * the new snapshot, so the browser's own crossfade is turned off, as are the elements' colour transitions
+ * while the snapshots are taken.
+ */
+.theme-switching::view-transition-old(root),
+.theme-switching::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+.theme-switching,
+.theme-switching * {
+  transition: none !important;
 }
 
 /* The reading progress bar under the header. */

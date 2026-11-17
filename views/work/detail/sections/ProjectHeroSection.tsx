@@ -23,7 +23,7 @@ export default function ProjectHeroSection({ project }: { project: Project }) {
       <div className="animate-intro flex flex-col items-start">
         <Breadcrumb trail={TRAIL} current={project.title} />
 
-        <p className="mt-5 font-rubik text-xs leading-5 font-medium tracking-[3px] text-pink-primary uppercase md:mt-6 md:text-sm">
+        <p className="mt-5 font-rubik text-xs leading-5 font-medium tracking-[3px] text-primary uppercase md:mt-6 md:text-sm">
           {project.category}
         </p>
         <h1
