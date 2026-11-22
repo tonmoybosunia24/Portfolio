@@ -29,7 +29,7 @@ export default function Blog() {
 
       <section aria-label="All posts" className="pb-15 md:pb-20 lg:pb-30">
         <div className="section">
-          <BlogGrid posts={sortedPosts()} />
+          <BlogGrid posts={sortedPosts()} heading="h2" />
         </div>
       </section>
     </SiteShell>

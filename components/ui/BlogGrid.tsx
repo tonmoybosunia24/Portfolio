@@ -8,6 +8,7 @@ import BlogCard from './BlogCard';
 interface BlogGridProps {
   posts: readonly BlogPost[];
   evenOnTablet?: boolean;
+  heading?: 'h2' | 'h3';
   className?: string;
 }
 
@@ -15,7 +16,7 @@ interface BlogGridProps {
  * Posts as cards that rise in one after another: one per row on phones, two from 768px and three from
  * 992px. Each card lifts on hover (without the pink border glow of other cards).
  */
-export default function BlogGrid({ posts, evenOnTablet = false, className }: BlogGridProps) {
+export default function BlogGrid({ posts, evenOnTablet = false, heading, className }: BlogGridProps) {
   return (
     <ul className={cn('grid gap-5 md:grid-cols-2 md:gap-6 lg:grid-cols-3 xl:gap-7.5', className)}>
       {posts.map((post, index) => (
@@ -27,7 +28,7 @@ export default function BlogGrid({ posts, evenOnTablet = false, className }: Blo
             evenOnTablet && index === 2 && 'md:max-lg:hidden',
           )}
         >
-          <BlogCard post={post} />
+          <BlogCard post={post} heading={heading} />
         </li>
       ))}
     </ul>
