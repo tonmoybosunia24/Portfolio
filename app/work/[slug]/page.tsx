@@ -2,6 +2,8 @@ import { notFound } from 'next/navigation';
 
 import type { Metadata } from 'next';
 
+import { pageMetadata } from '@/utils/page-metadata';
+
 import { PROFILE } from '@/constants/profile';
 import { findProject, PROJECTS } from '@/constants/projects';
 import ProjectDetail from '@/views/work/detail';
@@ -16,7 +18,13 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: PageProps<'/work/[slug]'>): Promise<Metadata> {
   const project = findProject((await params).slug);
 
-  return project ? { title: { absolute: `${project.title} - ${PROFILE.fullName}` }, description: project.summary } : {};
+  return project
+    ? pageMetadata({
+        title: `${project.title} - ${PROFILE.fullName}`,
+        description: project.summary,
+        path: `/work/${project.slug}`,
+      })
+    : {};
 }
 
 export default async function ProjectPage({ params }: PageProps<'/work/[slug]'>) {

@@ -70,6 +70,20 @@ Posts live in `constants/blog.ts` (`BLOG`, `sortedPosts`, `findPost`). Each has 
 
 The page title is the post's title and your full name, and the description is its `excerpt`. `app/sitemap.ts` lists `/blog` and every post.
 
+## Search engines
+
+The site is open to search engines, so a search for "Tonmoy Bosunia" can find it.
+
+- `app/robots.ts` (`/robots.txt`) allows every public page, blocks `/api/`, `/login` and the pages behind login (`PROTECTED_ROUTES`), and links `/sitemap.xml`. `/login` and `/dashboard` are also marked `noindex`.
+- `app/sitemap.ts` lists the home page, `/work`, `/blog` and every project and post.
+- The site's address is `SITE_URL` in `constants/seo.ts`: `NEXT_PUBLIC_APP_URL`, or `https://mdtonmoybosunia.vercel.app` when that is not set. Canonical, Open Graph, robots and sitemap URLs are built from it.
+- Every public page builds its metadata with `pageMetadata` (`utils/page-metadata.ts`): the title, description, canonical URL, and the Open Graph and X card fields (a blog post is an `article` with its date).
+- `app/icon.tsx` makes the favicon from the logo mark (`public/images/logo.png`) at 48×48, Google's minimum for the icon beside a search result. The logo is only 41×41, so a larger icon (such as a 180px iPhone home screen icon) needs a bigger or SVG logo first.
+- `app/opengraph-image.tsx` draws the preview image for shared links: the name, role, skills and address beside the portrait, 1200×630.
+- The home page's title and description are `SEO.title` and `SEO.description`, both with "Frontend Developer" in them, so searches for the name with that role find it. The structured data's `jobTitle` is `SEO.jobTitle`, with the hero's roles as occupations.
+- The home page has JSON-LD structured data (`utils/structured-data.ts`, rendered by `components/ui/JsonLd.tsx`): a `Person` (full name, other spellings in `SEO.alternateNames`, role, BlackDevs, Rangpur, college, skills and the social profiles as `sameAs`), a `ProfilePage` about that person and the `WebSite`. The facts are in `SEO` in `constants/seo.ts`. Check it with Google's Rich Results Test after a deploy.
+- Google Search Console owns the site through the `google-site-verification` meta tag on every page (`SEO.googleSiteVerification`, set as `verification` in `app/layout.tsx`). Keep it, or Search Console loses access.
+
 ## Sizes
 
 Header and hero sizes follow the Reeni template. Tailwind's breakpoints are set to match it in `app/globals.css`: `sm` 576px, `md` 768px, `lg` 992px, `xl` 1200px, `2xl` 1400px and `3xl` 1600px. The `section` container gives the same content widths (345px on a 375px phone, then 510, 705, 945, 1125 and at most 1275px).

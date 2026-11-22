@@ -10,8 +10,7 @@ cp .env.example .env.local
 
 | Variable                   | Where it's read  | Required             | Purpose                                                                                                 |
 | -------------------------- | ---------------- | -------------------- | ------------------------------------------------------------------------------------------------------- |
-| `NEXT_PUBLIC_APP_NAME`     | Server + browser | No                   | App name in the page title (`Settings \| <name>`). Defaults to "Next.js Starter Kit"                    |
-| `NEXT_PUBLIC_APP_URL`      | Server + browser | In production        | Public URL of the app. Used as `metadataBase` for absolute Open Graph and canonical URLs                |
+| `NEXT_PUBLIC_APP_URL`      | Server + browser | No                   | Public URL of the site, for canonical, Open Graph, robots and sitemap URLs. Defaults to the live site   |
 | `API_URL`                  | Server only      | Yes                  | Backend base URL, e.g. `http://localhost:8000/api`. Requests fail with a clear error without it         |
 | `ENCRYPTION_KEY`           | Server only      | If encryption used   | 32-byte key for `utils/encryption.server.ts`. See [encryption.md](encryption.md)                        |
 | `ENCRYPTION_KEY_PREVIOUS`  | Server only      | No                   | The old key during a key rotation                                                                       |

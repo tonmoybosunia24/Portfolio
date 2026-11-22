@@ -4,6 +4,9 @@ import type { Metadata } from 'next';
 
 import StoreProvider from '@/lib/StoreProvider';
 
+import { PROFILE } from '@/constants/profile';
+import { SEO, SITE_URL } from '@/constants/seo';
+
 import './globals.css';
 
 // Headings and UI text.
@@ -19,14 +22,18 @@ const rubik = Rubik({
   subsets: ['latin'],
 });
 
-const appName = process.env.NEXT_PUBLIC_APP_NAME ?? 'Next.js Starter Kit';
-
 export const metadata: Metadata = {
   // Absolute URLs for Open Graph images and canonical links are built from this.
-  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL ?? 'http://localhost:3000'),
-  // A page sets `title: 'Settings'` and gets "Settings | <app name>".
-  title: { default: appName, template: `%s | ${appName}` },
-  description: `${appName} web application`,
+  metadataBase: new URL(SITE_URL),
+  // A page sets `title: 'Settings'` and gets "Settings | <full name>". Public pages set their own
+  // title, canonical URL and preview fields with `pageMetadata` (`utils/page-metadata.ts`).
+  title: { default: SEO.title, template: `%s | ${PROFILE.fullName}` },
+  description: PROFILE.intro,
+  applicationName: PROFILE.fullName,
+  authors: [{ name: PROFILE.fullName, url: SITE_URL }],
+  creator: PROFILE.fullName,
+  twitter: { card: 'summary_large_image', creator: SEO.twitterHandle },
+  verification: { google: SEO.googleSiteVerification },
 };
 
 export default function RootLayout({
