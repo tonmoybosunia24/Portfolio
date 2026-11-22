@@ -26,8 +26,8 @@ const motionAllowed = () => !window.matchMedia?.(REDUCED_MOTION).matches;
 const motionAllowedOnServer = () => false;
 
 /**
- * Types each word, deletes it and moves on to the next, in a loop. Screen readers and visitors who prefer
- * reduced motion get the first word only.
+ * Types each word, deletes it and moves on to the next, in a loop. Visitors who prefer reduced motion see
+ * the first word only; screen readers and search engines get every word, separated by commas.
  */
 export default function Typewriter({ words, typeSpeed = 80, deleteSpeed = 30, pause = 1500 }: TypewriterProps) {
   const [wordIndex, setWordIndex] = useState(0);
@@ -63,7 +63,8 @@ export default function Typewriter({ words, typeSpeed = 80, deleteSpeed = 30, pa
 
   return (
     <>
-      <span className="sr-only">{first}</span>
+      {/* Screen readers and search engines get every word at once, not just the one on screen. */}
+      <span className="sr-only">{`${words.join(', ')} `}</span>
       <span aria-hidden="true">
         {animate ? word.slice(0, length) : first}
         <span className="animate-blink">_</span>

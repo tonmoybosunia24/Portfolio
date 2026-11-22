@@ -32,10 +32,10 @@ export default function HeroSection() {
           <h1 id="hero-title" className="animate-intro flex flex-col font-bold">
             <span className="text-[22px] leading-7 md:mb-3.75 md:text-[28px] md:leading-9.5 compact:mb-2 compact:text-[22px] compact:leading-7.5">
               {PROFILE.greeting}
-            </span>
+            </span>{' '}
             <span className="text-[32px] leading-[1.3] md:mt-1.25 md:text-[54px] 3xl:text-[68px] compact:text-[44px]">
               I’m {PROFILE.name}
-            </span>
+            </span>{' '}
             {/*
               One line, so the text below doesn't jump while the roles are typed. A little smaller than the
               name where the longest role (20 characters) would not fit its column otherwise.

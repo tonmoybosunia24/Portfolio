@@ -78,7 +78,7 @@ Components are Server Components unless the file starts with `'use client'`. Kee
 | `app/robots.ts`                 | `/robots.txt`: allows the public pages, blocks `/api/` and the login pages, links sitemap |
 | `app/sitemap.ts`                | `/sitemap.xml`: add your public pages                                                     |
 | `app/opengraph-image.tsx`       | Preview image for shared links: name, role and portrait                                   |
-| `app/icon.tsx`                  | The favicon: the logo mark from `public/images/logo.png`, 48×48                           |
+| `app/icon.png`                  | The favicon (96×96), with `apple-icon.png` for iPhones (180×180): the "TB" logo           |
 | `app/globals.css`               | Tailwind import and the theme's color and font variables                                  |
 
 ## Root files

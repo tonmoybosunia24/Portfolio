@@ -45,7 +45,7 @@ export default function PostHeroSection({ post }: { post: BlogPost }) {
 
         <div className="mt-6 flex items-center gap-3 md:mt-7">
           <span className="flex size-11 shrink-0 items-center justify-center rounded-full border border-foreground/8 bg-dark md:size-12">
-            <Image src="/images/logo.png" alt="" width={41} height={41} className="size-7" />
+            <Image src="/images/logo-tb.webp" alt="" width={340} height={240} className="h-auto w-7" />
           </span>
           <span className="font-rubik">
             <span className="block text-[15px] leading-5 font-medium text-foreground">{PROFILE.fullName}</span>

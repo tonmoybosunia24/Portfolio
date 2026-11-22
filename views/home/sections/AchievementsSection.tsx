@@ -29,7 +29,7 @@ export default function AchievementsSection() {
             <h3 className="flex items-center gap-5 font-bold md:gap-11">
               <span className="text-[80px] leading-none text-primary md:text-[100px] xl:text-[140px] 2xl:text-[167px]">
                 {twoDigits(experience.years)}
-              </span>
+              </span>{' '}
               <span className="text-[26px] leading-[1.3] md:text-[37px] xl:text-[42px] 2xl:text-5xl">
                 {experience.years === 1 ? 'Year' : 'Years'} Of <br />
                 Experience

@@ -8,14 +8,19 @@ import type { BlogPost } from '@/types';
 import BlogCover from './BlogCover';
 import { ArrowRightIcon } from './icons';
 
+/** How wide a card's cover is shown: one, two or three cards per row. */
+const COVER_SIZES = '(min-width: 1400px) 400px, (min-width: 992px) 31vw, (min-width: 768px) 48vw, 100vw';
+
+interface BlogCardProps {
+  post: BlogPost;
+  heading?: 'h2' | 'h3';
+}
+
 /**
  * A post as a card: its cover, the date and reading time, the title, a short excerpt and "Read Article".
  * The whole card opens the post. Put it in a `group`, as `BlogGrid` does.
  */
-/** How wide a card's cover is shown: one, two or three cards per row. */
-const COVER_SIZES = '(min-width: 1400px) 400px, (min-width: 992px) 31vw, (min-width: 768px) 48vw, 100vw';
-
-export default function BlogCard({ post }: { post: BlogPost }) {
+export default function BlogCard({ post, heading: Heading = 'h3' }: BlogCardProps) {
   return (
     <article className="flex h-full flex-col">
       <BlogCover post={post} sizes={COVER_SIZES} />
@@ -25,12 +30,12 @@ export default function BlogCard({ post }: { post: BlogPost }) {
         <span aria-hidden="true" className="size-1 rounded-full bg-primary" />
         {readingMinutes(post.content)} min read
       </p>
-      <h3 className="mt-2.5 text-[22px] leading-7.5 font-bold transition-colors duration-300 group-hover:text-primary md:text-2xl md:leading-8">
+      <Heading className="mt-2.5 text-[22px] leading-7.5 font-bold transition-colors duration-300 group-hover:text-primary md:text-2xl md:leading-8">
         {/* Stretched over the whole card, so clicking anywhere opens the post. */}
         <Link href={`/blog/${post.slug}`} className="after:absolute after:inset-0 after:rounded-[20px]">
           {post.title}
         </Link>
-      </h3>
+      </Heading>
       <p className="mt-3 line-clamp-3 font-rubik text-[15px] leading-6.5 text-gray-light">{post.excerpt}</p>
       <span
         aria-hidden="true"
