@@ -1,13 +1,24 @@
 import type { Metadata } from 'next';
 
-import { PROFILE } from '@/constants/profile';
+import { pageMetadata } from '@/utils/page-metadata';
+import { homeStructuredData } from '@/utils/structured-data';
+
+import JsonLd from '@/components/ui/JsonLd';
+
+import { SEO } from '@/constants/seo';
 import Home from '@/views/home';
 
-export const metadata: Metadata = {
-  title: { absolute: `${PROFILE.fullName} - ${PROFILE.role}` },
-  description: `Portfolio of ${PROFILE.fullName}, a frontend developer building Flutter apps for Android and iOS and web interfaces with React and Next.js.`,
-};
+export const metadata: Metadata = pageMetadata({
+  title: SEO.title,
+  description: SEO.description,
+  path: '/',
+});
 
 export default function HomePage() {
-  return <Home />;
+  return (
+    <>
+      <JsonLd data={homeStructuredData()} />
+      <Home />
+    </>
+  );
 }

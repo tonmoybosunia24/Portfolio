@@ -2,8 +2,7 @@ import type { MetadataRoute } from 'next';
 
 import { BLOG } from '@/constants/blog';
 import { PROJECTS } from '@/constants/projects';
-
-const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? 'http://localhost:3000';
+import { SITE_URL as appUrl } from '@/constants/seo';
 
 /**
  * Served at /sitemap.xml. List the public pages search engines should index; for pages from the API

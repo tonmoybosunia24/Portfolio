@@ -64,7 +64,7 @@ Components are Server Components unless the file starts with `'use client'`. Kee
 
 | File                            | Purpose                                                                                   |
 | ------------------------------- | ----------------------------------------------------------------------------------------- |
-| `app/layout.tsx`                | Root layout: fonts, metadata (title template from `NEXT_PUBLIC_APP_NAME`), Redux provider |
+| `app/layout.tsx`                | Root layout: fonts, metadata (title template from the full name), Redux provider          |
 | `app/page.tsx`                  | The portfolio home page; renders `views/home`                                             |
 | `app/work/`, `app/blog/`        | All projects and posts, and a page for each (`[slug]`)                                    |
 | `app/actions.ts`                | Server action that sends the contact form by email                                        |
@@ -75,9 +75,10 @@ Components are Server Components unless the file starts with `'use client'`. Kee
 | `app/not-found.tsx`             | 404 page for unknown URLs and `notFound()`                                                |
 | `app/api/auth/clear/route.ts`   | Ends a session (logout and expired tokens)                                                |
 | `app/api/auth/refresh/route.ts` | Refreshes the access token, then returns to the page                                      |
-| `app/robots.ts`                 | `/robots.txt`: asks every crawler to stay off the whole site (no indexing)                |
+| `app/robots.ts`                 | `/robots.txt`: allows the public pages, blocks `/api/` and the login pages, links sitemap |
 | `app/sitemap.ts`                | `/sitemap.xml`: add your public pages                                                     |
-| `app/opengraph-image.tsx`       | Preview image for shared links. Replace it with your design                               |
+| `app/opengraph-image.tsx`       | Preview image for shared links: name, role and portrait                                   |
+| `app/icon.tsx`                  | The favicon: the logo mark from `public/images/logo.png`, 48×48                           |
 | `app/globals.css`               | Tailwind import and the theme's color and font variables                                  |
 
 ## Root files

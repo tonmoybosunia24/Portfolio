@@ -6,6 +6,7 @@ Notable changes to the starter kit. The format follows [Keep a Changelog](https:
 
 ### Added
 
+- Search engine setup so the site can be found by name: `/robots.txt` now allows the public pages (blocking `/api/`, `/login` and `/dashboard`, which are also `noindex`) and links the sitemap; every public page has a canonical URL and Open Graph and X card fields (`utils/page-metadata.ts`); the home page has `Person`, `ProfilePage` and `WebSite` structured data (`utils/structured-data.ts`); the shared-link preview image shows the name, role and portrait; every page has the Google Search Console verification tag; the favicon is now the logo mark (`app/icon.tsx`) instead of the Next.js icon. The site address defaults to https://mdtonmoybosunia.vercel.app (`constants/seo.ts`), and the unused `NEXT_PUBLIC_APP_NAME` is gone. See `docs/portfolio.md`.
 - Portfolio 404 page in the site's style (`views/not-found/`, text in `constants/not-found.ts`): header and footer, a large "404" with a floating pink zero, the message, Back to Home and View Projects buttons and the other header links, instead of the starter's plain text page.
 - Portfolio home page: header with side panel and hero (typewriter roles, portrait, background drawn in code). Content lives in `constants/profile.ts`; see `docs/portfolio.md`.
 - Portfolio services section: six numbered cards under a shared `SectionHeading`, which the next sections reuse.
